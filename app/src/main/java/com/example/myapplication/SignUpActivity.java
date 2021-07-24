@@ -9,7 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View.OnFocusChangeListener;
 
-public class SignUpActivity<id_input> extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
+    EditText id_input;
 
 
 
@@ -17,9 +18,24 @@ public class SignUpActivity<id_input> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        id_input = (EditText)findViewById(R.id.SignUpIDeditText);
+
+        id_input.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+            }
+
+
+        });
+
+
+
+
     }
 
-    EditText id_input=(EditText) findViewById(R.id.SignUpIDeditText);
+
     EditText pw_input=findViewById(R.id.SignUpPWeditText);
     EditText pwCheck_input=findViewById(R.id.PWCheckeditText);
 
@@ -27,8 +43,7 @@ public class SignUpActivity<id_input> extends AppCompatActivity {
     TextView pwNotice=findViewById(R.id.SignUpPWNotice);
     TextView pwCheckNotice=findViewById(R.id.PWCheckNotice);
 
-    //
-    // String USERID = id_input.getText().toString();
+    //tring USERID = id_input.getText().toString();
     //String UserPW = pwInput.getText().toString();
 
 
@@ -44,8 +59,7 @@ public class SignUpActivity<id_input> extends AppCompatActivity {
     *
     *
      */
- //id_input.getText().toString();
-   // id_input.setOnFocusChangeListener(new View.OnFocusChangeListener(){});
+    final String username = id_input.getText().toString();
 
     /*
     * 2. 버튼 누르면 edittext의 값 가져옴.
