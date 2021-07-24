@@ -7,7 +7,7 @@
     tools:context=".SignUpActivity">
 
     <TextView
-        android:id="@+id/LogintextView"
+        android:id="@+id/SignUptextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/LoginID"
+        android:id="@+id/SignUpID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -30,10 +30,10 @@
         android:textColor="#0F0F0F"
         android:textSize="10pt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LogintextView" />
+        app:layout_constraintTop_toBottomOf="@+id/SignUptextView" />
 
     <EditText
-        android:id="@+id/LoginIDeditText"
+        android:id="@+id/SignUpIDeditText"
         android:layout_width="333dp"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
@@ -42,23 +42,24 @@
         android:background="@drawable/rectangle_border"
         android:ems="10"
         android:hint=" 6글자 이상 영문과 숫자로 작성해주세요"
+        android:maxLength="15"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/LoginID"
-        app:layout_constraintTop_toBottomOf="@+id/LoginID" />
+        app:layout_constraintStart_toStartOf="@+id/SignUpID"
+        app:layout_constraintTop_toBottomOf="@+id/SignUpID" />
 
     <TextView
-        android:id="@+id/LoginIDNotice"
+        android:id="@+id/SignUpIDNotice"
         android:layout_width="333dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textColor="#FF0000"
-        app:layout_constraintStart_toStartOf="@+id/LoginIDeditText"
-        app:layout_constraintTop_toBottomOf="@+id/LoginIDeditText" />
+        app:layout_constraintStart_toStartOf="@+id/SignUpIDeditText"
+        app:layout_constraintTop_toBottomOf="@+id/SignUpIDeditText" />
 
     <TextView
-        android:id="@+id/LoginPW"
+        android:id="@+id/SignUpPW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -68,10 +69,10 @@
         android:textColor="#0F0F0F"
         android:textSize="10pt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginIDNotice" />
+        app:layout_constraintTop_toBottomOf="@+id/SignUpIDNotice" />
 
     <EditText
-        android:id="@+id/LoginPWeditText"
+        android:id="@+id/SignUpPWeditText"
         android:layout_width="333dp"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
@@ -81,22 +82,23 @@
         android:ems="10"
         android:hint=" 6글자 이상 영문과 숫자로 작성해주세요"
         android:inputType="textPassword"
+        android:maxLength="15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/LoginPW"
-        app:layout_constraintTop_toBottomOf="@+id/LoginPW" />
+        app:layout_constraintStart_toStartOf="@+id/SignUpPW"
+        app:layout_constraintTop_toBottomOf="@+id/SignUpPW" />
 
     <TextView
-        android:id="@+id/LoginPWNotice"
+        android:id="@+id/SignUpPWNotice"
         android:layout_width="333dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textColor="#FF0000"
-        app:layout_constraintStart_toStartOf="@+id/LoginPWeditText"
-        app:layout_constraintTop_toBottomOf="@+id/LoginPWeditText" />
+        app:layout_constraintStart_toStartOf="@+id/SignUpPWeditText"
+        app:layout_constraintTop_toBottomOf="@+id/SignUpPWeditText" />
 
     <TextView
-        android:id="@+id/PWChecktextView"
+        android:id="@+id/PWCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -106,7 +108,7 @@
         android:textColor="#0F0F0F"
         android:textSize="10pt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginPWNotice" />
+        app:layout_constraintTop_toBottomOf="@+id/SignUpPWNotice" />
 
     <EditText
         android:id="@+id/PWCheckeditText"
@@ -119,10 +121,11 @@
         android:ems="10"
         android:hint=" 6글자 이상 영문과 숫자로 작성해주세요"
         android:inputType="textPassword"
+        android:maxLength="15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/PWChecktextView"
-        app:layout_constraintTop_toBottomOf="@+id/PWChecktextView" />
+        app:layout_constraintStart_toStartOf="@+id/PWCheck"
+        app:layout_constraintTop_toBottomOf="@+id/PWCheck" />
 
     <TextView
         android:id="@+id/PWCheckNotice"
@@ -134,7 +137,7 @@
         app:layout_constraintTop_toBottomOf="@+id/PWCheckeditText" />
 
     <Button
-        android:id="@+id/Loginbutton"
+        android:id="@+id/SignUpbutton"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
