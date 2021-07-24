@@ -6,4 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:id="@+id/SigntextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="50dp"
+        android:text="로그인"
+        android:textColor="#FEABAA"
+        android:textSize="15pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/IDtextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="40dp"
+        android:text="아이디"
+        android:textColor="#0F0F0F"
+        android:textSize="10pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SigntextView" />
+
+    <EditText
+        android:id="@+id/IDeditText"
+        android:layout_width="333dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/rectangle_border"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/IDtextView"
+        app:layout_constraintTop_toBottomOf="@+id/IDtextView" />
+
+    <TextView
+        android:id="@+id/IDNotice"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/IDeditText"
+        app:layout_constraintTop_toBottomOf="@+id/IDeditText" />
+
+    <TextView
+        android:id="@+id/PWtextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="22dp"
+        android:text="비밀번호"
+        android:textColor="#0F0F0F"
+        android:textSize="10pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDNotice" />
+
+    <EditText
+        android:id="@+id/PWeditText"
+        android:layout_width="333dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/rectangle_border"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/PWtextView"
+        app:layout_constraintTop_toBottomOf="@+id/PWtextView" />
+
+    <TextView
+        android:id="@+id/PWNotice"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/PWeditText"
+        app:layout_constraintTop_toBottomOf="@+id/PWeditText" />
+
+    <Button
+        android:id="@+id/SignUpbutton"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="로그인"
+        android:textSize="8pt"
+        app:backgroundTint="#FCA7A6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PWNotice" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
