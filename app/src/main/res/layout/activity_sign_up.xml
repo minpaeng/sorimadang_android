@@ -1,52 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
     <TextView
         android:id="@+id/SigntextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="회원가입" />
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="50dp"
+        android:text="회원가입"
+        android:textColor="#FEABAA"
+        android:textSize="15pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/IdtextView"
-        android:layout_width="match_parent"
+        android:id="@+id/IDtextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="아이디" />
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="40dp"
+        android:text="아이디"
+        android:textColor="#0F0F0F"
+        android:textSize="10pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SigntextView" />
 
     <EditText
-        android:id="@+id/IdeditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/IDeditText"
+        android:layout_width="333dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/rectangle_border"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:hint=" 6글자 이상 영문과 숫자로 작성해주세요"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/IDtextView"
+        app:layout_constraintTop_toBottomOf="@+id/IDtextView" />
 
     <TextView
-        android:id="@+id/IdNoticetextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/IDNotice"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/IDeditText"
+        app:layout_constraintTop_toBottomOf="@+id/IDeditText" />
 
     <TextView
         android:id="@+id/PWtextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="22dp"
+        android:text="비밀번호"
+        android:textColor="#0F0F0F"
+        android:textSize="10pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDNotice" />
 
     <EditText
         android:id="@+id/PWeditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="333dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/rectangle_border"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:hint=" 6글자 이상 영문과 숫자로 작성해주세요"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/PWtextView"
+        app:layout_constraintTop_toBottomOf="@+id/PWtextView" />
 
     <TextView
-        android:id="@+id/PWNoticetextView"
-        android:layout_width="match_parent"
+        android:id="@+id/PWNotice"
+        android:layout_width="333dp"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-</LinearLayout>
+        android:layout_marginTop="5dp"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/PWeditText"
+        app:layout_constraintTop_toBottomOf="@+id/PWeditText" />
+
+    <TextView
+        android:id="@+id/PWChecktextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="22dp"
+        android:text="비밀번호 확인"
+        android:textColor="#0F0F0F"
+        android:textSize="10pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PWNotice" />
+
+    <EditText
+        android:id="@+id/PWCheckeditText"
+        android:layout_width="333dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/rectangle_border"
+        android:ems="10"
+        android:hint=" 6글자 이상 영문과 숫자로 작성해주세요"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/PWChecktextView"
+        app:layout_constraintTop_toBottomOf="@+id/PWChecktextView" />
+
+    <TextView
+        android:id="@+id/PWCheckNotice"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/PWCheckeditText"
+        app:layout_constraintTop_toBottomOf="@+id/PWCheckeditText" />
+
+    <Button
+        android:id="@+id/SignUpbutton"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="회원가입"
+        app:backgroundTint="#FCA7A6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PWCheckNotice" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
