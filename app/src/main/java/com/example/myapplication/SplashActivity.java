@@ -12,7 +12,7 @@ public class SplashActivity extends Activity {
 
         try {
             //Thread.sleep(3000); //대기 초 설정
-            startActivity(new Intent(SplashActivity.this, IntroActivity.class));
+            startActivity(new Intent(SplashActivity.this, UserSetActivity.class));
             finish();
         } catch (Exception e) {
         }
