@@ -13,19 +13,19 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.myapplication.ui.dashboard.DashboardFragment"
+        android:name="com.example.myapplication.ui.dashboard.InstrumentFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_instrument" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.myapplication.ui.notifications.NotificationsFragment"
+        android:name="com.example.myapplication.ui.notifications.SongFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_song" />
 
     <fragment
         android:id="@+id/navigation_mypage"
-        android:name="com.example.myapplication.ui.notifications.NotificationsFragment"
+        android:name="com.example.myapplication.ui.notifications.SongFragment"
         android:label="@string/title_mypage"
         tools:layout="@layout/fragment_mypage" />
 </navigation>
