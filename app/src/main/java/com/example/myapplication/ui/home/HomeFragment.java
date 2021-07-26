@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.ListViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,6 +17,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -35,10 +38,10 @@ public class HomeFragment extends Fragment {
 
 
         ListviewComponents = new ArrayList<>();
-        ListviewComponents.add(new ListviewComponent("너 이름이 뭐니?", "국악기의 이름을 맞혀주세요",R.drawable.janggu ));
-        ListviewComponents.add(new ListviewComponent(" aa", "a", R.drawable.oxquiz));
-        ListviewComponents.add(new ListviewComponent("a", "a", R.drawable.musicnotes));
-        ListviewComponents.add(new ListviewComponent("a", "a", R.drawable.musicnote2));
+        ListviewComponents.add(new ListviewComponent("너 이름이 뭐니?", "국악기의 이름을 맞혀주세요",R.drawable.janggu , Color.parseColor("#DADADA")));
+        ListviewComponents.add(new ListviewComponent("국악기 OX 퀴즈", "a", R.drawable.oxquiz,Color.parseColor("#F8F8F8")));
+        ListviewComponents.add(new ListviewComponent("민요 맞히기", "a", R.drawable.musicnotes,Color.parseColor("#DADADA")));
+        ListviewComponents.add(new ListviewComponent("하늘에서 음표가\n떨어진다면", "a", R.drawable.musicnote2,Color.parseColor("#F8F8F8")));
 
         customListView = (ListView) root.findViewById(R.id.main_listview);
         customAdapter = new CustomAdapter(getContext(),ListviewComponents);
