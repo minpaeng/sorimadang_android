@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity android:name=".OXquizIntroActivity"></activity>
+        <activity android:name=".SelectLogSignActivity"></activity>
         <activity android:name=".UserSetActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />

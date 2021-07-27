@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.home;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,7 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
             convertView = layoutInflater.inflate(R.layout.listview_custom, parent, false);
         }
 
+
         viewHolder = new ViewHolder();
         viewHolder.tv_name = (TextView) convertView.findViewById(R.id.textView_name);
         viewHolder.tv_exp = (TextView) convertView.findViewById(R.id.textView_exp);
@@ -56,7 +58,32 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
         final ListviewComponent listviewComponent = (ListviewComponent) list.get(position);
         viewHolder.tv_name.setText(listviewComponent.getGameName());
         viewHolder.tv_exp.setText(listviewComponent.getGameExp());
-        viewHolder.iv_image.setImageAlpha(listviewComponent.getGameImage());
+        viewHolder.iv_image.setImageResource(listviewComponent.getGameImage());
+
+
+        if(viewHolder.tv_name.toString().equals("너 이름이 뭐니?") ){
+            convertView.setBackgroundColor(listviewComponent.setBackgound());
+
+        }
+        else if(viewHolder.tv_name.toString().equals("국악기 OX 퀴") ){
+            convertView.setBackgroundColor(listviewComponent.setBackgound());
+
+        }
+        else if(viewHolder.tv_name.toString().equals("민요 맞히기") ){
+            convertView.setBackgroundColor(listviewComponent.setBackgound());
+
+        }
+        else {
+            convertView.setBackgroundColor(listviewComponent.setBackgound());
+
+        }
+
+
+
+        ViewGroup.LayoutParams layoutParams = convertView.getLayoutParams();
+        layoutParams.height = 480;
+        convertView.setLayoutParams(layoutParams);
+
 
 
         return convertView;

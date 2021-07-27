@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -105,6 +106,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //USERID,USERPW를 서버에 보내주기.
+
+
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+
             }
         });
 

@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +55,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //서버에서 아이디,비번가져오기.
                 //LOGINID,LOGINPW와 비교하기
+
+
+                startActivity(new Intent(LoginActivity.this, IntroActivity.class));
+
             }
         });
 

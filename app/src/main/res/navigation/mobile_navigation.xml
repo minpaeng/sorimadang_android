@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.myapplication.ui.dashboard.InstrumentFragment"
+        android:name="com.example.myapplication.ui.Instrument.InstrumentFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_instrument" />
 
