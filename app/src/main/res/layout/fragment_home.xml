@@ -10,9 +10,11 @@
     <TextView
         android:id="@+id/all_game"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="2dp"
         android:text="모든 게임"
-        android:textSize="8dp" />
+        android:textSize="10sp" />
 
     <ListView
         android:id="@+id/main_listview"
