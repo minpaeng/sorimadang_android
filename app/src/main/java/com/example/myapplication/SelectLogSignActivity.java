@@ -14,7 +14,7 @@ public class SelectLogSignActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_log_sign);
-
+        getSupportActionBar().hide();
         usSignUp = findViewById(R.id.usSignUpBT);
         usLogin = findViewById(R.id.usLoginBT);
 
