@@ -1,7 +1,11 @@
 package com.example.myapplication.ui.mypage;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,20 +15,28 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.myapplication.R;
 
 public class MypageFragment extends Fragment {
 
     private MypageViewModel mViewModel;
-
+    private ImageView halfpeng_img;
     public static MypageFragment newInstance() {
         return new MypageFragment();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        halfpeng_img = (ImageView) getView().findViewById(R.id.peng_half_image);
+        halfpeng_img.setBackground(new ShapeDrawable(new OvalShape()));
+        halfpeng_img.setClipToOutline(true);
+
+
+
         return inflater.inflate(R.layout.fragment_mypage, container, false);
     }
 
@@ -33,6 +45,8 @@ public class MypageFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MypageViewModel.class);
         // TODO: Use the ViewModel
+
+
     }
 
 }
