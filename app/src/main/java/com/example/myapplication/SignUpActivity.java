@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View.OnFocusChangeListener;
 
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity {
 
     EditText idInput, pwInput, pwCheckInput;
@@ -53,7 +55,11 @@ public class SignUpActivity extends AppCompatActivity {
                         idNotice.setTextColor(Color.parseColor("#FF0000"));
                         idNotice.setText("아이디 형식이 올바르지 않습니다.");
                     }
-                    else if(idInput.length() >= 6 && idInput.length() <= 15){ //아이디 형식이 올바를 때
+                    else if(idInput.length() >= 6 && idInput.length() <= 15 && !Pattern.matches("^[a-zA-Z0-9]*$",idInput.getText().toString())){ //아이디 형식이 올바르지 않을 때
+                        idNotice.setTextColor(Color.parseColor("#FF0000"));
+                        idNotice.setText("아이디 형식이 올바르지 않습니다.");
+                    }
+                    else if(idInput.length() >= 6 && idInput.length() <= 15 && Pattern.matches("^[a-zA-Z0-9]*$",idInput.getText().toString())){ //아이디 형식이 올바를 때
                         idNotice.setTextColor(Color.parseColor("#0038FF"));
                         idNotice.setText("올바른 아이디 형식입니다.");
                         USERID = idInput.getText().toString();
