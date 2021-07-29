@@ -121,4 +121,48 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Quiz" />
 
+    <ImageView
+        android:id="@+id/wrongOimg"
+        android:layout_width="290dp"
+        android:layout_height="190dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Quiz"
+        app:srcCompat="@drawable/wrong_o" />
+
+    <ImageView
+        android:id="@+id/wrongXimg"
+        android:layout_width="290dp"
+        android:layout_height="190dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Quiz"
+        app:srcCompat="@drawable/wrong_x" />
+
+    <ImageView
+        android:id="@+id/rightOimg"
+        android:layout_width="290dp"
+        android:layout_height="190dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Quiz"
+        app:srcCompat="@drawable/right_o" />
+
+    <ImageView
+        android:id="@+id/rigntXimg"
+        android:layout_width="290dp"
+        android:layout_height="190dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Quiz"
+        app:srcCompat="@drawable/right_x" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
