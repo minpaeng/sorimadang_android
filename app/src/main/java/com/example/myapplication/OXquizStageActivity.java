@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,7 +36,10 @@ public class OXquizStageActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oxquiz_stage);
+
+        //rightOimg.setVisibility(View.VISIBLE); //화면에서 보이게 하는거->정답일때 보이게 할 수 있음
     }
 
     //정답이랑 틀린거 o,x뜨는건 그냥 이미지뷰로 해서 뜨게 하는게 좋을 것 같음!!
+
 }
