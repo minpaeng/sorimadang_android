@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Stage"
+        android:id="@+id/oxStage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/QuizStep"
+        android:id="@+id/oxQuizStep"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -48,16 +48,16 @@
         app:layout_constraintTop_toBottomOf="@+id/backBT" />
 
     <TextView
-        android:id="@+id/Time"
+        android:id="@+id/oxTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10pt"
-        app:layout_constraintEnd_toEndOf="@+id/Stage"
-        app:layout_constraintStart_toStartOf="@+id/Stage"
-        app:layout_constraintTop_toTopOf="@+id/QuizStep" />
+        app:layout_constraintEnd_toEndOf="@+id/oxStage"
+        app:layout_constraintStart_toStartOf="@+id/oxStage"
+        app:layout_constraintTop_toTopOf="@+id/oxQuizStep" />
 
     <TextView
-        android:id="@+id/Score"
+        android:id="@+id/oxScore"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -67,11 +67,11 @@
         android:textSize="10pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/Time"
-        app:layout_constraintTop_toTopOf="@+id/Time" />
+        app:layout_constraintStart_toEndOf="@+id/oxTime"
+        app:layout_constraintTop_toTopOf="@+id/oxTime" />
 
     <TextView
-        android:id="@+id/Quiz"
+        android:id="@+id/oxQuiz"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginTop="50dp"
@@ -79,7 +79,7 @@
         android:textSize="13pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Time" />
+        app:layout_constraintTop_toBottomOf="@+id/oxTime" />
 
     <Button
         android:id="@+id/oButton"
@@ -96,7 +96,7 @@
         app:layout_constraintEnd_toStartOf="@+id/xButton"
         app:layout_constraintHorizontal_bias="0.68"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Quiz" />
+        app:layout_constraintTop_toBottomOf="@+id/oxQuiz" />
 
     <Button
         android:id="@+id/xButton"
@@ -112,14 +112,14 @@
         app:layout_constraintTop_toTopOf="@+id/oButton" />
 
     <TextView
-        android:id="@+id/popScore"
+        android:id="@+id/oxPopScore"
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         app:layout_constraintBottom_toTopOf="@+id/xButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Quiz" />
+        app:layout_constraintTop_toBottomOf="@+id/oxQuiz" />
 
     <ImageView
         android:id="@+id/wrongOimg"
@@ -129,7 +129,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Quiz"
+        app:layout_constraintTop_toBottomOf="@+id/oxQuiz"
         app:srcCompat="@drawable/wrong_o" />
 
     <ImageView
@@ -140,7 +140,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Quiz"
+        app:layout_constraintTop_toBottomOf="@+id/oxQuiz"
         app:srcCompat="@drawable/wrong_x" />
 
     <ImageView
@@ -151,7 +151,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Quiz"
+        app:layout_constraintTop_toBottomOf="@+id/oxQuiz"
         app:srcCompat="@drawable/right_o" />
 
     <ImageView
@@ -162,7 +162,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Quiz"
+        app:layout_constraintTop_toBottomOf="@+id/oxQuiz"
         app:srcCompat="@drawable/right_x" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
