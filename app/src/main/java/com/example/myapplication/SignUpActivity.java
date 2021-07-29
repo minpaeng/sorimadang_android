@@ -55,11 +55,12 @@ public class SignUpActivity extends AppCompatActivity {
                         idNotice.setTextColor(Color.parseColor("#FF0000"));
                         idNotice.setText("아이디 형식이 올바르지 않습니다.");
                     }
-                    else if(idInput.length() >= 6 && idInput.length() <= 15 && !Pattern.matches("^[a-zA-Z0-9]*$",idInput.getText().toString())){ //아이디 형식이 올바르지 않을 때
+                    else if(!Pattern.matches("^[A-za-z0-9]{5,15}$",idInput.getText().toString())){ //아이디 형식이 올바르지 않을 때
+                    //else if(idInput.length() >= 6 && idInput.length() <= 15 && !Pattern.matches("^[a-zA-Z0-9]*$",idInput.getText().toString())){ //아이디 형식이 올바르지 않을 때
                         idNotice.setTextColor(Color.parseColor("#FF0000"));
                         idNotice.setText("아이디 형식이 올바르지 않습니다.");
                     }
-                    else if(idInput.length() >= 6 && idInput.length() <= 15 && Pattern.matches("^[a-zA-Z0-9]*$",idInput.getText().toString())){ //아이디 형식이 올바를 때
+                    else if(Pattern.matches("^[A-za-z0-9]{5,15}$",idInput.getText().toString())){ //아이디 형식이 올바를 때
                         idNotice.setTextColor(Color.parseColor("#0038FF"));
                         idNotice.setText("올바른 아이디 형식입니다.");
                         USERID = idInput.getText().toString();
@@ -76,7 +77,11 @@ public class SignUpActivity extends AppCompatActivity {
                         pwNotice.setTextColor(Color.parseColor("#FF0000"));
                         pwNotice.setText("비밀번호 형식이 올바르지 않습니다.");
                     }
-                    else if(pwInput.length() >= 6 && pwInput.length() <= 15){ //비밀번호 형식이 올바를 때
+                    else if(!Pattern.matches("^[A-za-z0-9]{5,15}$",pwInput.getText().toString())){ //비밀번호가 6자 미만일때나 15자 초과일때 (오류!)
+                        pwNotice.setTextColor(Color.parseColor("#FF0000"));
+                        pwNotice.setText("비밀번호 형식이 올바르지 않습니다.");
+                    }
+                    else if(Pattern.matches("^[A-za-z0-9]{5,15}$",pwInput.getText().toString())){ //비밀번호 형식이 올바를 때
                         pwNotice.setTextColor(Color.parseColor("#0038FF"));
                         pwNotice.setText("올바른 비밀번호 형식입니다.");
                         USERPW = pwInput.getText().toString();
