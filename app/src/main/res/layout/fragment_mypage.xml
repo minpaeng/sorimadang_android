@@ -133,7 +133,7 @@
         app:layout_constraintTop_toBottomOf="@+id/backMusic_textview" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/sound_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/sound_textview"
@@ -141,7 +141,7 @@
         app:layout_constraintTop_toTopOf="@+id/sound_textview" />
 
     <Switch
-        android:id="@+id/switch2"
+        android:id="@+id/backMusic_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/backMusic_textview"
@@ -149,11 +149,23 @@
         app:layout_constraintTop_toBottomOf="@+id/sound_textview" />
 
     <Switch
-        android:id="@+id/switch3"
+        android:id="@+id/notification_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/notification_textview"
         app:layout_constraintEnd_toEndOf="@+id/notification_textview"
         app:layout_constraintTop_toBottomOf="@+id/backMusic_textview" />
+
+    <TextView
+        android:id="@+id/mypage_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="마이페이지"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

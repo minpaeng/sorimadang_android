@@ -12,20 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_instrument"
         android:name="com.example.myapplication.ui.Instrument.InstrumentFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_instrument" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.myapplication.ui.notifications.SongFragment"
+        android:id="@+id/navigation_song"
+        android:name="com.example.myapplication.ui.song.SongFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_song" />
 
     <fragment
         android:id="@+id/navigation_mypage"
-        android:name="com.example.myapplication.ui.notifications.SongFragment"
+        android:name="com.example.myapplication.ui.song.SongFragment"
         android:label="@string/title_mypage"
         tools:layout="@layout/fragment_mypage" />
 </navigation>
