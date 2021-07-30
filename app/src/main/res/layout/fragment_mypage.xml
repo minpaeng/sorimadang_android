@@ -8,7 +8,7 @@
     tools:context=".ui.mypage.MypageFragment">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/pink_background"
         android:layout_width="0dp"
         android:layout_height="238dp"
         android:background="#FFDBDB"
@@ -18,7 +18,7 @@
 
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/white_rectangle"
         android:layout_width="380dp"
         android:layout_height="200dp"
         android:layout_marginTop="110dp"
@@ -34,9 +34,126 @@
         android:layout_height="55dp"
         android:layout_marginTop="80dp"
         android:src="@drawable/peng_half"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/myInfo_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="68dp"
+        android:text="내 정보 "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/white_rectangle" />
+
+    <TextView
+        android:id="@+id/faultNote_textview"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:text=" 오답노트"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myInfo_textview" />
+
+    <TextView
+        android:id="@+id/myRecord_textview"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:text=" 내 기록"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faultNote_textview" />
+
+    <TextView
+        android:id="@+id/setting_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="48dp"
+        android:text="환경설정"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myRecord_textview" />
+
+
+    <TextView
+        android:id="@+id/sound_textview"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:text=" 소리"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_textview" />
+
+    <TextView
+        android:id="@+id/backMusic_textview"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:text=" 배경음악"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sound_textview" />
+
+    <TextView
+        android:id="@+id/notification_textview"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:text=" 알림"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backMusic_textview" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/sound_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sound_textview" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/backMusic_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sound_textview" />
+
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/notification_textview"
+        app:layout_constraintEnd_toEndOf="@+id/notification_textview"
+        app:layout_constraintTop_toBottomOf="@+id/backMusic_textview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
