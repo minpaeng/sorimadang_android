@@ -1,20 +1,10 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 
-import com.example.myapplication.ui.Instrument.InstrumentFragment;
-import com.example.myapplication.ui.home.HomeFragment;
-import com.example.myapplication.ui.mypage.MypageFragment;
-import com.example.myapplication.ui.notifications.SongFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -45,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
 
 
     }

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.notifications;
+package com.example.myapplication.ui.song;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,9 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentSongBinding;
-import com.example.myapplication.ui.mypage.MypageViewModel;
 
 public class SongFragment extends Fragment {
 
