@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.home;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +18,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.myapplication.IntroLastActivity;
+import com.example.myapplication.LoginActivity;
+import com.example.myapplication.OXquizIntroActivity;
+import com.example.myapplication.OXquizStageActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class HomeFragment extends Fragment {
 
@@ -48,12 +56,24 @@ public class HomeFragment extends Fragment {
 
         customListView = (ListView) root.findViewById(R.id.main_listview);
         customAdapter = new CustomAdapter(getContext(),ListviewComponents);
+
         customListView.setAdapter(customAdapter);
         customListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
                 //각 아이템을 분간 할 수 있는 position과 뷰
-                String selectedItem = (String) view.findViewById(R.id.textView_name).getTag().toString();
+                switch (position) {
+                    case 0:
+                        Toast.makeText(getActivity(),"toast 0",Toast.LENGTH_SHORT).show();
+                    case 1:
+                        Toast.makeText(getActivity(),"toast 1",Toast.LENGTH_SHORT).show();
+                    case 2:
+                        Toast.makeText(getActivity(),"toast 2",Toast.LENGTH_SHORT).show();
+                    case 3:
+                        Intent intent = new Intent(getActivity(), OXquizIntroActivity.class);
+                        startActivity(intent);
+                        break;
+                }
             }
         });
 
