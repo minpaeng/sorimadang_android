@@ -24,9 +24,6 @@ import com.example.myapplication.databinding.FragmentMypageBinding;
 
 public class MypageFragment extends Fragment {
 
-    //View view;
-    private FragmentMypageBinding binding;
-    private MypageViewModel mypageViewModel;
     private ImageView halfpeng_img;
 
     public static MypageFragment newInstance() {
@@ -43,17 +40,9 @@ public class MypageFragment extends Fragment {
         halfpeng_img = (ImageView) v.findViewById(R.id.peng_half_image);
         halfpeng_img.setBackground(new ShapeDrawable(new OvalShape()));
         halfpeng_img.setClipToOutline(true);
-        mypageViewModel =
-                new ViewModelProvider(this).get(MypageViewModel.class);
 
         return v;
 
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }
 
