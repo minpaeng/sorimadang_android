@@ -37,7 +37,7 @@ public class MypageFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_mypage,container,false);
 
-        halfpeng_img = (ImageView) v.findViewById(R.id.peng_half_image);
+        halfpeng_img = v.findViewById(R.id.peng_half_image);
         halfpeng_img.setBackground(new ShapeDrawable(new OvalShape()));
         halfpeng_img.setClipToOutline(true);
 
