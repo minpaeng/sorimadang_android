@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_mypage"
-        android:name="com.example.myapplication.ui.song.SongFragment"
+        android:name="com.example.myapplication.ui.mypage.MypageFragment"
         android:label="@string/title_mypage"
         tools:layout="@layout/fragment_mypage" />
 </navigation>
