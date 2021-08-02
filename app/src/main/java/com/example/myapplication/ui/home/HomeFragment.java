@@ -32,21 +32,14 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
     ArrayList<ListviewComponent> ListviewComponents;
     ListView customListView;
     private static CustomAdapter customAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-
+        View root = inflater.inflate(R.layout.fragment_home,container,false);
 
         ListviewComponents = new ArrayList<>();
         ListviewComponents.add(new ListviewComponent("너 이름이 뭐니?", "국악기의 이름을 맞혀주세요",R.drawable.janggu , Color.parseColor("#DADADA")));
@@ -78,11 +71,5 @@ public class HomeFragment extends Fragment {
         });
 
         return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }
