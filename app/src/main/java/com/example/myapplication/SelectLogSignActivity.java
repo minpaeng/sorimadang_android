@@ -4,34 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
 public class SelectLogSignActivity extends AppCompatActivity {
-    Button usSignUp, usLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_log_sign);
         getSupportActionBar().hide();
-        usSignUp = findViewById(R.id.usSignUpBT);
-        usLogin = findViewById(R.id.usLoginBT);
 
-        usSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
+        Handler handler = new Handler();
 
-        usLogin.setOnClickListener(new View.OnClickListener() {
+        handler.postDelayed(new Runnable() {
+
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
+            public void run() {
+                // TODO Auto-generated method stub
+                startActivity(new Intent(SelectLogSignActivity.this, IntroActivity.class));
+
+                finish();
+
             }
-        });
+        }, 2000);
+
     }
 }

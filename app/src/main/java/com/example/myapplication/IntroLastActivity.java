@@ -27,7 +27,7 @@ public class IntroLastActivity extends AppCompatActivity {
                 finish();
 
             }
-        }, 1000);
+        }, 2000);
 
     }
 }

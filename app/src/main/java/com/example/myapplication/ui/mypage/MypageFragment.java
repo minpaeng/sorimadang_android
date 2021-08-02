@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.graphics.Outline;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -20,15 +21,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.SignUpActivity;
 import com.example.myapplication.databinding.FragmentMypageBinding;
 
 public class MypageFragment extends Fragment {
 
     private ImageView halfpeng_img;
+    Button usSignUp, usLogin;
 
     public static MypageFragment newInstance() {
         return new MypageFragment();
@@ -52,11 +57,24 @@ public class MypageFragment extends Fragment {
         }
 
 
+        usSignUp = v.findViewById(R.id.usSignUpBT);
+        usLogin = v.findViewById(R.id.usLoginBT);
 
-        //halfpeng_img.setBackground(new ShapeDrawable(new OvalShape()));
-        //halfpeng_img.setClipToOutline(true);
+        usSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
-
+        usLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return v;
 

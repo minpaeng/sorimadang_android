@@ -25,11 +25,11 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // TODO Auto-generated method stub
-                startActivity(new Intent(IntroActivity.this, MainActivity.class));
+                startActivity(new Intent(IntroActivity.this, NameSelect.class));
 
                 finish();
 
             }
-        }, 100);
+        }, 2000);
     }
 }
