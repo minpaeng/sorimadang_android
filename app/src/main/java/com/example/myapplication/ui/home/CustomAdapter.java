@@ -81,7 +81,7 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
 
 
         ViewGroup.LayoutParams layoutParams = convertView.getLayoutParams();
-        layoutParams.height = 480;
+        layoutParams.height = 380;
         convertView.setLayoutParams(layoutParams);
 
 

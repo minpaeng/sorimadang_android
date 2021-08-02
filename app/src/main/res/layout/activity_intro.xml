@@ -7,48 +7,32 @@
     tools:context=".IntroActivity">
 
 
-    <TextView
-        android:id="@+id/intro_message"
-    android:layout_width="0dp"
-    android:layout_height="220dp"
-    android:background="#FFFFFF"
-    android:gravity="center"
-    android:lineSpacingExtra="4sp"
-    android:text="@string/intro_message"
-    android:textAlignment="center"
-    android:textSize="14sp"
-    app:firstBaselineToTopHeight="40dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.708" />
-
     <ImageView
-        android:id="@+id/male_peng"
-        android:layout_width="189dp"
-        android:layout_height="197dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="300dp"
-
-        android:src="@drawable/peng_male"
+        android:id="@+id/imageView5"
+        android:layout_width="265dp"
+        android:layout_height="261dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.872" />
-
-    <ImageView
-        android:id="@+id/female_peng"
-        android:layout_width="189dp"
-        android:layout_height="197dp"
-        android:layout_marginBottom="300dp"
-        android:src="@drawable/peng_female"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/male_peng"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.872" />
+        app:layout_constraintVertical_bias="0.424"
+        app:srcCompat="@drawable/peng_together" />
+
+    <TextView
+        android:id="@+id/intro_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/intro_message"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:firstBaselineToTopHeight="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

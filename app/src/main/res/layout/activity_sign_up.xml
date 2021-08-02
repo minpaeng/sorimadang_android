@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
         android:text="회원가입"
         android:textColor="#FEABAA"
-        android:textSize="15pt"
+        android:textSize="14pt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,28 +25,29 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="55dp"
         android:text="아이디"
         android:textColor="#0F0F0F"
-        android:textSize="10pt"
+        android:textSize="8pt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignUptextView" />
 
     <EditText
         android:id="@+id/SignUpIDeditText"
-        android:layout_width="333dp"
+        android:layout_width="0dp"
         android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:background="@drawable/rectangle_border"
         android:ems="10"
         android:hint=" 6글자 이상 영문과 숫자로 작성해주세요"
-        android:maxLength="15"
         android:inputType="textPersonName"
+        android:maxLength="15"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/SignUpID"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignUpID" />
 
     <TextView
@@ -64,17 +65,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="16dp"
         android:text="비밀번호"
         android:textColor="#0F0F0F"
-        android:textSize="10pt"
+        android:textSize="8pt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignUpIDNotice" />
 
     <EditText
         android:id="@+id/SignUpPWeditText"
-        android:layout_width="333dp"
+        android:layout_width="0dp"
         android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
@@ -85,7 +88,7 @@
         android:maxLength="15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/SignUpPW"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignUpPW" />
 
     <TextView
@@ -103,17 +106,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="16dp"
         android:text="비밀번호 확인"
         android:textColor="#0F0F0F"
-        android:textSize="10pt"
+        android:textSize="8pt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignUpPWNotice" />
 
     <EditText
         android:id="@+id/PWCheckeditText"
-        android:layout_width="333dp"
+        android:layout_width="0dp"
         android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
@@ -124,7 +129,7 @@
         android:maxLength="15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/PWCheck"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PWCheck" />
 
     <TextView
@@ -138,11 +143,11 @@
 
     <Button
         android:id="@+id/SignUpbutton"
-        android:layout_width="340dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="회원가입"
