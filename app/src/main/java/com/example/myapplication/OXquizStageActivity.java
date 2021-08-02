@@ -2,18 +2,21 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 public class OXquizStageActivity extends AppCompatActivity {
 
     Button OXback,oBT,xBT;
     TextView OXstage,OXstep,OXtime,OXscore, OXquiz, OXpopScore;
     ImageView rightOimg,rightXimg,wrongOimg,wrongXimg;
-
+    LottieAnimationView true_animation, false_animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,19 @@ public class OXquizStageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_oxquiz_stage);
 
         //rightOimg.setVisibility(View.VISIBLE); //화면에서 보이게 하는거->정답일때 보이게 할 수 있음
+
+        true_animation = findViewById(R.id.lottie_true);
+        true_animation.setAnimation("tickgreen.json");
+        true_animation.playAnimation();
+        true_animation.setRepeatCount(3);
+
+        false_animation = findViewById(R.id.lottie_false);
+        false_animation.setAnimation("signforerrorflatstyle.json");
+        false_animation.playAnimation();
+        false_animation.setRepeatCount(3);
+
+
+
+
     }
-
-    //정답이랑 틀린거 o,x뜨는건 그냥 이미지뷰로 해서 뜨게 하는게 좋을 것 같음!!
-
 }
