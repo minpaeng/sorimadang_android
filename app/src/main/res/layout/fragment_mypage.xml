@@ -51,8 +51,8 @@
         android:text="회원가입"
         android:textSize="6pt"
         app:backgroundTint="#FCA7A6"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_button"
         app:layout_constraintStart_toEndOf="@+id/textView6" />
 
     <Button
@@ -62,9 +62,9 @@
         android:text="로그인"
         android:textSize="6pt"
         app:backgroundTint="#FCA7A6"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
         app:layout_constraintEnd_toStartOf="@+id/textView6"
-        app:layout_constraintStart_toStartOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="@+id/sign_in_button" />
 
     <TextView
         android:id="@+id/myInfo_textview"
@@ -220,7 +220,7 @@
         app:layout_constraintStart_toStartOf="@+id/white_rectangle" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sign_in_button"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
@@ -264,8 +264,8 @@
         android:id="@+id/textView6"
         android:layout_width="10dp"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/usLoginBT"
         app:layout_constraintEnd_toEndOf="@+id/white_rectangle"
-        app:layout_constraintStart_toStartOf="@+id/white_rectangle"
-        tools:layout_editor_absoluteY="211dp" />
+        app:layout_constraintStart_toStartOf="@+id/white_rectangle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
