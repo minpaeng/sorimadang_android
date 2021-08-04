@@ -46,6 +46,7 @@ public class MypageFragment extends Fragment {
     Button usSignUp, usLogin;
     GoogleSignInClient mGoogleSignInClient;
     public static final int RC_SIGN_IN=1;
+    SignInButton signInButton; //SignInButton signInButton;
 
     public static MypageFragment newInstance() {
         return new MypageFragment();
@@ -104,7 +105,7 @@ public class MypageFragment extends Fragment {
         //2. 기존 로그인한 사용자 확인
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
+       GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
         //updateUI(account); //이미 등록한 사용자면 UI를 새롭게 구성.
 
         /*
@@ -116,15 +117,17 @@ public class MypageFragment extends Fragment {
         *
         * */
         // Set the dimensions of the sign-in button.
-        SignInButton signInButton = v.findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        //ERRORERROR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //signInButton = v.findViewById(R.id.sign_in_button);
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /*
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
             }
         });
-
+        */
         /* //프로필 정보 얻기 - 현재 로그인 한 사용자의 프로필 정보 검사
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
         if (acct != null) {
@@ -176,11 +179,12 @@ public class MypageFragment extends Fragment {
     * signIn메소드는 사용자에게 허가를 요청하는 엑티비티 띄움.
     * startActivityForResult를 이용해서 사용자의 행동에 대한 결과 응답받음.
     * */
+    /*
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-
+*/
 
     /*
     *사용자가 Activity에서 한 행동을 onActivityResult()에서 data로 받을 수 있으며
@@ -188,6 +192,7 @@ public class MypageFragment extends Fragment {
     * Task<GoogleSignInAccount>객체로 변환가능
     * task객체를 인수로 handleSignInResult() 메소드를 호출함
     * */
+    /*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -200,16 +205,17 @@ public class MypageFragment extends Fragment {
             handleSignInResult(task);
         }
     }
-
+*/
     /*
     * Task<GoogleSignInAccount>객체의 getResult()메소드를 이용하여 GoogleSignInAccount 객체를
     * 반환 받을 수 있다.
     * GoogleSignInAccount객체를 통해 사용자의 Google계정 정보를 얻어올 수 있다.
     * 얻어온 account객체를 통해 사용자의 정보를 Log로 출력해본다.
     * */
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+//    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+ //       try {
+            //GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
             /*
@@ -225,13 +231,13 @@ public class MypageFragment extends Fragment {
 
 
             //updateUI(account);
-        } catch (ApiException e) {
+ //       } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             //Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             //updateUI(null);
-        }
-    }
+//        }
+//    }
 
 }
 
