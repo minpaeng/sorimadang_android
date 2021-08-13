@@ -13,15 +13,15 @@ import com.airbnb.lottie.LottieAnimationView;
 
 public class OXquizStageActivity extends AppCompatActivity {
 
-    Button OXback,oBT,xBT;
+    Button oBT,xBT;
     TextView OXstage,OXstep,OXtime,OXscore, OXquiz, OXpopScore;
-    ImageView rightOimg,rightXimg,wrongOimg,wrongXimg;
+    ImageView rightOimg,rightXimg,wrongOimg,wrongXimg, OXback;
     LottieAnimationView true_animation, false_animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        OXback = findViewById(R.id.backBT);
+        OXback = findViewById(R.id.imageView8);
         oBT = findViewById(R.id.oButton);
         xBT = findViewById(R.id.xButton);
 
@@ -42,6 +42,7 @@ public class OXquizStageActivity extends AppCompatActivity {
 
         //rightOimg.setVisibility(View.VISIBLE); //화면에서 보이게 하는거->정답일때 보이게 할 수 있음
 
+        /*
         true_animation = findViewById(R.id.lottie_true);
         true_animation.setAnimation("tickgreen.json");
         true_animation.playAnimation();
@@ -51,7 +52,7 @@ public class OXquizStageActivity extends AppCompatActivity {
         false_animation.setAnimation("signforerrorflatstyle.json");
         false_animation.playAnimation();
         false_animation.setRepeatCount(3);
-
+        */
 
 
 
