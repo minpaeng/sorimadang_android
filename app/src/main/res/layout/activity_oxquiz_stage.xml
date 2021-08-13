@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".OXquizStageActivity">
 
-    <Button
-        android:id="@+id/backBT"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
-        android:background="#FFF8F8"
-        android:text="back"
-        android:textColor="#000000"
-        android:textSize="5pt"
-        app:backgroundTint="#FFF8F8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/oxStage"
         android:layout_width="wrap_content"
@@ -29,8 +14,7 @@
         android:text="Stage"
         android:textSize="13pt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toEndOf="@+id/backBT"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -39,13 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
         android:text="Quiz"
         android:textSize="10pt"
-        app:layout_constraintEnd_toEndOf="@+id/backBT"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backBT" />
+        tools:layout_editor_absoluteY="94dp" />
 
     <TextView
         android:id="@+id/oxTime"
@@ -188,5 +169,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/oxQuiz" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/oxStage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/oxStage"
+        app:srcCompat="@drawable/backward_arrow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
