@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,12 +12,19 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class OXquizStageActivity extends AppCompatActivity {
 
     Button oBT,xBT;
     TextView OXstage,OXstep,OXtime,OXscore, OXquiz, OXpopScore;
     ImageView rightOimg,rightXimg,wrongOimg,wrongXimg, OXback;
     LottieAnimationView true_animation, false_animation;
+    String apiString = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,30 @@ public class OXquizStageActivity extends AppCompatActivity {
         false_animation.setRepeatCount(3);
         */
 
+
+        try {
+            URL url =new URL("http://sorimadang.shop/api/ox-game/questions/");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            InputStreamReader is = new InputStreamReader(conn.getInputStream(),"UTF-8");
+
+            // Get the stream
+            StringBuilder builder = new StringBuilder();
+            BufferedReader reader = new BufferedReader(is);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+
+            // Set the result
+            apiString = builder.toString();
+            Log.v("api 출력:",apiString);
+        }
+        catch (Exception e){
+            // Error calling the rest api
+            Log.e("REST_API", "GET method failed: " + e.getMessage());
+            e.printStackTrace();
+        }
 
 
     }
