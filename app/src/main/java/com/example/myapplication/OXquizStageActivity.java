@@ -2,10 +2,9 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.Animator;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,31 +61,54 @@ public class OXquizStageActivity extends AppCompatActivity {
         false_animation.setRepeatCount(3);
         */
 
+        some_method_in_ui_thread();
+        }
 
-        try {
-            URL url =new URL("http://sorimadang.shop/api/ox-game/questions/");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            InputStreamReader is = new InputStreamReader(conn.getInputStream(),"UTF-8");
+    // Calling the rest api in the UI thread
+    protected void some_method_in_ui_thread() {
 
-            // Get the stream
-            StringBuilder builder = new StringBuilder();
-            BufferedReader reader = new BufferedReader(is);
-            String line;
-            while ((line = reader.readLine()) != null) {
-                builder.append(line);
+        new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute();
+    }
+
+    // Rest API calling task
+    public static class RestAPITask extends AsyncTask<Integer, Void, Void> {
+        // Variable to store url
+        protected String mURL;
+
+        // Constructor
+        public RestAPITask(String url) {
+            mURL = url;
+        }
+
+        // Background work
+        protected Void doInBackground(Integer... params) {
+            String result = null;
+
+            try {
+                // Open the connection
+                URL url = new URL(mURL);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                InputStream is = conn.getInputStream();
+
+                // Get the stream
+                StringBuilder builder = new StringBuilder();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                }
+
+                // Set the result
+                result = builder.toString();
+                Log.v("성공: ",result);
             }
-
-            // Set the result
-            apiString = builder.toString();
-            Log.v("api 출력:",apiString);
+            catch (Exception e) {
+                // Error calling the rest api
+                Log.e("REST_API", "GET method failed: " + e.getMessage());
+                e.printStackTrace();
+            }
+            return null;
         }
-        catch (Exception e){
-            // Error calling the rest api
-            Log.e("REST_API", "GET method failed: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-
     }
 }
