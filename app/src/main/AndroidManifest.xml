@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OXquizResultActivity"></activity>
+        <activity android:name=".InstrumentQuizIntroActivity"></activity>
+        <activity android:name=".OXquizResultActivity" />
         <activity android:name=".OXquizStageActivity" />
         <activity android:name=".OXquizIntroActivity" />
         <activity android:name=".SelectLogSignActivity" />
