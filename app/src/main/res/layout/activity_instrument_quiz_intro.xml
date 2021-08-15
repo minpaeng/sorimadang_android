@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:text="맞춰봐! 0u< \n내 이름이 뭐게?"
+        android:text="맞춰봐!\n내 이름이 뭐게?"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="parent" />
