@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.home;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.example.myapplication.InstrumentQuizIntroActivity;
 import com.example.myapplication.OXquizIntroActivity;
 import com.example.myapplication.R;
 
@@ -44,14 +47,18 @@ public class HomeFragment extends Fragment {
                 //각 아이템을 분간 할 수 있는 position과 뷰
                 switch (position) {
                     case 0:
-                        Toast.makeText(getActivity(),"toast 0",Toast.LENGTH_SHORT).show();
+                        Intent intent0 = new Intent(getActivity(), InstrumentQuizIntroActivity.class);
+                        startActivity(intent0);
+                        break;
                     case 1:
-                        Toast.makeText(getActivity(),"toast 1",Toast.LENGTH_SHORT).show();
+                        Intent intent1 = new Intent(getActivity(), OXquizIntroActivity.class);
+                        startActivity(intent1);
+                        break;
                     case 2:
                         Toast.makeText(getActivity(),"toast 2",Toast.LENGTH_SHORT).show();
+                        break;
                     case 3:
-                        Intent intent = new Intent(getActivity(), OXquizIntroActivity.class);
-                        startActivity(intent);
+                        Toast.makeText(getActivity(),"toast 3",Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
