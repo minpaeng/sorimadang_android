@@ -38,6 +38,6 @@ public class OXquizIntroActivity extends AppCompatActivity {
         startActivity(intent3);
     }
     public void oxintrobackActivity(View view){
-        startActivity(new Intent(OXquizIntroActivity.this, HomeFragment.class));
+        startActivity(new Intent(OXquizIntroActivity.this, MainActivity.class));
     }
 }

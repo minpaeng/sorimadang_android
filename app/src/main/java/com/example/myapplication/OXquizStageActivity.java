@@ -123,17 +123,20 @@ public class OXquizStageActivity extends AppCompatActivity {
                 //Log.v("json: ",responseJson);
 
                 JSONArray jarray=new JSONArray(result);
-                while(i<5){
+                //while(i<5){
+                    //Log.v("반복문 확인", String.valueOf(i));
+                    i=1;
                     JSONObject jObject = jarray.getJSONObject(i);
                     stage = jObject.getInt("stageNum");
+                    Log.v("반복문 stage 확인", String.valueOf(stage));
                     if(stage==stageNum){
                         quizNum[i] = jObject.getInt("quizNum");
                         quiz[i] = jObject.getString("quiz");
                         answer[i] = jObject.getInt("answer");
                         Log.v("반복문:",quizNum[i]+" "+quiz[i]);
-                        i++;
+                        //i++;
                     }
-                }
+                //}
             }
             catch (Exception e) {
                 // Error calling the rest api
