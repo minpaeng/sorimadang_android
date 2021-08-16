@@ -3,6 +3,7 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +14,7 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity android:name=".InstrumentQuizResultActivity"></activity>
+        <activity android:name=".InstrumentQuizStageActivity"></activity>
         <activity android:name=".InstrumentQuizIntroActivity" />
         <activity android:name=".OXquizResultActivity" />
         <activity android:name=".OXquizStageActivity" />
