@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.ui.home.HomeFragment;
+
 public class OXquizIntroActivity extends AppCompatActivity {
 
 
@@ -21,12 +23,21 @@ public class OXquizIntroActivity extends AppCompatActivity {
 
 
     public void startStage1Activity(View view) {
-        startActivity(new Intent(OXquizIntroActivity.this, OXquizStageActivity.class));
+        Intent intent1 = new Intent(OXquizIntroActivity.this, OXquizStageActivity.class);
+        intent1.putExtra("stageNumber",1);
+        startActivity(intent1);
     }
     public void startStage2Activity(View view) {
-        startActivity(new Intent(OXquizIntroActivity.this, OXquizStageActivity.class));
+        Intent intent2 = new Intent(OXquizIntroActivity.this, OXquizStageActivity.class);
+        intent2.putExtra("stageNumber",2);
+        startActivity(intent2);
     }
     public void startStage3Activity(View view) {
-        startActivity(new Intent(OXquizIntroActivity.this, OXquizStageActivity.class));
+        Intent intent3 = new Intent(OXquizIntroActivity.this, OXquizStageActivity.class);
+        intent3.putExtra("stageNumber",3);
+        startActivity(intent3);
+    }
+    public void oxintrobackActivity(View view){
+        startActivity(new Intent(OXquizIntroActivity.this, MainActivity.class));
     }
 }

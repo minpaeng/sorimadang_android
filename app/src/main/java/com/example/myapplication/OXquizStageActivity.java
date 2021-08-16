@@ -2,14 +2,19 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,8 +30,17 @@ public class OXquizStageActivity extends AppCompatActivity {
     LottieAnimationView true_animation, false_animation;
     String apiString = null;
 
+    static int[] quizNum = new int[5];
+    static int stageNum;
+    static String[] quiz = new String[5];
+    static int[] answer = new int[5];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Intent intent = getIntent();
+        stageNum = intent.getIntExtra("stageNumber",0);
+        Log.v("stageNum 확인", String.valueOf(stageNum));
 
         OXback = findViewById(R.id.imageView8);
         oBT = findViewById(R.id.oButton);
@@ -83,6 +97,8 @@ public class OXquizStageActivity extends AppCompatActivity {
         // Background work
         protected Void doInBackground(Integer... params) {
             String result = null;
+            JSONObject responseJson = null;
+            int i=0,stage;
 
             try {
                 // Open the connection
@@ -102,6 +118,25 @@ public class OXquizStageActivity extends AppCompatActivity {
                 // Set the result
                 result = builder.toString();
                 Log.v("성공: ",result);
+                //responseJson = new JSONObject(builder.toString());
+                //System.out.println(responseJson);
+                //Log.v("json: ",responseJson);
+
+                JSONArray jarray=new JSONArray(result);
+                //while(i<5){
+                    //Log.v("반복문 확인", String.valueOf(i));
+                    i=1;
+                    JSONObject jObject = jarray.getJSONObject(i);
+                    stage = jObject.getInt("stageNum");
+                    Log.v("반복문 stage 확인", String.valueOf(stage));
+                    if(stage==stageNum){
+                        quizNum[i] = jObject.getInt("quizNum");
+                        quiz[i] = jObject.getString("quiz");
+                        answer[i] = jObject.getInt("answer");
+                        Log.v("반복문:",quizNum[i]+" "+quiz[i]);
+                        //i++;
+                    }
+                //}
             }
             catch (Exception e) {
                 // Error calling the rest api
@@ -110,5 +145,9 @@ public class OXquizStageActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    public void oxstagebackActivity(View view) {
+        startActivity(new Intent(OXquizStageActivity.this, OXquizIntroActivity.class));
     }
 }
