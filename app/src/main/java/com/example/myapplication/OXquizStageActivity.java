@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class OXquizStageActivity extends AppCompatActivity {
 
@@ -40,7 +41,7 @@ public class OXquizStageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         stageNum = intent.getIntExtra("stageNumber",0);
-        Log.v("stageNum 확인", String.valueOf(stageNum));
+        //Log.v("stageNum 확인", String.valueOf(stageNum));
 
         OXback = findViewById(R.id.imageView8);
         oBT = findViewById(R.id.oButton);
@@ -57,6 +58,8 @@ public class OXquizStageActivity extends AppCompatActivity {
         rightXimg = findViewById(R.id.rigntXimg);
         wrongOimg = findViewById(R.id.wrongOimg);
         wrongXimg = findViewById(R.id.wrongXimg);
+
+        some_method_in_ui_thread();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oxquiz_stage);
@@ -82,8 +85,12 @@ public class OXquizStageActivity extends AppCompatActivity {
         false_animation.setRepeatCount(3);
         */
 
-        some_method_in_ui_thread();
+
+
+        for(int i=0;i<5;i++){
+            Log.v("확인2 stage 퀴즈:",quizNum[i]+" "+quiz[i]+answer[i]);
         }
+    }
 
     // Calling the rest api in the UI thread
     protected void some_method_in_ui_thread() {
@@ -104,8 +111,7 @@ public class OXquizStageActivity extends AppCompatActivity {
         // Background work
         protected Void doInBackground(Integer... params) {
             String result = null;
-            JSONObject responseJson = null;
-            int i=0,stage;
+            int stage;
 
             try {
                 // Open the connection
@@ -125,25 +131,24 @@ public class OXquizStageActivity extends AppCompatActivity {
                 // Set the result
                 result = builder.toString();
                 Log.v("성공: ",result);
-                //responseJson = new JSONObject(builder.toString());
-                //System.out.println(responseJson);
-                //Log.v("json: ",responseJson);
 
-                JSONArray jarray=new JSONArray(result);
-                //while(i<5){
+                JSONArray jarray=  new JSONArray(result);
+
+                for(int i=0;i<jarray.length();i++){
+                    int j=0;
                     //Log.v("반복문 확인", String.valueOf(i));
-                    i=1;
                     JSONObject jObject = jarray.getJSONObject(i);
                     stage = jObject.getInt("stageNum");
-                    Log.v("반복문 stage 확인", String.valueOf(stage));
+                    //Log.v("반복문 stage 확인", String.valueOf(stage));
                     if(stage==stageNum){
-                        quizNum[i] = jObject.getInt("quizNum");
-                        quiz[i] = jObject.getString("quiz");
-                        answer[i] = jObject.getInt("answer");
-                        Log.v("반복문:",quizNum[i]+" "+quiz[i]);
-                        //i++;
+                        quizNum[j] = jObject.getInt("quizNum");
+                        quiz[j] = jObject.getString("quiz");
+                        answer[j] = jObject.getInt("answer");
+                        Log.v("확인1 stageNum:",String.valueOf(stageNum));
+                        Log.v("확인1 stage 퀴즈:",quizNum[j]+" "+quiz[j]+answer[j]);
+                        j++;
                     }
-                //}
+                }
             }
             catch (Exception e) {
                 // Error calling the rest api

@@ -26,7 +26,7 @@ public class IntroActivity extends AppCompatActivity {
             public void run() {
                 // TODO Auto-generated method stub
                 startActivity(new Intent(IntroActivity.this,
-                        InstrumentQuizStageActivity.class));
+                        MainActivity.class));
 
                 finish();
 
