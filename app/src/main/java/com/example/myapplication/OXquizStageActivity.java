@@ -61,6 +61,13 @@ public class OXquizStageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oxquiz_stage);
 
+        //1.stagenum 스테이지 표시해주기
+        //2.퀴즈 넘버링
+        //3.퀴즈 내용
+        //4.버튼누르면 정답 판단해서 로티띄우기
+        //5.10초 타이머
+        //6.결과..
+
         //rightOimg.setVisibility(View.VISIBLE); //화면에서 보이게 하는거->정답일때 보이게 할 수 있음
 
         /*
