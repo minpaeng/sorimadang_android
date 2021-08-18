@@ -59,7 +59,7 @@ public class OXquizStageActivity extends AppCompatActivity {
         wrongOimg = findViewById(R.id.wrongOimg);
         wrongXimg = findViewById(R.id.wrongXimg);
 
-        some_method_in_ui_thread();
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oxquiz_stage);
@@ -85,11 +85,19 @@ public class OXquizStageActivity extends AppCompatActivity {
         false_animation.setRepeatCount(3);
         */
 
+        //some_method_in_ui_thread();
 
-
-        for(int i=0;i<5;i++){
-            Log.v("확인2 stage 퀴즈:",quizNum[i]+" "+quiz[i]+answer[i]);
+        try {
+            RestAPITask task = new RestAPITask("http://sorimadang.shop/api/ox-game/questions");
+            task.execute();
+            for(int i=0;i<5;i++){
+                Log.v("확인2 stage 퀴즈:",quizNum[i]+" "+quiz[i]+answer[i]);
+            }
+        } catch (Exception e){
+            Log.v("ERR","RestAPITask error");
         }
+
+
     }
 
     // Calling the rest api in the UI thread
