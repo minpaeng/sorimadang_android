@@ -43,10 +43,10 @@ import com.google.android.gms.tasks.Task;
 public class MypageFragment extends Fragment {
 
     private ImageView halfpeng_img;
-    Button usSignUp, usLogin;
-    GoogleSignInClient mGoogleSignInClient;
-    public static final int RC_SIGN_IN=1;
-    SignInButton signInButton; //SignInButton signInButton;
+    Button usSignUp, usLogin, signInButton;
+    private GoogleSignInClient mGoogleSignInClient;
+    public static final int RC_SIGN_IN=9001;
+    private static final String TAG = "requestIdToken";
 
     public static MypageFragment newInstance() {
         return new MypageFragment();
@@ -89,24 +89,25 @@ public class MypageFragment extends Fragment {
             }
         });
 
-        /*
+        //서버 클라이언트 아이디
+        String serverClientId = getString(R.string.server_client_id);
+
+        /* 백엔드 서버로 인증
         1. Google 로그인 및 GoogleSignInClient 개체 구성
-        사용자의 ID와 기본 프로필 정보를 요청하기위해 객체를 생성함*/
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        사용자의 ID와 기본 프로필 정보를 요청하기위해 객체를 생성함
+         1.서버에 ID토큰 보내기
+        When you configure Google Sign-in, call the requestIdToken method and pass it your server's web client ID.
+       * */
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                //.requestScopes(new Scope(Scopes.DRIVE_APPFOLDER)) //인증코드를 얻기 위해 필요한 코드
+                //.requestServerAuthCode(serverClientId) //인증코드를 얻기 위해 필요한 코드 : 토큰과 교환할 수 있음.서버 아닐경우 필요없음
                 .requestEmail()
+                //.requestIdToken(serverClientId) // 토큰//서버 아닐겅우 삭제
                 .build();
 
-        // Build a GoogleSignInClient with the options specified by gso.
+        // Build a GoogleSignInClient with the options specified by gso. // 클라이언트 생성
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-
-        //2. 기존 로그인한 사용자 확인
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-       GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
-        //updateUI(account); //이미 등록한 사용자면 UI를 새롭게 구성.
 
         /*
         * 1)버튼이 눌렸을 때의 행동을 추가
@@ -116,48 +117,16 @@ public class MypageFragment extends Fragment {
         * 4)사용자에게 인증 허가를 요청하는 화면(Activity)보임
         *
         * */
-        // Set the dimensions of the sign-in button.
-        //ERRORERROR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        //signInButton = v.findViewById(R.id.sign_in_button);
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        /*
+
+        signInButton = v.findViewById(R.id.sign_in_button);
+
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
             }
         });
-        */
-        /* //프로필 정보 얻기 - 현재 로그인 한 사용자의 프로필 정보 검사
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            String personGivenName = acct.getGivenName();
-            String personFamilyName = acct.getFamilyName();
-            String personEmail = acct.getEmail();
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
-        }
-        */
 
-
-        /*
-        백엔드 서버로 인증
-
-        1.서버에 ID토큰 보내기
-        When you configure Google Sign-in, call the requestIdToken method and pass it your server's web client ID.
-       * */
-
-        // Request only the user's ID token, which can be used to identify the
-        // user securely to your backend. This will contain the user's basic
-        // profile (name, profile picture URL, etc) so you should not need to
-        // make an additional call to personalize your application.
-        /*
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.server_client_id))
-                .requestEmail()
-                .build();
-        */
         //2.When your app starts, check if the user has already signed in to your app using Google,
         // on this device or another device, by calling silentSignIn:
         /*
@@ -174,70 +143,130 @@ public class MypageFragment extends Fragment {
         return v;
     }
 
-    /*
-    * 사용자가 google SignIn버튼을 클릭하면 onclick메소드 실행, signin메소드 호출.
-    * signIn메소드는 사용자에게 허가를 요청하는 엑티비티 띄움.
-    * startActivityForResult를 이용해서 사용자의 행동에 대한 결과 응답받음.
-    * */
-    /*
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-*/
+    @Override
+    public void onStart() {
+        super.onStart();
 
-    /*
-    *사용자가 Activity에서 한 행동을 onActivityResult()에서 data로 받을 수 있으며
-    * GoogleSignIn.getSignedInAccountFromIntent(data);메소드를 통해
-    * Task<GoogleSignInAccount>객체로 변환가능
-    * task객체를 인수로 handleSignInResult() 메소드를 호출함
-    * */
-    /*
+        //앱에 로그인 되어 있지 않은 상태라면 null 반환
+        //앱에 이미 로그인 되어 있는 상태라면 null을 반환하지 않음
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
+        updateUI(account);
+    }
+
+    // 구글 계정 선택 후 결과 처리
+    // /*
+    //    *사용자가 Activity에서 한 행동을 onActivityResult()에서 data로 받을 수 있으며
+    //    * GoogleSignIn.getSignedInAccountFromIntent(data);메소드를 통해
+    //    * Task<GoogleSignInAccount>객체로 변환가능
+    //    * task객체를 인수로 handleSignInResult() 메소드를 호출함
+    //    * */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        // GoogleSignInClient.getSignInIntent 인텐트 실행 후 결과코드 반환
         if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
+
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
     }
-*/
-    /*
-    * Task<GoogleSignInAccount>객체의 getResult()메소드를 이용하여 GoogleSignInAccount 객체를
-    * 반환 받을 수 있다.
-    * GoogleSignInAccount객체를 통해 사용자의 Google계정 정보를 얻어올 수 있다.
-    * 얻어온 account객체를 통해 사용자의 정보를 Log로 출력해본다.
-    * */
 
-//    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
- //       try {
-            //GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+    // 로그인 결과 처리
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            Log.v("로그인 ","handleSignInResult");
+            //로그인 성공 시 계정에 맞는 UI로 업데이트
+            updateUI(account);
+        } catch (ApiException e) {
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
+    }
 
-            // Signed in successfully, show authenticated UI.
-            /*
-            * String email = account.getEmail();
-            * String m = account.getFamilyName();
-            * String m2 = account.getGivenName();
-            * String m3 = account.getDisplayName();
-            * Log.d("Name: ",m);
-            * Log.d("Name2: ",m2);
-            * Log.d("Name3: ",m3);
-            * Log.d("Email: ",email);
-            * */
+    // 로그인
+    // /*
+    //    * 사용자가 google SignIn버튼을 클릭하면 onclick메소드 실행, signin메소드 호출.
+    //    * signIn메소드는 사용자에게 허가를 요청하는 엑티비티 띄움.
+    //    * startActivityForResult를 이용해서 사용자의 행동에 대한 결과 응답받음.
+    //    * */
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        Log.v("구글로그인","signIn");
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    // 로그아웃
+    private void signOut() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
+                    }
+                });
+    }
+
+    // 앱에 계정 접근 끊어내기(버튼 추가하여 온클릭 이벤트 등록): 탈퇴 개념인거같은데 정확하지 않음
+
+    private void revokeAccess() {
+        mGoogleSignInClient.revokeAccess()
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
+                    }
+                });
+    }
 
 
-            //updateUI(account);
- //       } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            //Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            //updateUI(null);
-//        }
-//    }
+    //계정 상태에 맞는 UI로 업데이트
+    private void updateUI(@Nullable GoogleSignInAccount account) {
+        if (account != null) {
+
+            //계정 정보 가져오기
+            String personName = account.getDisplayName();
+            String personGivenName = account.getGivenName();
+            String personFamilyName = account.getFamilyName();
+            String personEmail = account.getEmail();
+            String personId = account.getId();
+            Uri personPhoto = account.getPhotoUrl();
+            String serverAuthCode = account.getServerAuthCode(); //onCreate함수 gso부분 주석 해제하면 값이 반환됨
+            String idToken = account.getIdToken();
+
+            Log.d(TAG, "handleSignInResult:personName "+personName);
+            Log.d(TAG, "handleSignInResult:personGivenName "+personGivenName);
+            Log.d(TAG, "handleSignInResult:personEmail "+personEmail);
+            Log.d(TAG, "handleSignInResult:personId "+personId);
+            Log.d(TAG, "handleSignInResult:personFamilyName "+personFamilyName);
+            Log.d(TAG, "handleSignInResult:personPhoto "+personPhoto);
+            Log.d(TAG, "handleSignInResult:serverAuthCode "+serverAuthCode);
+            Log.d(TAG, "handleSignInResult:idToken "+idToken);
+
+
+        } else {
+            Log.v("구글로그인 에러", "1");
+        }
+    }
+
+    private void refreshIdToken() {
+        // 토큰 만료 시 refresh
+        // 어케쓰는지 아직 잘 모르겠음
+        mGoogleSignInClient.silentSignIn()
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<GoogleSignInAccount>() {
+                    @Override
+                    public void onComplete(@NonNull Task<GoogleSignInAccount> task) {
+                        handleSignInResult(task);
+                    }
+                });
+    }
+
+
+
+
+
+
 
 }
 

@@ -14,4 +14,5 @@
     <string name="intro_last_message">우와! 도담아 잘 부탁해!\n 우리 같이 국악에 대해 알아보자</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="server_client_id">658189587984-kjk0epjhrejhi1558ithrnkd6n65llag.apps.googleusercontent.com</string>
 </resources>
