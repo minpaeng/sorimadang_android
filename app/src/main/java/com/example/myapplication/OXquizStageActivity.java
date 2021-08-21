@@ -38,10 +38,13 @@ public class OXquizStageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //뷰의 주소값을 가져오려면 항상 setContentView(R.layout.activity_main); 호출이 끝난 이 후 작업을 해야합니다.
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_oxquiz_stage);
 
         Intent intent = getIntent();
         stageNum = intent.getIntExtra("stageNumber",0);
-        //Log.v("stageNum 확인", String.valueOf(stageNum));
+        Log.v("stageNum 확인", String.valueOf(stageNum));
 
         OXback = findViewById(R.id.imageView8);
         oBT = findViewById(R.id.oButton);
@@ -59,20 +62,16 @@ public class OXquizStageActivity extends AppCompatActivity {
         wrongOimg = findViewById(R.id.wrongOimg);
         wrongXimg = findViewById(R.id.wrongXimg);
 
-
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oxquiz_stage);
-
         //1.stagenum 스테이지 표시해주기
+        OXstage.setText("Stage "+stageNum);
+
+
+
         //2.퀴즈 넘버링
+
         //3.퀴즈 내용
+
         //4.버튼누르면 정답 판단해서 로티띄우기
-        //5.10초 타이머
-        //6.결과..
-
-        //rightOimg.setVisibility(View.VISIBLE); //화면에서 보이게 하는거->정답일때 보이게 할 수 있음
-
         /*
         true_animation = findViewById(R.id.lottie_true);
         true_animation.setAnimation("tickgreen.json");
@@ -85,17 +84,24 @@ public class OXquizStageActivity extends AppCompatActivity {
         false_animation.setRepeatCount(3);
         */
 
-        //some_method_in_ui_thread();
+        //5.10초 타이머
+        //6.결과..
 
-        try {
-            RestAPITask task = new RestAPITask("http://sorimadang.shop/api/ox-game/questions");
-            task.execute();
-            for(int i=0;i<5;i++){
-                Log.v("확인2 stage 퀴즈:",quizNum[i]+" "+quiz[i]+answer[i]);
-            }
-        } catch (Exception e){
-            Log.v("ERR","RestAPITask error");
-        }
+        //rightOimg.setVisibility(View.VISIBLE); //화면에서 보이게 하는거->정답일때 보이게 할 수 있음
+
+
+
+        some_method_in_ui_thread();
+
+//        try {
+//            RestAPITask task = new RestAPITask("http://sorimadang.shop/api/ox-game/questions");
+//            task.execute();
+//            for(int i=0;i<5;i++){
+//                Log.v("확인2 stage 퀴즈:",quizNum[i]+" "+quiz[i]+answer[i]);
+//            }
+//        } catch (Exception e){
+//            Log.v("ERR","RestAPITask error");
+//        }
 
 
     }
@@ -107,7 +113,7 @@ public class OXquizStageActivity extends AppCompatActivity {
     }
 
     // Rest API calling task
-    public static class RestAPITask extends AsyncTask<Integer, Void, Void> {
+    public static class RestAPITask extends AsyncTask<Integer, Void, ArrayList<classData>> {
         // Variable to store url
         protected String mURL;
 
@@ -115,9 +121,10 @@ public class OXquizStageActivity extends AppCompatActivity {
         public RestAPITask(String url) {
             mURL = url;
         }
-
+        private ArrayList<classData> classDataset;
+        private classData classes;
         // Background work
-        protected Void doInBackground(Integer... params) {
+        protected ArrayList<classData> doInBackground(Integer... params) {
             String result = null;
             int stage;
 
@@ -165,9 +172,17 @@ public class OXquizStageActivity extends AppCompatActivity {
             }
             return null;
         }
+
+//        protected void onPostExecute() {
+//            Log.v("스레드 종료 stage 퀴즈:",quizNum[0]+" "+quiz[0]+answer[0]);
+//        }
+
     }
 
     public void oxstagebackActivity(View view) {
         startActivity(new Intent(OXquizStageActivity.this, OXquizIntroActivity.class));
+    }
+
+    private static class classData {
     }
 }
