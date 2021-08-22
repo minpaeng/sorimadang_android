@@ -22,6 +22,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class OXquizStageActivity extends AppCompatActivity {
 
@@ -31,11 +33,16 @@ public class OXquizStageActivity extends AppCompatActivity {
     LottieAnimationView true_animation, false_animation;
     String apiString = null;
     int stage;
+    static int count=1,num=1;
+    private Timer timer;
 
     static int[] quizNum = new int[5];
     static int stageNum;
     static String[] quiz = new String[5];
     static int[] answer = new int[5];
+
+    private final android.os.Handler handler = new android.os.Handler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +58,12 @@ public class OXquizStageActivity extends AppCompatActivity {
         oBT = findViewById(R.id.oButton);
         xBT = findViewById(R.id.xButton);
 
-        OXstage = findViewById(R.id.oxStage);
-        OXstep = findViewById(R.id.oxQuizStep);
-        OXtime = findViewById(R.id.oxTime);
-        OXscore = findViewById(R.id.oxScore);
-        OXquiz = findViewById(R.id.oxQuiz);
-        OXpopScore = findViewById(R.id.oxPopScore);
+        OXstage = findViewById(R.id.oxStage); //스테이지단계
+        OXstep = findViewById(R.id.oxQuizStep); //퀴즈 단계
+        OXtime = findViewById(R.id.oxTime); //제한시간
+        OXscore = findViewById(R.id.oxScore); //점수
+        OXquiz = findViewById(R.id.oxQuiz); //퀴즈내용
+        OXpopScore = findViewById(R.id.oxPopScore); //맞추면 점수..?
 
         rightOimg = findViewById(R.id.rightOimg);
         rightXimg = findViewById(R.id.rigntXimg);
@@ -66,7 +73,7 @@ public class OXquizStageActivity extends AppCompatActivity {
         //1.stagenum 스테이지 표시해주기
         OXstage.setText("Stage "+stageNum);
 
-        //2.퀴즈 넘버링 + 3.퀴즈 내용
+        //2.퀴즈 넘버링 + 3.퀴즈 내용 가져오기.
         try {
             String apiString = new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute().get();
             Log.v("성공 apiString", apiString);
@@ -92,6 +99,43 @@ public class OXquizStageActivity extends AppCompatActivity {
             Log.v("실패 apiString", apiString);
         }
 
+//        for(int i=0;i<5;i++){
+//            OXstep.setText("Quiz "+quizNum[i]);
+//            OXquiz.setText(quiz[i]);
+//            task.run();
+//
+//
+//        }
+
+//        Timer timer=new Timer();
+//        TimerTask task=new TimerTask(){
+//            @Override
+//            public void run() {
+//                //TODO Auto-generated method stub
+//
+//                if(count <= 10){ //count값이 10보다 작거나 같을때까지 수행
+//                    Log.v("run","[카운트다운 : "+count+"]");
+//                    update();
+//                    count++; //실행횟수 증가
+//                }
+//                else{
+//                    timer.cancel(); //타이머 종료
+//                    Log.v("run","[카운트다운 : 종료]");
+//                }
+//            }
+//        };
+//        timer.schedule(task, 0, 1000); //실행 Task, 0초뒤 실행, 10초마다 반복
+
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                update();
+            }
+        };
+
+        timer = new Timer();
+        timer.schedule(timerTask, 0, 1000);
+
         //4.버튼누르면 정답 판단해서 로티띄우기
         /*
         true_animation = findViewById(R.id.lottie_true);
@@ -113,6 +157,26 @@ public class OXquizStageActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void update(){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if(num>20){
+                    timer.cancel();
+                }else{
+                    if(count<10) {
+                        count = 1;
+                    }
+                    OXtime.setText(String.valueOf(num));//OXtime.setText(String.valueOf(num));
+                    count++;
+                    num++;
+                    Log.v("update반복 count",String.valueOf(count));
+                }
+            }
+        };
+        handler.post(runnable);
     }
 
     // Calling the rest api in the UI thread
