@@ -26,10 +26,11 @@ import java.util.ArrayList;
 public class OXquizStageActivity extends AppCompatActivity {
 
     Button oBT,xBT;
-    TextView OXstage,OXstep,OXtime,OXscore, OXquiz, OXpopScore;
+    static TextView OXstage,OXstep,OXtime,OXscore, OXquiz, OXpopScore;
     ImageView rightOimg,rightXimg,wrongOimg,wrongXimg, OXback;
     LottieAnimationView true_animation, false_animation;
     String apiString = null;
+    int stage;
 
     static int[] quizNum = new int[5];
     static int stageNum;
@@ -65,11 +66,31 @@ public class OXquizStageActivity extends AppCompatActivity {
         //1.stagenum 스테이지 표시해주기
         OXstage.setText("Stage "+stageNum);
 
+        //2.퀴즈 넘버링 + 3.퀴즈 내용
+        try {
+            String apiString = new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute().get();
+            Log.v("성공 apiString", apiString);
+            JSONArray jarray=  new JSONArray(apiString);
 
-
-        //2.퀴즈 넘버링
-
-        //3.퀴즈 내용
+            for(int i=0;i<jarray.length();i++){
+                int j=0;
+                //Log.v("반복문 확인", String.valueOf(i));
+                JSONObject jObject = jarray.getJSONObject(i);
+                stage = jObject.getInt("stageNum");
+                //Log.v("반복문 stage 확인", String.valueOf(stage));
+                if(stage==stageNum){
+                    quizNum[j] = jObject.getInt("quizNum");
+                    quiz[j] = jObject.getString("quiz");
+                    answer[j] = jObject.getInt("answer");
+                    Log.v("성공 apiString/ stageNum:",String.valueOf(stageNum));
+                    Log.v("성공 apiString/ stage 퀴즈:",quizNum[j]+" "+quiz[j]+answer[j]);
+                    j++;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.v("실패 apiString", apiString);
+        }
 
         //4.버튼누르면 정답 판단해서 로티띄우기
         /*
@@ -91,18 +112,6 @@ public class OXquizStageActivity extends AppCompatActivity {
 
 
 
-        some_method_in_ui_thread();
-
-//        try {
-//            RestAPITask task = new RestAPITask("http://sorimadang.shop/api/ox-game/questions");
-//            task.execute();
-//            for(int i=0;i<5;i++){
-//                Log.v("확인2 stage 퀴즈:",quizNum[i]+" "+quiz[i]+answer[i]);
-//            }
-//        } catch (Exception e){
-//            Log.v("ERR","RestAPITask error");
-//        }
-
 
     }
 
@@ -113,7 +122,7 @@ public class OXquizStageActivity extends AppCompatActivity {
     }
 
     // Rest API calling task
-    public static class RestAPITask extends AsyncTask<Integer, Void, ArrayList<classData>> {
+    public static class RestAPITask extends AsyncTask<Integer, Void, String> {
         // Variable to store url
         protected String mURL;
 
@@ -121,12 +130,10 @@ public class OXquizStageActivity extends AppCompatActivity {
         public RestAPITask(String url) {
             mURL = url;
         }
-        private ArrayList<classData> classDataset;
-        private classData classes;
+
         // Background work
-        protected ArrayList<classData> doInBackground(Integer... params) {
+        protected String doInBackground(Integer... params) {
             String result = null;
-            int stage;
 
             try {
                 // Open the connection
@@ -145,44 +152,18 @@ public class OXquizStageActivity extends AppCompatActivity {
 
                 // Set the result
                 result = builder.toString();
-                Log.v("성공: ",result);
-
-                JSONArray jarray=  new JSONArray(result);
-
-                for(int i=0;i<jarray.length();i++){
-                    int j=0;
-                    //Log.v("반복문 확인", String.valueOf(i));
-                    JSONObject jObject = jarray.getJSONObject(i);
-                    stage = jObject.getInt("stageNum");
-                    //Log.v("반복문 stage 확인", String.valueOf(stage));
-                    if(stage==stageNum){
-                        quizNum[j] = jObject.getInt("quizNum");
-                        quiz[j] = jObject.getString("quiz");
-                        answer[j] = jObject.getInt("answer");
-                        Log.v("확인1 stageNum:",String.valueOf(stageNum));
-                        Log.v("확인1 stage 퀴즈:",quizNum[j]+" "+quiz[j]+answer[j]);
-                        j++;
-                    }
-                }
+                Log.v("성공doin: ",result);
             }
             catch (Exception e) {
                 // Error calling the rest api
                 Log.e("REST_API", "GET method failed: " + e.getMessage());
                 e.printStackTrace();
             }
-            return null;
+            return result; //null;
         }
-
-//        protected void onPostExecute() {
-//            Log.v("스레드 종료 stage 퀴즈:",quizNum[0]+" "+quiz[0]+answer[0]);
-//        }
-
     }
 
     public void oxstagebackActivity(View view) {
         startActivity(new Intent(OXquizStageActivity.this, OXquizIntroActivity.class));
-    }
-
-    private static class classData {
     }
 }
