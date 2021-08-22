@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,14 +34,16 @@ public class OXquizStageActivity extends AppCompatActivity {
     LottieAnimationView true_animation, false_animation;
     String apiString = null;
     int stage;
-    static int count=1,num=1;
+    int counting = 10;
+    static int count=1;
+    int num=10;
     private Timer timer;
-
+    private TimerTask mTimerTask;
     static int[] quizNum = new int[5];
     static int stageNum;
     static String[] quiz = new String[5];
     static int[] answer = new int[5];
-
+    private final Timer mTimer = new Timer();
     private final android.os.Handler handler = new android.os.Handler();
 
 
@@ -126,15 +129,77 @@ public class OXquizStageActivity extends AppCompatActivity {
 //        };
 //        timer.schedule(task, 0, 1000); //실행 Task, 0초뒤 실행, 10초마다 반복
 
-        TimerTask timerTask = new TimerTask() {
+        /*CountDownTimer CDT = new CountDownTimer(3000000, 1000){
+
             @Override
-            public void run() {
-                update();
+            public void onTick(long millisUntilFinished) { // 총 시간과 주기
+                if(num <= 0){
+                    OXtime.setText('x');
+                }
+                else if (num>10){
+                    num--;
+                    OXtime.setText(String.valueOf(num));
+                }
+                else {
+                    num--;
+                    OXtime.setText(String.valueOf(num));
+                }
+
+
+            }
+
+            @Override
+            public void onFinish() {
+
             }
         };
+*/
+        mTimerTask = createTimerTask();
+        mTimer.schedule(mTimerTask,0, 1000);
 
-        timer = new Timer();
-        timer.schedule(timerTask, 0, 1000);
+        oBT.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTimerTask.cancel();
+                true_animation = findViewById(R.id.lottie_true);
+                true_animation.setAnimation("tickgreen.json");
+                true_animation.playAnimation();
+                true_animation.setRepeatCount(3);
+
+            }
+        });
+
+        xBT.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                mTimerTask = createTimerTask();
+                mTimer.schedule(mTimerTask, 0, 1000);
+            }
+
+        });
+    }
+
+    private void update(){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                OXtime.setText(String.valueOf(num));//OXtime.setText(String.valueOf(num));
+                if (num<0){
+                    num = 0;
+                    OXtime.setText(String.valueOf(num));
+                    timeOver();
+                }
+                num--;
+                Log.v("update반복 count",String.valueOf(count));
+            }
+        };
+        handler.post(runnable);
+    }
+
+
+
+
+
 
         //4.버튼누르면 정답 판단해서 로티띄우기
         /*
@@ -142,6 +207,7 @@ public class OXquizStageActivity extends AppCompatActivity {
         true_animation.setAnimation("tickgreen.json");
         true_animation.playAnimation();
         true_animation.setRepeatCount(3);
+
 
         false_animation = findViewById(R.id.lottie_false);
         false_animation.setAnimation("signforerrorflatstyle.json");
@@ -157,26 +223,23 @@ public class OXquizStageActivity extends AppCompatActivity {
 
 
 
+    void timeOver(){
+        mTimerTask.cancel();
+        false_animation = findViewById(R.id.lottie_false);
+        false_animation.setAnimation("signforerrorflatstyle.json");
+        false_animation.playAnimation();
+        false_animation.setRepeatCount(3);
     }
 
-    private void update(){
-        Runnable runnable = new Runnable() {
+    private TimerTask createTimerTask() {
+        num = 10;
+        TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                if(num>20){
-                    timer.cancel();
-                }else{
-                    if(count<10) {
-                        count = 1;
-                    }
-                    OXtime.setText(String.valueOf(num));//OXtime.setText(String.valueOf(num));
-                    count++;
-                    num++;
-                    Log.v("update반복 count",String.valueOf(count));
-                }
+                update();
             }
         };
-        handler.post(runnable);
+        return timerTask;
     }
 
     // Calling the rest api in the UI thread
@@ -184,6 +247,8 @@ public class OXquizStageActivity extends AppCompatActivity {
 
         new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute();
     }
+
+
 
     // Rest API calling task
     public static class RestAPITask extends AsyncTask<Integer, Void, String> {
@@ -230,4 +295,6 @@ public class OXquizStageActivity extends AppCompatActivity {
     public void oxstagebackActivity(View view) {
         startActivity(new Intent(OXquizStageActivity.this, OXquizIntroActivity.class));
     }
+
+
 }
