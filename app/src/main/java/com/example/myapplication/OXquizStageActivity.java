@@ -154,6 +154,12 @@ public class OXquizStageActivity extends AppCompatActivity {
             }
         };
 */
+
+        /*
+        * 한문제 풀때마다 문제전역변수 변화시켜서 switch문으로
+        * 실행시켜주기?
+        * 타이머 계속 다시 시작하는 법?
+        * */
         mTimerTask = createTimerTask();
         mTimer.schedule(mTimerTask,0, 1000);
 
