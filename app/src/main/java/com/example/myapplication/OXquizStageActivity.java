@@ -30,7 +30,7 @@ public class OXquizStageActivity extends AppCompatActivity {
 
     Button oBT,xBT;
     static TextView OXstage,OXstep,OXtime,OXscore, OXquiz, OXpopScore;
-    ImageView rightOimg,rightXimg,wrongOimg,wrongXimg, OXback;
+    ImageView OXback;
     LottieAnimationView true_animation, false_animation;
     String apiString = null;
     int stage;
@@ -39,6 +39,7 @@ public class OXquizStageActivity extends AppCompatActivity {
     int num=10;
     private Timer timer;
     private TimerTask mTimerTask;
+    static int userquizNum=0;
     static int[] quizNum = new int[5];
     static int stageNum;
     static String[] quiz = new String[5];
@@ -68,10 +69,6 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXquiz = findViewById(R.id.oxQuiz); //퀴즈내용
         OXpopScore = findViewById(R.id.oxPopScore); //맞추면 점수..?
 
-        rightOimg = findViewById(R.id.rightOimg);
-        rightXimg = findViewById(R.id.rigntXimg);
-        wrongOimg = findViewById(R.id.wrongOimg);
-        wrongXimg = findViewById(R.id.wrongXimg);
 
         //1.stagenum 스테이지 표시해주기
         OXstage.setText("Stage "+stageNum);
@@ -84,10 +81,10 @@ public class OXquizStageActivity extends AppCompatActivity {
 
             for(int i=0;i<jarray.length();i++){
                 int j=0;
-                //Log.v("반복문 확인", String.valueOf(i));
+                Log.v("반복문 확인", String.valueOf(i));
                 JSONObject jObject = jarray.getJSONObject(i);
                 stage = jObject.getInt("stageNum");
-                //Log.v("반복문 stage 확인", String.valueOf(stage));
+                Log.v("반복문 stage 확인", String.valueOf(stage));
                 if(stage==stageNum){
                     quizNum[j] = jObject.getInt("quizNum");
                     quiz[j] = jObject.getString("quiz");
@@ -97,39 +94,12 @@ public class OXquizStageActivity extends AppCompatActivity {
                     j++;
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-            Log.v("실패 apiString", apiString);
+            Log.v("실패 apiString", "실패");
         }
-
-//        for(int i=0;i<5;i++){
-//            OXstep.setText("Quiz "+quizNum[i]);
-//            OXquiz.setText(quiz[i]);
-//            task.run();
-//
-//
-//        }
-
-//        Timer timer=new Timer();
-//        TimerTask task=new TimerTask(){
-//            @Override
-//            public void run() {
-//                //TODO Auto-generated method stub
-//
-//                if(count <= 10){ //count값이 10보다 작거나 같을때까지 수행
-//                    Log.v("run","[카운트다운 : "+count+"]");
-//                    update();
-//                    count++; //실행횟수 증가
-//                }
-//                else{
-//                    timer.cancel(); //타이머 종료
-//                    Log.v("run","[카운트다운 : 종료]");
-//                }
-//            }
-//        };
-//        timer.schedule(task, 0, 1000); //실행 Task, 0초뒤 실행, 10초마다 반복
-
-        /*CountDownTimer CDT = new CountDownTimer(3000000, 1000){
+        /*
 
             @Override
             public void onTick(long millisUntilFinished) { // 총 시간과 주기
@@ -196,30 +166,11 @@ public class OXquizStageActivity extends AppCompatActivity {
                     timeOver();
                 }
                 num--;
-                Log.v("update반복 count",String.valueOf(count));
+                //Log.v("update반복 count",String.valueOf(count));
             }
         };
         handler.post(runnable);
     }
-
-
-
-
-
-
-        //4.버튼누르면 정답 판단해서 로티띄우기
-        /*
-        true_animation = findViewById(R.id.lottie_true);
-        true_animation.setAnimation("tickgreen.json");
-        true_animation.playAnimation();
-        true_animation.setRepeatCount(3);
-
-
-        false_animation = findViewById(R.id.lottie_false);
-        false_animation.setAnimation("signforerrorflatstyle.json");
-        false_animation.playAnimation();
-        false_animation.setRepeatCount(3);
-        */
 
         //5.10초 타이머
         //6.결과..
@@ -238,6 +189,12 @@ public class OXquizStageActivity extends AppCompatActivity {
     }
 
     private TimerTask createTimerTask() {
+        OXstep.setText("Quiz "+(userquizNum+1));
+        //OXquiz.setText(quiz[userquizNum]);
+        //Log.v("타이머 0",quiz[0]);
+        //Log.v("타이머 1",quiz[userquizNum]);
+        Log.v("타이머 성공 apiString/ stageNum:",String.valueOf(stageNum));
+        Log.v("타이머 성공 apiString/ stage 퀴즈:",quizNum[0]+" "+quiz[0]+answer[0]);
         num = 10;
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -245,15 +202,9 @@ public class OXquizStageActivity extends AppCompatActivity {
                 update();
             }
         };
+        userquizNum++;
         return timerTask;
     }
-
-    // Calling the rest api in the UI thread
-    protected void some_method_in_ui_thread() {
-
-        new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute();
-    }
-
 
 
     // Rest API calling task
