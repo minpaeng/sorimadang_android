@@ -79,8 +79,8 @@ public class OXquizStageActivity extends AppCompatActivity {
             Log.v("f 성공 apiString", apiString);
             JSONArray jarray=  new JSONArray(apiString);
 
+            int j=0;
             for(int i=0;i<jarray.length();i++){
-                int j=0;
                 //Log.v("반복문 확인", String.valueOf(i));
                 JSONObject jObject = jarray.getJSONObject(i);
                 stage = jObject.getInt("stage_num");
@@ -91,8 +91,10 @@ public class OXquizStageActivity extends AppCompatActivity {
                     quizNum[j] = jObject.getInt("quiz_num");
                     quiz[j] = jObject.getString("quiz");
                     answer[j] = jObject.getInt("answer");
+                    Log.v("성공 apiString jjj",String.valueOf(j));
                     Log.v("성공 apiString/ stageNum:",String.valueOf(stageNum));
-                    Log.v("성공 apiString/ stage 퀴즈:",quizNum[j]+" "+quiz[j]+answer[j]);
+                    Log.v("성공 apiString/ stage 퀴즈:", quizNum[j] + " " + quiz[j] + answer[j]);
+                    Log.v("성공 stage 퀴즈2:", String.valueOf(j));
                     j++;
                 }
             }
@@ -132,9 +134,6 @@ public class OXquizStageActivity extends AppCompatActivity {
         * 실행시켜주기?
         * 타이머 계속 다시 시작하는 법?
         * */
-        for(int i=0;i<5;i++){
-            Log.v("타이머",i+" "+quiz[i]+answer[i]);
-        }
 
         mTimerTask = createTimerTask();
         mTimer.schedule(mTimerTask,0, 1000);
@@ -195,18 +194,18 @@ public class OXquizStageActivity extends AppCompatActivity {
     }
 
     private TimerTask createTimerTask() {
-//        for(int i=0;i<5;i++){
-//            Log.v("타이머",quizNum[i]+" "+quiz[i]+answer[i]);
-//        }
+        if(userquizNum>6){
+            startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
+        }
 
         OXstep.setText("Quiz "+(userquizNum+1));
-        Log.v("퀴즈넘 0",String.valueOf(userquizNum));
         OXquiz.setText(quiz[userquizNum]);
-        Log.v("퀴즈넘 1",String.valueOf(userquizNum));
-//        userquizNum++;
-//        Log.v("타이머 0 퀴즈넘",String.valueOf(userquizNum));
-//        Log.v("타이머 0",quiz[0]);
-        //Log.v("타이머 1",quiz[userquizNum]);
+        Log.v("퀴즈넘 0",String.valueOf(userquizNum));
+        Log.v("타이머 0 퀴즈넘",String.valueOf(userquizNum));
+        Log.v("타이머 0 퀴즈0",quiz[0]);
+        Log.v("타이머 0 퀴즈[퀴즈넘]",quiz[userquizNum]);
+
+        userquizNum++;
         num = 10;
         TimerTask timerTask = new TimerTask() {
             @Override
