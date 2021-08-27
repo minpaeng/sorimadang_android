@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,12 +42,11 @@ public class OXquizStageActivity extends AppCompatActivity {
     private TimerTask mTimerTask;
     static int userquizNum=0;
     static int[] quizNum = new int[5];
-    static int stageNum;
+    int stageNum;
     static String[] quiz = new String[5];
     static int[] answer = new int[5];
     private final Timer mTimer = new Timer();
     private final android.os.Handler handler = new android.os.Handler();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,17 +76,19 @@ public class OXquizStageActivity extends AppCompatActivity {
         //2.퀴즈 넘버링 + 3.퀴즈 내용 가져오기.
         try {
             String apiString = new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute().get();
-            Log.v("성공 apiString", apiString);
+            Log.v("f 성공 apiString", apiString);
             JSONArray jarray=  new JSONArray(apiString);
 
             for(int i=0;i<jarray.length();i++){
                 int j=0;
-                Log.v("반복문 확인", String.valueOf(i));
+                //Log.v("반복문 확인", String.valueOf(i));
                 JSONObject jObject = jarray.getJSONObject(i);
-                stage = jObject.getInt("stageNum");
-                Log.v("반복문 stage 확인", String.valueOf(stage));
+                stage = jObject.getInt("stage_num");
+//                Log.v("반복문 stage 확인", String.valueOf(stage));
+//                Log.v("반복문 stage 확인", String.valueOf(stagenum));
+//                Log.v("성공 apiString/ stage 퀴즈:",quizNum[j]+" "+quiz[j]+answer[j]);
                 if(stage==stageNum){
-                    quizNum[j] = jObject.getInt("quizNum");
+                    quizNum[j] = jObject.getInt("quiz_num");
                     quiz[j] = jObject.getString("quiz");
                     answer[j] = jObject.getInt("answer");
                     Log.v("성공 apiString/ stageNum:",String.valueOf(stageNum));
@@ -130,6 +132,10 @@ public class OXquizStageActivity extends AppCompatActivity {
         * 실행시켜주기?
         * 타이머 계속 다시 시작하는 법?
         * */
+        for(int i=0;i<5;i++){
+            Log.v("타이머",i+" "+quiz[i]+answer[i]);
+        }
+
         mTimerTask = createTimerTask();
         mTimer.schedule(mTimerTask,0, 1000);
 
@@ -189,12 +195,18 @@ public class OXquizStageActivity extends AppCompatActivity {
     }
 
     private TimerTask createTimerTask() {
+//        for(int i=0;i<5;i++){
+//            Log.v("타이머",quizNum[i]+" "+quiz[i]+answer[i]);
+//        }
+
         OXstep.setText("Quiz "+(userquizNum+1));
-        //OXquiz.setText(quiz[userquizNum]);
-        //Log.v("타이머 0",quiz[0]);
+        Log.v("퀴즈넘 0",String.valueOf(userquizNum));
+        OXquiz.setText(quiz[userquizNum]);
+        Log.v("퀴즈넘 1",String.valueOf(userquizNum));
+//        userquizNum++;
+//        Log.v("타이머 0 퀴즈넘",String.valueOf(userquizNum));
+//        Log.v("타이머 0",quiz[0]);
         //Log.v("타이머 1",quiz[userquizNum]);
-        Log.v("타이머 성공 apiString/ stageNum:",String.valueOf(stageNum));
-        Log.v("타이머 성공 apiString/ stage 퀴즈:",quizNum[0]+" "+quiz[0]+answer[0]);
         num = 10;
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -202,7 +214,7 @@ public class OXquizStageActivity extends AppCompatActivity {
                 update();
             }
         };
-        userquizNum++;
+
         return timerTask;
     }
 
@@ -226,6 +238,7 @@ public class OXquizStageActivity extends AppCompatActivity {
                 URL url = new URL(mURL);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
+
                 InputStream is = conn.getInputStream();
 
                 // Get the stream
