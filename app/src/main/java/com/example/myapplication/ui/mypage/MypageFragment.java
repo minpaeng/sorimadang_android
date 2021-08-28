@@ -103,7 +103,7 @@ public class MypageFragment extends Fragment {
                 //.requestScopes(new Scope(Scopes.DRIVE_APPFOLDER)) //인증코드를 얻기 위해 필요한 코드
                 //.requestServerAuthCode(serverClientId) //인증코드를 얻기 위해 필요한 코드 : 토큰과 교환할 수 있음.서버 아닐경우 필요없음
                 .requestEmail()
-                //.requestIdToken(serverClientId) // 토큰//서버 아닐겅우 삭제
+                .requestIdToken(serverClientId) // 토큰//서버 아닐겅우 삭제
                 .build();
 
         // Build a GoogleSignInClient with the options specified by gso. // 클라이언트 생성
@@ -150,7 +150,7 @@ public class MypageFragment extends Fragment {
         //앱에 로그인 되어 있지 않은 상태라면 null 반환
         //앱에 이미 로그인 되어 있는 상태라면 null을 반환하지 않음
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
-        updateUI(account);
+        //updateUI(account);
     }
 
     // 구글 계정 선택 후 결과 처리
@@ -178,10 +178,27 @@ public class MypageFragment extends Fragment {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.v("로그인 ","handleSignInResult");
             //로그인 성공 시 계정에 맞는 UI로 업데이트
-            updateUI(account);
+            //updateUI(account);
+            //계정 정보 가져오기
+            String personName = account.getDisplayName();
+            String personGivenName = account.getGivenName();
+            String personFamilyName = account.getFamilyName();
+            String personEmail = account.getEmail();
+            String personId = account.getId();
+            Uri personPhoto = account.getPhotoUrl();
+            String serverAuthCode = account.getServerAuthCode(); //onCreate함수 gso부분 주석 해제하면 값이 반환됨
+            String idToken = account.getIdToken();
+            Log.d(TAG, "handleSignInResult:personName "+personName);
+            Log.d(TAG, "handleSignInResult:personGivenName "+personGivenName);
+            Log.d(TAG, "handleSignInResult:personEmail "+personEmail);
+            Log.d(TAG, "handleSignInResult:personId "+personId);
+            Log.d(TAG, "handleSignInResult:personFamilyName "+personFamilyName);
+            Log.d(TAG, "handleSignInResult:personPhoto "+personPhoto);
+            Log.d(TAG, "handleSignInResult:serverAuthCode "+serverAuthCode);
+            Log.d(TAG, "handleSignInResult:idToken "+idToken);
         } catch (ApiException e) {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null);
+            //updateUI(null);
         }
     }
 
@@ -203,7 +220,7 @@ public class MypageFragment extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
+                        //updateUI(null);
                     }
                 });
     }
@@ -215,7 +232,7 @@ public class MypageFragment extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
+                        //updateUI(null);
                     }
                 });
     }
