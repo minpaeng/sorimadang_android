@@ -179,7 +179,7 @@ public class MypageFragment extends Fragment {
             Log.v("로그인 ","handleSignInResult");
             //로그인 성공 시 계정에 맞는 UI로 업데이트
             //updateUI(account);
-            //계정 정보 가져오기
+            //계정 정보 가져오기  //updateUI함수가 잘 안되가지고 updateUI의 내용을 여기에 넣음!
             String personName = account.getDisplayName();
             String personGivenName = account.getGivenName();
             String personFamilyName = account.getFamilyName();
