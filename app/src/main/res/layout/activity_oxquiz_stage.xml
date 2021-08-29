@@ -24,9 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:text="Quiz"
-        android:textSize="10pt"
+        android:layout_marginTop="50dp"
+        android:text="quiz"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
@@ -35,22 +35,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10pt"
+        app:layout_constraintBottom_toBottomOf="@+id/oxQuizStep"
         app:layout_constraintEnd_toEndOf="@+id/oxStage"
         app:layout_constraintStart_toStartOf="@+id/oxStage"
         app:layout_constraintTop_toTopOf="@+id/oxQuizStep" />
 
     <TextView
         android:id="@+id/oxScore"
-        android:layout_width="120dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:background="@drawable/rectangle_border"
-        android:text=" Score"
-        android:textSize="10pt"
+        android:text=" score"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/oxTime"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/oxTime"
         app:layout_constraintTop_toTopOf="@+id/oxTime" />
 
     <TextView
@@ -59,7 +59,10 @@
         android:layout_height="200dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/rectangle_border_bold"
+        android:gravity="center"
         android:textSize="13pt"
+        app:flow_horizontalAlign="center"
+        app:flow_verticalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/oxTime" />
@@ -118,6 +121,7 @@
         android:id="@+id/lottie_false"
         android:layout_width="match_parent"
         android:layout_height="200sp"
+        app:layout_constraintBottom_toBottomOf="@+id/oxQuiz"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -143,6 +147,7 @@
         android:text="다음 문제"
         android:textSize="22sp"
         android:visibility="invisible"
+        app:backgroundTint="#D54C4C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

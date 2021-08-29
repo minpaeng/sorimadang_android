@@ -53,7 +53,7 @@ public class OXquizStageActivity extends AppCompatActivity {
         //뷰의 주소값을 가져오려면 항상 setContentView(R.layout.activity_main); 호출이 끝난 이 후 작업을 해야합니다.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oxquiz_stage);
-
+        getSupportActionBar().hide();
         Intent intent = getIntent();
         stageNum = intent.getIntExtra("stageNumber",0);
         Log.v("stageNum 확인", String.valueOf(stageNum));
@@ -85,7 +85,7 @@ public class OXquizStageActivity extends AppCompatActivity {
                 JSONObject jObject = jarray.getJSONObject(i);
                 stage = jObject.getInt("stage_num");
 //                Log.v("반복문 stage 확인", String.valueOf(stage));
-//                Log.v("반복문 stage 확인", String.valueOf(stagenum));
+//                Log.v("반복문 stage 확인", String.valueOf(stageNum));
 //                Log.v("성공 apiString/ stage 퀴즈:",quizNum[j]+" "+quiz[j]+answer[j]);
                 if(stage==stageNum){
                     quizNum[j] = jObject.getInt("quiz_num");
@@ -207,7 +207,7 @@ public class OXquizStageActivity extends AppCompatActivity {
                     true_animation.cancelAnimation();
                 }*/
                 //if(false_animation.isAnimating() == true){
-                    false_animation.cancelAnimation();
+                    //false_animation.cancelAnimation();
                 //}
                 userquizNum++;
 
