@@ -29,7 +29,7 @@ import java.util.TimerTask;
 
 public class OXquizStageActivity extends AppCompatActivity {
 
-    Button oBT,xBT;
+    Button oBT,xBT,nextBT;
     static TextView OXstage,OXstep,OXtime,OXscore, OXquiz, OXpopScore;
     ImageView OXback;
     LottieAnimationView true_animation, false_animation;
@@ -61,7 +61,7 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXback = findViewById(R.id.imageView8);
         oBT = findViewById(R.id.oButton);
         xBT = findViewById(R.id.xButton);
-
+        nextBT = findViewById(R.id.next_button);
         OXstage = findViewById(R.id.oxStage); //스테이지단계
         OXstep = findViewById(R.id.oxQuizStep); //퀴즈 단계
         OXtime = findViewById(R.id.oxTime); //제한시간
@@ -69,9 +69,9 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXquiz = findViewById(R.id.oxQuiz); //퀴즈내용
         OXpopScore = findViewById(R.id.oxPopScore); //맞추면 점수..?
 
-
         //1.stagenum 스테이지 표시해주기
         OXstage.setText("Stage "+stageNum);
+
 
         //2.퀴즈 넘버링 + 3.퀴즈 내용 가져오기.
         try {
@@ -138,23 +138,89 @@ public class OXquizStageActivity extends AppCompatActivity {
         mTimerTask = createTimerTask();
         mTimer.schedule(mTimerTask,0, 1000);
 
+        OXstep.setText("Quiz "+(userquizNum+1));
+        OXquiz.setText(quiz[userquizNum]);
+
         oBT.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mTimerTask.cancel();
+
+                //o가 정답일 떄,
+                if(answer[userquizNum]==1){
                 true_animation = findViewById(R.id.lottie_true);
                 true_animation.setAnimation("tickgreen.json");
                 true_animation.playAnimation();
                 true_animation.setRepeatCount(3);
+                }
 
+                //o가 오답일 때,
+                else if(answer[userquizNum]==0) {
+                    false_animation = findViewById(R.id.lottie_false);
+                    false_animation.setAnimation("signforerrorflatstyle.json");
+                    false_animation.playAnimation();
+                    false_animation.setRepeatCount(3);
+                }
+                //userquizNum++;
+                nextBT.setVisibility(View.VISIBLE);
+
+                if(userquizNum>6){
+                    startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
+                }
             }
         });
 
         xBT.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
-                mTimerTask = createTimerTask();
-                mTimer.schedule(mTimerTask, 0, 1000);
+                mTimerTask.cancel();
+
+                //x가 정답일 때,
+                if(answer[userquizNum]==0){
+                    true_animation = findViewById(R.id.lottie_true);
+                    true_animation.setAnimation("tickgreen.json");
+                    true_animation.playAnimation();
+                    true_animation.setRepeatCount(3);
+
+                }
+
+                //X가 오답일 때,
+                else if(answer[userquizNum]==1) {
+                    false_animation = findViewById(R.id.lottie_false);
+                    false_animation.setAnimation("signforerrorflatstyle.json");
+                    false_animation.playAnimation();
+                    false_animation.setRepeatCount(3);
+                }
+                nextBT.setVisibility(View.VISIBLE);
+                //mTimerTask = createTimerTask();
+                //mTimer.schedule(mTimerTask, 0, 1000);
+
+
+            }
+
+        });
+
+        nextBT.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                /*if(true_animation.isAnimating() == true){
+                    true_animation.cancelAnimation();
+                }*/
+                //if(false_animation.isAnimating() == true){
+                    false_animation.cancelAnimation();
+                //}
+                userquizNum++;
+
+                if(userquizNum>4){
+                    startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
+                }
+                else{
+                    OXstep.setText("Quiz "+(userquizNum+1));
+                    OXquiz.setText(quiz[userquizNum]);
+                    mTimerTask = createTimerTask();
+                    mTimer.schedule(mTimerTask, 0, 1000);
+                }
+                nextBT.setVisibility(View.INVISIBLE);
             }
 
         });
@@ -194,18 +260,18 @@ public class OXquizStageActivity extends AppCompatActivity {
     }
 
     private TimerTask createTimerTask() {
-        if(userquizNum>6){
+        /*if(userquizNum>6){
             startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
-        }
+        }*/
 
-        OXstep.setText("Quiz "+(userquizNum+1));
+        /*OXstep.setText("Quiz "+(userquizNum+1));
         OXquiz.setText(quiz[userquizNum]);
         Log.v("퀴즈넘 0",String.valueOf(userquizNum));
         Log.v("타이머 0 퀴즈넘",String.valueOf(userquizNum));
         Log.v("타이머 0 퀴즈0",quiz[0]);
-        Log.v("타이머 0 퀴즈[퀴즈넘]",quiz[userquizNum]);
+        Log.v("타이머 0 퀴즈[퀴즈넘]",quiz[userquizNum]);*/
 
-        userquizNum++;
+        //userquizNum++;
         num = 10;
         TimerTask timerTask = new TimerTask() {
             @Override
