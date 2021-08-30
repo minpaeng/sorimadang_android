@@ -17,6 +17,7 @@ public class OXquizIntroActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oxquiz_intro);
+        getSupportActionBar().hide();
 
 
     }
