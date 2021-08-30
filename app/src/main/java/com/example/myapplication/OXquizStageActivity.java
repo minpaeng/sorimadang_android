@@ -210,6 +210,7 @@ public class OXquizStageActivity extends AppCompatActivity {
                     //startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
                     Intent resultIntent = new Intent(OXquizStageActivity.this, OXquizResultActivity.class);
                     resultIntent.putExtra("score",oxscore);
+                    resultIntent.putExtra("stagenumber",stageNum);
                     startActivity(resultIntent);
                 }
                 else{
