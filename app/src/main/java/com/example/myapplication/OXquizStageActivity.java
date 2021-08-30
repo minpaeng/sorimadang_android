@@ -35,6 +35,7 @@ public class OXquizStageActivity extends AppCompatActivity {
     LottieAnimationView true_animation, false_animation;
     String apiString = null;
     int stage;
+    int oxscore = 0;
     int counting = 10;
     static int count=1;
     int num=10;
@@ -56,6 +57,7 @@ public class OXquizStageActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         Intent intent = getIntent();
         stageNum = intent.getIntExtra("stageNumber",0);
+
         Log.v("stageNum 확인", String.valueOf(stageNum));
 
         OXback = findViewById(R.id.imageView8);
@@ -70,8 +72,8 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXpopScore = findViewById(R.id.oxPopScore); //맞추면 점수..?
 
         //1.stagenum 스테이지 표시해주기
-        OXstage.setText("Stage "+stageNum);
-
+        OXstage.setText("stage "+stageNum);
+        OXscore.setText("score "+oxscore);
 
         //2.퀴즈 넘버링 + 3.퀴즈 내용 가져오기.
         try {
@@ -152,6 +154,8 @@ public class OXquizStageActivity extends AppCompatActivity {
                 true_animation.setAnimation("tickgreen.json");
                 true_animation.playAnimation();
                 true_animation.setRepeatCount(3);
+                oxscore += 10;
+                OXscore.setText("score "+oxscore);
                 }
 
                 //o가 오답일 때,
@@ -164,9 +168,7 @@ public class OXquizStageActivity extends AppCompatActivity {
                 //userquizNum++;
                 nextBT.setVisibility(View.VISIBLE);
 
-                if(userquizNum>6){
-                    startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
-                }
+
             }
         });
 
@@ -181,7 +183,8 @@ public class OXquizStageActivity extends AppCompatActivity {
                     true_animation.setAnimation("tickgreen.json");
                     true_animation.playAnimation();
                     true_animation.setRepeatCount(3);
-
+                    oxscore += 10;
+                    OXscore.setText("score "+oxscore);
                 }
 
                 //X가 오답일 때,
@@ -207,12 +210,16 @@ public class OXquizStageActivity extends AppCompatActivity {
                     true_animation.cancelAnimation();
                 }*/
                 //if(false_animation.isAnimating() == true){
-                    //false_animation.cancelAnimation();
+                    false_animation.cancelAnimation();
+
                 //}
                 userquizNum++;
 
                 if(userquizNum>4){
-                    startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
+                    //startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
+                    Intent resultIntent = new Intent(OXquizStageActivity.this, OXquizResultActivity.class);
+                    resultIntent.putExtra("score",oxscore);
+                    startActivity(resultIntent);
                 }
                 else{
                     OXstep.setText("Quiz "+(userquizNum+1));
