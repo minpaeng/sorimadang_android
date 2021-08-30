@@ -86,9 +86,6 @@ public class OXquizStageActivity extends AppCompatActivity {
                 //Log.v("반복문 확인", String.valueOf(i));
                 JSONObject jObject = jarray.getJSONObject(i);
                 stage = jObject.getInt("stage_num");
-//                Log.v("반복문 stage 확인", String.valueOf(stage));
-//                Log.v("반복문 stage 확인", String.valueOf(stageNum));
-//                Log.v("성공 apiString/ stage 퀴즈:",quizNum[j]+" "+quiz[j]+answer[j]);
                 if(stage==stageNum){
                     quizNum[j] = jObject.getInt("quiz_num");
                     quiz[j] = jObject.getString("quiz");
@@ -130,12 +127,6 @@ public class OXquizStageActivity extends AppCompatActivity {
             }
         };
 */
-
-        /*
-        * 한문제 풀때마다 문제전역변수 변화시켜서 switch문으로
-        * 실행시켜주기?
-        * 타이머 계속 다시 시작하는 법?
-        * */
 
         mTimerTask = createTimerTask();
         mTimer.schedule(mTimerTask,0, 1000);
@@ -249,9 +240,6 @@ public class OXquizStageActivity extends AppCompatActivity {
         };
         handler.post(runnable);
     }
-
-        //5.10초 타이머
-        //6.결과..
 
         //rightOimg.setVisibility(View.VISIBLE); //화면에서 보이게 하는거->정답일때 보이게 할 수 있음
 
