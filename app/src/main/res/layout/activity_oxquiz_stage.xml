@@ -11,9 +11,9 @@
         android:id="@+id/oxStage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
 
-        android:textSize="13pt"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,6 +29,20 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+    <ImageView
+        android:id="@+id/clock_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/oxTime"
+        app:layout_constraintEnd_toEndOf="@+id/oxTime"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="@+id/oxTime"
+        app:layout_constraintTop_toTopOf="@+id/oxTime"
+        app:srcCompat="@drawable/clock_shape" />
 
     <TextView
         android:id="@+id/oxTime"
@@ -111,6 +125,7 @@
         android:id="@+id/lottie_true"
         android:layout_width="match_parent"
         android:layout_height="200sp"
+        app:lottie_loop="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -122,6 +137,7 @@
         android:id="@+id/lottie_false"
         android:layout_width="match_parent"
         android:layout_height="200sp"
+        app:lottie_loop="false"
         app:layout_constraintBottom_toBottomOf="@+id/oxQuiz"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -130,8 +146,8 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:onClick="oxstagebackActivity"
@@ -153,6 +169,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

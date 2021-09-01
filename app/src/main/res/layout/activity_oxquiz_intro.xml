@@ -11,34 +11,23 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="국악기 OX 퀴즈"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="205dp"
-        android:layout_height="225dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="181dp"
+        android:layout_height="204dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/peng_female" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:text="얼마나 아는데?"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/stage1BT"
@@ -46,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:onClick="startStage1Activity"
-        android:text="Stage1          >"
+        android:text="     STAGE1     >"
         android:textSize="8pt"
         app:backgroundTint="#F7CAC9"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:onClick="startStage2Activity"
-        android:text="Stage2          >"
+        android:text="     STAGE2     >"
         android:textSize="8pt"
         app:backgroundTint="#F7CAC9"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:onClick="startStage3Activity"
-        android:text="Stage3          >"
+        android:text="     STAGE3     >"
         android:textSize="8pt"
         app:backgroundTint="#F7CAC9"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,24 +70,24 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         app:srcCompat="@drawable/o_button" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="93dp"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:srcCompat="@drawable/x_button" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:onClick="oxintrobackActivity"

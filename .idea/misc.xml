@@ -9,7 +9,9 @@
         <entry key="app/src/main/res/layout/activity_instrument_quiz_stage.xml" value="0.15723684210526315" />
         <entry key="app/src/main/res/layout/activity_oxquiz_intro.xml" value="0.1625" />
         <entry key="app/src/main/res/layout/activity_oxquiz_result.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_oxquiz_stage.xml" value="0.25" />
+
+        <entry key="app/src/main/res/layout/activity_oxquiz_stage.xml" value="0.165" />
+
       </map>
     </option>
   </component>
