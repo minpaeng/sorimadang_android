@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,13 +43,15 @@ public class OXquizStageActivity extends AppCompatActivity {
     int num=10;
     private Timer timer;
     private TimerTask mTimerTask;
-    static int userquizNum=0;
+    static int userquizNum;
     static int[] quizNum = new int[5];
     int stageNum;
     static String[] quiz = new String[5];
     static int[] answer = new int[5];
     private final Timer mTimer = new Timer();
     private final android.os.Handler handler = new android.os.Handler();
+    boolean isTrueLottie;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,7 @@ public class OXquizStageActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         Intent intent = getIntent();
         stageNum = intent.getIntExtra("stageNumber",0);
-
+        userquizNum = 0;
         Log.v("stageNum 확인", String.valueOf(stageNum));
 
         OXback = findViewById(R.id.imageView8);
@@ -70,6 +74,9 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXscore = findViewById(R.id.oxScore); //점수
         OXquiz = findViewById(R.id.oxQuiz); //퀴즈내용
         OXpopScore = findViewById(R.id.oxPopScore); //맞추면 점수..?
+
+        isTrueLottie = false;
+
 
         //1.stagenum 스테이지 표시해주기
         OXstage.setText("stage "+stageNum);
@@ -134,27 +141,83 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXstep.setText("Quiz "+(userquizNum+1));
         OXquiz.setText(quiz[userquizNum]);
 
+        //로티 리스너
+        /*true_animation.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                //true_animation.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
+
+        false_animation.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                //false_animation.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
+
+*/
+
+
+
+
+
         oBT.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mTimerTask.cancel();
-
+                oBT.setEnabled(false);
+                xBT.setEnabled(false);
                 //o가 정답일 떄,
                 if(answer[userquizNum]==1){
                 true_animation = findViewById(R.id.lottie_true);
                 true_animation.setAnimation("tickgreen.json");
+                true_animation.setVisibility(View.VISIBLE);
                 true_animation.playAnimation();
-                true_animation.setRepeatCount(3);
+                true_animation.setRepeatCount(1);
+
                 oxscore += 10;
                 OXscore.setText("score "+oxscore);
+                isTrueLottie = true;
                 }
 
                 //o가 오답일 때,
                 else if(answer[userquizNum]==0) {
+
                     false_animation = findViewById(R.id.lottie_false);
                     false_animation.setAnimation("signforerrorflatstyle.json");
+                    false_animation.setVisibility(View.VISIBLE);
                     false_animation.playAnimation();
-                    false_animation.setRepeatCount(3);
+                    //false_animation.setScrollBarFadeDuration(1000);
+                    false_animation.setRepeatCount(1);
+
+                    isTrueLottie = false;
                 }
                 //userquizNum++;
                 nextBT.setVisibility(View.VISIBLE);
@@ -167,28 +230,34 @@ public class OXquizStageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mTimerTask.cancel();
-
+                oBT.setEnabled(false);
+                xBT.setEnabled(false);
                 //x가 정답일 때,
                 if(answer[userquizNum]==0){
+
                     true_animation = findViewById(R.id.lottie_true);
                     true_animation.setAnimation("tickgreen.json");
+                    true_animation.setVisibility(View.VISIBLE);
                     true_animation.playAnimation();
-                    true_animation.setRepeatCount(3);
+                    true_animation.setRepeatCount(1);
+
                     oxscore += 10;
                     OXscore.setText("score "+oxscore);
+                    isTrueLottie = true;
                 }
 
                 //X가 오답일 때,
                 else if(answer[userquizNum]==1) {
+
                     false_animation = findViewById(R.id.lottie_false);
                     false_animation.setAnimation("signforerrorflatstyle.json");
+                    false_animation.setVisibility(View.VISIBLE);
                     false_animation.playAnimation();
-                    false_animation.setRepeatCount(3);
+                    false_animation.setRepeatCount(1);
+
+                    isTrueLottie = false;
                 }
                 nextBT.setVisibility(View.VISIBLE);
-                //mTimerTask = createTimerTask();
-                //mTimer.schedule(mTimerTask, 0, 1000);
-
 
             }
 
@@ -197,20 +266,24 @@ public class OXquizStageActivity extends AppCompatActivity {
         nextBT.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
-                /*if(true_animation.isAnimating() == true){
-                    true_animation.cancelAnimation();
-                }*/
-                //if(false_animation.isAnimating() == true){
-                    false_animation.cancelAnimation();
 
-                //}
+                if(isTrueLottie == true){
+                    true_animation.setVisibility(View.GONE);
+                }
+                else if(isTrueLottie == false){
+                    false_animation.setVisibility(View.GONE);
+                }
+                else{
+
+                }
+
                 userquizNum++;
 
                 if(userquizNum>4){
                     //startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
                     Intent resultIntent = new Intent(OXquizStageActivity.this, OXquizResultActivity.class);
                     resultIntent.putExtra("score",oxscore);
-                    resultIntent.putExtra("stagenumber",stageNum);
+                    resultIntent.putExtra("stageNumber",stageNum);
                     startActivity(resultIntent);
                 }
                 else{
@@ -220,6 +293,8 @@ public class OXquizStageActivity extends AppCompatActivity {
                     mTimer.schedule(mTimerTask, 0, 1000);
                 }
                 nextBT.setVisibility(View.INVISIBLE);
+                oBT.setEnabled(true);
+                xBT.setEnabled(true);
             }
 
         });
@@ -248,11 +323,16 @@ public class OXquizStageActivity extends AppCompatActivity {
 
 
     void timeOver(){
+        nextBT.setVisibility(View.VISIBLE);
         mTimerTask.cancel();
+        oBT.setEnabled(false);
+        xBT.setEnabled(false);
         false_animation = findViewById(R.id.lottie_false);
         false_animation.setAnimation("signforerrorflatstyle.json");
+        false_animation.setVisibility(View.VISIBLE);
         false_animation.playAnimation();
-        false_animation.setRepeatCount(3);
+        false_animation.setRepeatCount(1);
+        isTrueLottie = false;
     }
 
     private TimerTask createTimerTask() {

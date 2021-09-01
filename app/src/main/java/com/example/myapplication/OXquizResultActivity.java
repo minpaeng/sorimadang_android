@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,8 @@ public class OXquizResultActivity extends AppCompatActivity {
     TextView totScore;
     TextView correctNum;
     TextView wrongNum;
+
+    Button next_level_BT;
 
     TextView OXresultstage;
     ImageView OXresultback;
@@ -26,7 +29,7 @@ public class OXquizResultActivity extends AppCompatActivity {
 
         Intent getIntent = getIntent();
         total_score = getIntent.getIntExtra("score",0);
-        stagenumber = getIntent.getIntExtra("stagenumber",0);
+        stagenumber = getIntent.getIntExtra("stageNumber",0);
 
         OXresultstage = findViewById(R.id.oxStage);
         OXresultstage.setText("stage "+stagenumber);
@@ -35,6 +38,7 @@ public class OXquizResultActivity extends AppCompatActivity {
         correctNum = findViewById(R.id.correct_num);
         wrongNum = findViewById(R.id.wrong_num);
 
+        next_level_BT = findViewById(R.id.nextLevel_button);
         totScore.setText(String.valueOf(total_score));
 
         if(total_score != 0){
@@ -55,6 +59,27 @@ public class OXquizResultActivity extends AppCompatActivity {
                 startActivity(new Intent(OXquizResultActivity.this, OXquizIntroActivity.class));
             }
         });
+
+
+        if(stagenumber == 1 || stagenumber == 2){
+            stagenumber +=1;
+        }
+        else{
+            next_level_BT.setText("처음단계\n다시하기");
+            stagenumber = 1;
+        }
+
+        next_level_BT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent stageIntent = new Intent(OXquizResultActivity.this, OXquizStageActivity.class);
+                stageIntent.putExtra("stageNumber",stagenumber);
+                startActivity(stageIntent);
+
+            }
+        });
+
 
     }
 
