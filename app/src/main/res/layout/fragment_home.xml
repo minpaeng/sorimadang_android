@@ -22,12 +22,14 @@
         android:layout_marginLeft="10dp"
         android:text="모든 게임"
         android:textSize="10sp"
+        android:fontFamily="@font/imhyeminregular"
         app:layout_constraintTop_toBottomOf="@id/appBar_image"/>
 
     <ListView
         android:id="@+id/main_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fontFamily="@font/imhyeminregular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/all_game"/>
 </LinearLayout>

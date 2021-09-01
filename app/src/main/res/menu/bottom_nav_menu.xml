@@ -4,21 +4,25 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/home_icon"
+        android:fontFamily="@font/imhyeminregular"
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_instrument"
         android:icon="@drawable/instrument"
+        android:fontFamily="@font/imhyeminregular"
         android:title="@string/title_dashboard" />
 
     <item
         android:id="@+id/navigation_song"
         android:icon="@drawable/music"
+        android:fontFamily="@font/imhyeminregular"
         android:title="@string/title_notifications" />
 
     <item
         android:id="@+id/navigation_mypage"
         android:icon="@drawable/user"
+        android:fontFamily="@font/imhyeminregular"
         android:title="@string/title_mypage"/>
 
 </menu>

@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="#FFFFFF"
+        android:fontFamily="@font/imhyeminregular"
         android:gravity="center"
         android:lineSpacingExtra="10sp"
         android:text="@string/intro_message"

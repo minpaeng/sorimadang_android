@@ -16,6 +16,7 @@
         android:text="@string/intro_last_message"
         android:textAlignment="center"
         android:textSize="18sp"
+        android:fontFamily="@font/imhyeminregular"
         app:firstBaselineToTopHeight="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
