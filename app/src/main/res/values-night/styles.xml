@@ -1,5 +1,13 @@
 <resources>
 
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="AppTheme.DialogWhenLarge" parent="@android:style/Theme.Holo.Light.DialogWhenLarge">
+        <item name="android:typeface">sans</item>
+    </style>
+
     <style name="Widget.Theme.MyApplication.MyView" parent="">
         <item name="android:background">@color/gray_600</item>
         <!--custom font-family 적용-->
