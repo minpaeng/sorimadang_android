@@ -30,6 +30,7 @@ import android.widget.TextView;
 import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.SignUpActivity;
+import com.example.myapplication.UserIdApplication;
 import com.example.myapplication.databinding.FragmentMypageBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -40,10 +41,13 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.w3c.dom.Text;
+
 public class MypageFragment extends Fragment {
 
     private ImageView halfpeng_img;
     Button usSignUp, usLogin, signInButton;
+    TextView checkMessage;
     private GoogleSignInClient mGoogleSignInClient;
     public static final int RC_SIGN_IN=9001;
     private static final String TAG = "requestIdToken";
@@ -89,6 +93,7 @@ public class MypageFragment extends Fragment {
             }
         });
 
+        checkMessage = v.findViewById(R.id.textView4);
         //서버 클라이언트 아이디
         String serverClientId = getString(R.string.server_client_id);
 
@@ -178,25 +183,25 @@ public class MypageFragment extends Fragment {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.v("로그인 ","handleSignInResult");
             //로그인 성공 시 계정에 맞는 UI로 업데이트
-            //updateUI(account);
-            //계정 정보 가져오기  //updateUI함수가 잘 안되가지고 updateUI의 내용을 여기에 넣음!
-            //IDtoekn
-            String personName = account.getDisplayName();
-            String personGivenName = account.getGivenName();
-            String personFamilyName = account.getFamilyName();
-            String personEmail = account.getEmail();
-            String personId = account.getId();
-            Uri personPhoto = account.getPhotoUrl();
-            String serverAuthCode = account.getServerAuthCode(); //onCreate함수 gso부분 주석 해제하면 값이 반환됨
-            String idToken = account.getIdToken();
-            Log.d(TAG, "handleSignInResult:personName "+personName);
-            Log.d(TAG, "handleSignInResult:personGivenName "+personGivenName);
-            Log.d(TAG, "handleSignInResult:personEmail "+personEmail);
-            Log.d(TAG, "handleSignInResult:personId "+personId);
-            Log.d(TAG, "handleSignInResult:personFamilyName "+personFamilyName);
-            Log.d(TAG, "handleSignInResult:personPhoto "+personPhoto);
-            Log.d(TAG, "handleSignInResult:serverAuthCode "+serverAuthCode);
-            Log.d(TAG, "handleSignInResult:idToken "+idToken);
+            updateUI(account); //계정 정보 가져오기
+
+//            String personName = account.getDisplayName();
+//            String personGivenName = account.getGivenName();
+//            String personFamilyName = account.getFamilyName();
+//            String personEmail = account.getEmail();
+//            String personId = account.getId();
+//            Uri personPhoto = account.getPhotoUrl();
+//            //String serverAuthCode = account.getServerAuthCode(); //onCreate함수 gso부분 주석 해제하면 값이 반환됨
+//            String idToken = account.getIdToken();
+//            Log.d(TAG, "handleSignInResult:personName "+personName);
+//            Log.d(TAG, "handleSignInResult:personGivenName "+personGivenName);
+//            Log.d(TAG, "handleSignInResult:personEmail "+personEmail);
+//            Log.d(TAG, "handleSignInResult:personId "+personId);
+//            Log.d(TAG, "handleSignInResult:personFamilyName "+personFamilyName);
+//            Log.d(TAG, "handleSignInResult:personPhoto "+personPhoto);
+//            //Log.d(TAG, "handleSignInResult:serverAuthCode "+serverAuthCode);
+//            Log.d(TAG, "handleSignInResult:idToken "+idToken);
+
         } catch (ApiException e) {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             //updateUI(null);
@@ -250,7 +255,7 @@ public class MypageFragment extends Fragment {
             String personEmail = account.getEmail();
             String personId = account.getId();
             Uri personPhoto = account.getPhotoUrl();
-            String serverAuthCode = account.getServerAuthCode(); //onCreate함수 gso부분 주석 해제하면 값이 반환됨
+            //String serverAuthCode = account.getServerAuthCode(); //onCreate함수 gso부분 주석 해제하면 값이 반환됨
             String idToken = account.getIdToken();
 
             Log.d(TAG, "handleSignInResult:personName "+personName);
@@ -259,9 +264,11 @@ public class MypageFragment extends Fragment {
             Log.d(TAG, "handleSignInResult:personId "+personId);
             Log.d(TAG, "handleSignInResult:personFamilyName "+personFamilyName);
             Log.d(TAG, "handleSignInResult:personPhoto "+personPhoto);
-            Log.d(TAG, "handleSignInResult:serverAuthCode "+serverAuthCode);
+            //Log.d(TAG, "handleSignInResult:serverAuthCode "+serverAuthCode);
             Log.d(TAG, "handleSignInResult:idToken "+idToken);
 
+            checkMessage.setText(personName+" 님이 로그인 되었습니다.");
+            ((UserIdApplication) getActivity().getApplication()).setId(idToken);
 
         } else {
             Log.v("구글로그인 에러", "1");

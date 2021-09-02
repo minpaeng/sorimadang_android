@@ -35,13 +35,10 @@ public class OXquizStageActivity extends AppCompatActivity {
     static TextView OXstage,OXstep,OXtime,OXscore, OXquiz, OXpopScore;
     ImageView OXback;
     LottieAnimationView true_animation, false_animation;
-    String apiString = null;
+    String userIdToken = null;
     int stage;
     int oxscore = 0;
-    int counting = 10;
-    static int count=1;
     int num=10;
-    private Timer timer;
     private TimerTask mTimerTask;
     static int userquizNum;
     static int[] quizNum = new int[5];
@@ -76,6 +73,10 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXpopScore = findViewById(R.id.oxPopScore); //맞추면 점수..?
 
         isTrueLottie = false;
+
+        //idtoken가져오기(로그인 했을 경우)
+        userIdToken = ( (UserIdApplication) getApplication() ).getId();
+        Log.v("유저의 idtoken",userIdToken);
 
 
         //1.stagenum 스테이지 표시해주기
