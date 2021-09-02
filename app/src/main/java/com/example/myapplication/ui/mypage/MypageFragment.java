@@ -268,6 +268,7 @@ public class MypageFragment extends Fragment {
             Log.d(TAG, "handleSignInResult:idToken "+idToken);
 
             checkMessage.setText(personName+" 님이 로그인 되었습니다.");
+            //전체 전역변수로 idtoken을 넘겨줌
             ((UserIdApplication) getActivity().getApplication()).setId(idToken);
 
         } else {
