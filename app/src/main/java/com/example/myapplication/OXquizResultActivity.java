@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,7 +17,7 @@ public class OXquizResultActivity extends AppCompatActivity {
     TextView correctNum;
     TextView wrongNum;
 
-    Button next_level_BT;
+    Button next_level_BT, wrong_answer_BT;
 
     TextView OXresultstage;
     ImageView OXresultback;
@@ -37,6 +38,8 @@ public class OXquizResultActivity extends AppCompatActivity {
         totScore = findViewById(R.id.tot_score);
         correctNum = findViewById(R.id.correct_num);
         wrongNum = findViewById(R.id.wrong_num);
+
+        wrong_answer_BT = findViewById(R.id.button3);
 
         next_level_BT = findViewById(R.id.nextLevel_button);
         totScore.setText(String.valueOf(total_score));
@@ -78,6 +81,15 @@ public class OXquizResultActivity extends AppCompatActivity {
                 startActivity(stageIntent);
 
             }
+        });
+
+        wrong_answer_BT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //오답노트 화면
+                Intent stageIntent = new Intent(OXquizResultActivity.this, OXwrongAnswerActivity.class);
+                startActivity(stageIntent);
+           }
         });
 
 

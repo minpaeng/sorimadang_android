@@ -14,8 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InstrumentQuizResultActivity"></activity>
-        <activity android:name=".InstrumentQuizStageActivity"></activity>
+        <activity
+            android:name=".OXwrongAnswerActivity"
+            android:exported="true" />
+        <activity android:name=".InstrumentQuizResultActivity" />
+        <activity android:name=".InstrumentQuizStageActivity" />
         <activity android:name=".InstrumentQuizIntroActivity" />
         <activity android:name=".OXquizResultActivity" />
         <activity android:name=".OXquizStageActivity" />

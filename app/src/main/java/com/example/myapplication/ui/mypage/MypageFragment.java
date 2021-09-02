@@ -185,23 +185,6 @@ public class MypageFragment extends Fragment {
             //로그인 성공 시 계정에 맞는 UI로 업데이트
             updateUI(account); //계정 정보 가져오기
 
-//            String personName = account.getDisplayName();
-//            String personGivenName = account.getGivenName();
-//            String personFamilyName = account.getFamilyName();
-//            String personEmail = account.getEmail();
-//            String personId = account.getId();
-//            Uri personPhoto = account.getPhotoUrl();
-//            //String serverAuthCode = account.getServerAuthCode(); //onCreate함수 gso부분 주석 해제하면 값이 반환됨
-//            String idToken = account.getIdToken();
-//            Log.d(TAG, "handleSignInResult:personName "+personName);
-//            Log.d(TAG, "handleSignInResult:personGivenName "+personGivenName);
-//            Log.d(TAG, "handleSignInResult:personEmail "+personEmail);
-//            Log.d(TAG, "handleSignInResult:personId "+personId);
-//            Log.d(TAG, "handleSignInResult:personFamilyName "+personFamilyName);
-//            Log.d(TAG, "handleSignInResult:personPhoto "+personPhoto);
-//            //Log.d(TAG, "handleSignInResult:serverAuthCode "+serverAuthCode);
-//            Log.d(TAG, "handleSignInResult:idToken "+idToken);
-
         } catch (ApiException e) {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             //updateUI(null);
@@ -267,7 +250,7 @@ public class MypageFragment extends Fragment {
             //Log.d(TAG, "handleSignInResult:serverAuthCode "+serverAuthCode);
             Log.d(TAG, "handleSignInResult:idToken "+idToken);
 
-            checkMessage.setText(personName+" 님이 로그인 되었습니다.");
+            checkMessage.setText(personName+" 님이 로그인 되었습니다."); //다른 프래그먼트로 이동 시 메세지가 사라짐 //(에러)
             //전체 전역변수로 idtoken을 넘겨줌
             ((UserIdApplication) getActivity().getApplication()).setId(idToken);
 

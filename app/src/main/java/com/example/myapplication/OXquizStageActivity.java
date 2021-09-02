@@ -76,7 +76,7 @@ public class OXquizStageActivity extends AppCompatActivity {
 
         //idtoken가져오기(로그인 했을 경우)
         userIdToken = ( (UserIdApplication) getApplication() ).getId();
-        Log.v("유저의 idtoken",userIdToken);
+        Log.v("유저의 idtoken_stage",userIdToken);
 
 
         //1.stagenum 스테이지 표시해주기
