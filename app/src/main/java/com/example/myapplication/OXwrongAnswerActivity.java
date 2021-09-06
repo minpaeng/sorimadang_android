@@ -75,11 +75,11 @@ public class OXwrongAnswerActivity extends AppCompatActivity {
             byte[] postDataBytes = postData.toString().getBytes("UTF-8");
             Log.v("API  성공", String.valueOf(postDataBytes));
 
-            obj = new URL("http://sorimadang.shop/api/ox-game/wrong-questions/searchs");
+            obj = new URL("http://sorimadang.shop/api/ox-game/wrong-questions/users");
 
             HttpURLConnection con = (HttpURLConnection)obj.openConnection();
             con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+            con.setRequestProperty("Content-Type", "application/json");//con.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
             con.setDoOutput(true);
             con.getOutputStream().write(postDataBytes);
 
