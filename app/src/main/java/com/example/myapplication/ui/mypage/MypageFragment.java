@@ -254,6 +254,13 @@ public class MypageFragment extends Fragment {
             //전체 전역변수로 idtoken을 넘겨줌
             ((UserIdApplication) getActivity().getApplication()).setId(idToken);
 
+            try{
+                //post로 user에 idtoken보내주기
+            }
+            catch (Exception e){
+                //에러
+            }
+
         } else {
             Log.v("구글로그인 에러", "1");
         }
