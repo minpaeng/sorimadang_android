@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.Action;
 import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.SignUpActivity;
@@ -66,7 +67,7 @@ public class MypageFragment extends Fragment {
     private GoogleSignInClient mGoogleSignInClient;
     public static final int RC_SIGN_IN=9001;
     private static final String TAG = "requestIdToken";
-    private static String idToken;
+    private static String idToken = new String();
 
     public static MypageFragment newInstance() {
         return new MypageFragment();
@@ -270,15 +271,30 @@ public class MypageFragment extends Fragment {
             //전체 전역변수로 idtoken을 넘겨줌
             ((UserIdApplication) getActivity().getApplication()).setId(idToken);
 
-            try{
-                //post로 user에 idtoken보내주기
+            new Thread(){
+                @Override
+                public void run() {
+//                        super.run();
 
-            }
-            catch (Exception e){
-                //에러
-                e.printStackTrace();
-                Log.v("실패 마이페이지 apiString", "실패");
-            }
+                    try {
+                        Action action=Action.getInstance();
+                        JSONObject reqtoServer=new JSONObject();
+                        reqtoServer.put("idToken",idToken);
+                        JSONObject res=action.post(reqtoServer.toString(),"post");
+                        //System.out.println(res);
+                        if(res != null){
+                            Log.v("성공 마이페이지 apiString", res.toString());
+                        }
+                        else
+                            Log.v("성공 마이페이지 apiString", "null");
+
+                    } catch (JSONException e){
+                        //에러
+                        e.printStackTrace();
+                        Log.v("실패 마이페이지 apiString", "실패");
+                    }
+                }
+            }.start();
 
         } else {
             Log.v("구글로그인 에러", "1");
@@ -296,6 +312,7 @@ public class MypageFragment extends Fragment {
                     }
                 });
     }
+
 
 
 
