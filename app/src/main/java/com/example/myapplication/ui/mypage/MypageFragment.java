@@ -274,8 +274,6 @@ public class MypageFragment extends Fragment {
             new Thread(){
                 @Override
                 public void run() {
-//                        super.run();
-
                     try {
                         Action action=Action.getInstance();
                         JSONObject reqtoServer=new JSONObject();
@@ -295,7 +293,6 @@ public class MypageFragment extends Fragment {
                     }
                 }
             }.start();
-
         } else {
             Log.v("구글로그인 에러", "1");
         }

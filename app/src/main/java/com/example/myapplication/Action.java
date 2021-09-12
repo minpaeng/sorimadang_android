@@ -12,7 +12,7 @@ public class Action {
     private static final String TAG = "restApi";
 
     //이 곳에 요청을 할 HOST URL을 적어주면 됩니다.
-    String HOST_URL="http://sorimadang.shop/api/users";
+    String HOST_URL="http://sorimadang.shop/api/user";
 
     //싱글톤을 위한 코드
     private Action(){}
@@ -87,6 +87,8 @@ public class Action {
             Log.d(TAG,jsonMessage);
 
             StringBuilder sb = new StringBuilder();
+            Log.v("server: cgrc  ",Integer.toString(con.getResponseCode()));
+            Log.v("server: ok ", String.valueOf(HttpURLConnection.HTTP_OK));//Integer.toString(con.getResponseCode())
             if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(
                         new InputStreamReader(con.getInputStream(), "utf-8"));
