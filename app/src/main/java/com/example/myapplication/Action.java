@@ -88,15 +88,17 @@ public class Action {
 
             StringBuilder sb = new StringBuilder();
             Log.v("server: cgrc  ",Integer.toString(con.getResponseCode()));
-            Log.v("server: ok ", String.valueOf(HttpURLConnection.HTTP_OK));//Integer.toString(con.getResponseCode())
+            Log.v("server: ok ",Integer.toString(con.getResponseCode()));
             if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(
                         new InputStreamReader(con.getInputStream(), "utf-8"));
                 String line;
                 while ((line = br.readLine()) != null) {
                     sb.append(line).append("\n");
+                    Log.d(TAG, "StringBuilder:post 4 "+line);
                 }
                 br.close();
+
                 JSONObject responseData=new JSONObject(sb.toString());
                 Log.d(TAG, "StringBuilder:post 1 "+responseData);
                 Log.d(TAG, "StringBuilder:post 2 "+sb.toString());
