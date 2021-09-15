@@ -85,7 +85,11 @@ public class OXquizStageActivity extends AppCompatActivity {
 
         //2.퀴즈 넘버링 + 3.퀴즈 내용 가져오기.
         try {
-            String apiString = new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute().get();
+
+            Action action=Action.getInstance();
+            String apiString= action.post(null,"http://sorimadang.shop/api/ox-game/questions");
+
+            //String apiString = new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute().get();
             Log.v("f 성공 apiString", apiString);
             JSONArray jarray=  new JSONArray(apiString);
 

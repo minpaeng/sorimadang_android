@@ -23,8 +23,9 @@ public class Action {
         private static final Action INSTANCE=new Action();
     }
 
-    public JSONObject get(String jsonMessage,String action) {
+    public String get(String jsonMessage,String apiurl) {
         try {
+            HOST_URL = apiurl;
 
             //get 요청할 url
             URL url = new URL(HOST_URL);
@@ -48,10 +49,9 @@ public class Action {
                     sb.append(line).append("\n");
                 }
                 br.close();
-                JSONObject responseData=new JSONObject(sb.toString());
-                Log.d(TAG, "StringBuilder:get "+sb.toString());
-                //System.out.println("" + sb.toString());
-                return responseData;
+
+                String response = sb.toString();
+                return response;
             } else {
                 Log.d(TAG, "StringBuilder:get "+con.getResponseMessage());
                 //System.out.println(con.getResponseMessage());
@@ -64,9 +64,8 @@ public class Action {
         return null;
     }
 
-    public String post(String jsonMessage,String apiurl){ //JSONObject post(String jsonMessage,String apiurl){
+    public String post(String jsonMessage,String apiurl){
         try {
-
             HOST_URL = apiurl;
 
             //post 요청할 url을 적어주시면 됩니다. 형태를 위해 저는 그냥 아무거나 적은 겁니다.
@@ -104,11 +103,7 @@ public class Action {
                 br.close();
 
                 String response = sb.toString();
-//                JSONObject responseData=new JSONObject(sb.toString());
-//                Log.d(TAG, "StringBuilder:post 1 "+responseData);
-//                Log.d(TAG, "StringBuilder:post 2 "+sb.toString());
-                //System.out.println("" + sb.toString());
-                return response; //return responseData;
+                return response;
             } else {
                 Log.d(TAG, "StringBuilder:post 3 "+con.getResponseMessage());
                 //System.out.println(con.getResponseMessage());
