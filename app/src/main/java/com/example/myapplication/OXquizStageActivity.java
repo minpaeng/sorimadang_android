@@ -135,84 +135,11 @@ public class OXquizStageActivity extends AppCompatActivity {
             Log.v("실패 퀴즈 apiString 2", "실패2");
         }
 
-        /*
-
-            @Override
-            public void onTick(long millisUntilFinished) { // 총 시간과 주기
-                if(num <= 0){
-                    OXtime.setText('x');
-                }
-                else if (num>10){
-                    num--;
-                    OXtime.setText(String.valueOf(num));
-                }
-                else {
-                    num--;
-                    OXtime.setText(String.valueOf(num));
-                }
-
-
-            }
-
-            @Override
-            public void onFinish() {
-
-            }
-        };
-*/
-
         mTimerTask = createTimerTask();
         mTimer.schedule(mTimerTask,0, 1000);
 
         OXstep.setText("Quiz "+(userquizNum+1));
         OXquiz.setText(quiz[userquizNum]);
-
-        //로티 리스너
-        /*true_animation.addAnimatorListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                //true_animation.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-            }
-        });
-
-        false_animation.addAnimatorListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                //false_animation.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-            }
-        });
-
-*/
-
-
-
-
 
         oBT.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -384,50 +311,6 @@ public class OXquizStageActivity extends AppCompatActivity {
 
         return timerTask;
     }
-
-
-    // Rest API calling task
-//    public static class RestAPITask extends AsyncTask<Integer, Void, String> {
-//        // Variable to store url
-//        protected String mURL;
-//
-//        // Constructor
-//        public RestAPITask(String url) {
-//            mURL = url;
-//        }
-//
-//        // Background work
-//        protected String doInBackground(Integer... params) {
-//            String result = null;
-//
-//            try {
-//                // Open the connection
-//                URL url = new URL(mURL);
-//                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//                conn.setRequestMethod("GET");
-//
-//                InputStream is = conn.getInputStream();
-//
-//                // Get the stream
-//                StringBuilder builder = new StringBuilder();
-//                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-//                String line;
-//                while ((line = reader.readLine()) != null) {
-//                    builder.append(line);
-//                }
-//
-//                // Set the result
-//                result = builder.toString();
-//                Log.v("성공doin: ",result);
-//            }
-//            catch (Exception e) {
-//                // Error calling the rest api
-//                Log.e("REST_API", "GET method failed: " + e.getMessage());
-//                e.printStackTrace();
-//            }
-//            return result; //null;
-//        }
-//    }
 
     public void oxstagebackActivity(View view) {
         startActivity(new Intent(OXquizStageActivity.this, OXquizIntroActivity.class));
