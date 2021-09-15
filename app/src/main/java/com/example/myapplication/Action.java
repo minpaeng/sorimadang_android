@@ -38,7 +38,7 @@ public class Action {
             //URL 연결은 입출력에 사용될 수 있어요.
             //URL 연결을 출력용으로 사용하려는 경우 DoOutput 플래그를 true로 설정하고,
             //그렇지 않은 경우는 false로 설정하세요. 기본값은 false입니다.
-            con.setDoOutput(false);
+            //con.setDoOutput(false);
 
             StringBuilder sb = new StringBuilder();
             if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {

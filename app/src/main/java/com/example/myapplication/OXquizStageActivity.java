@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -76,7 +77,8 @@ public class OXquizStageActivity extends AppCompatActivity {
 
         //idtoken가져오기(로그인 했을 경우)
         userIdToken = ( (UserIdApplication) getApplication() ).getId();
-        Log.v("유저의 idtoken_stage",userIdToken);
+        if(userIdToken != null) Log.v("유저의 idtoken_stage",userIdToken);
+        else Log.v("유저의 idtoken_stage"," null");
 
 
         //1.stagenum 스테이지 표시해주기
@@ -86,34 +88,53 @@ public class OXquizStageActivity extends AppCompatActivity {
         //2.퀴즈 넘버링 + 3.퀴즈 내용 가져오기.
         try {
 
-            Action action=Action.getInstance();
-            String apiString= action.post(null,"http://sorimadang.shop/api/ox-game/questions");
+            new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        Action action=Action.getInstance();
+                        String apiString= action.get(null,"http://sorimadang.shop/api/ox-game/questions");
 
-            //String apiString = new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute().get();
-            Log.v("f 성공 apiString", apiString);
-            JSONArray jarray=  new JSONArray(apiString);
+                        //String apiString = new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute().get();
+                        Log.v("f 성공 apiString", apiString);
+                        JSONArray jarray=  new JSONArray(apiString);
 
-            int j=0;
-            for(int i=0;i<jarray.length();i++){
-                //Log.v("반복문 확인", String.valueOf(i));
-                JSONObject jObject = jarray.getJSONObject(i);
-                stage = jObject.getInt("stage_num");
-                if(stage==stageNum){
-                    quizNum[j] = jObject.getInt("quiz_num");
-                    quiz[j] = jObject.getString("quiz");
-                    answer[j] = jObject.getInt("answer");
-                    Log.v("성공 apiString jjj",String.valueOf(j));
-                    Log.v("성공 apiString/ stageNum:",String.valueOf(stageNum));
-                    Log.v("성공 apiString/ stage 퀴즈:", quizNum[j] + " " + quiz[j] + answer[j]);
-                    Log.v("성공 stage 퀴즈2:", String.valueOf(j));
-                    j++;
+                        int j=0;
+                        for(int i=0;i<jarray.length();i++){
+                            //Log.v("반복문 확인", String.valueOf(i));
+                            JSONObject jObject = jarray.getJSONObject(i);
+                            stage = jObject.getInt("stage_num");
+                            if(stage==stageNum){
+                                quizNum[j] = jObject.getInt("quiz_num");
+                                quiz[j] = jObject.getString("quiz");
+                                answer[j] = jObject.getInt("answer");
+                                Log.v("성공 apiString jjj",String.valueOf(j));
+                                Log.v("성공 apiString/ stageNum:",String.valueOf(stageNum));
+                                Log.v("성공 apiString/ stage 퀴즈:", quizNum[j] + " " + quiz[j] + answer[j]);
+                                Log.v("성공 stage 퀴즈2:", String.valueOf(j));
+                                j++;
+                            }
+                        }
+
+                        if(apiString != null){
+                            Log.v("성공 퀴즈 apiString", apiString);//.toString());
+                        }
+                        else
+                            Log.v("성공 퀴즈 apiString", "null");
+
+                    } catch (JSONException e){
+                        //에러
+                        e.printStackTrace();
+                        Log.v("실패 퀴즈 apiString", "실패");
+                    }
                 }
-            }
+            }.start();
 
         } catch (Exception e) {
             e.printStackTrace();
-            Log.v("실패 apiString", "실패");
+            Log.v("실패 퀴즈 apiString 2", "실패2");
         }
+
         /*
 
             @Override
@@ -366,47 +387,47 @@ public class OXquizStageActivity extends AppCompatActivity {
 
 
     // Rest API calling task
-    public static class RestAPITask extends AsyncTask<Integer, Void, String> {
-        // Variable to store url
-        protected String mURL;
-
-        // Constructor
-        public RestAPITask(String url) {
-            mURL = url;
-        }
-
-        // Background work
-        protected String doInBackground(Integer... params) {
-            String result = null;
-
-            try {
-                // Open the connection
-                URL url = new URL(mURL);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-
-                InputStream is = conn.getInputStream();
-
-                // Get the stream
-                StringBuilder builder = new StringBuilder();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    builder.append(line);
-                }
-
-                // Set the result
-                result = builder.toString();
-                Log.v("성공doin: ",result);
-            }
-            catch (Exception e) {
-                // Error calling the rest api
-                Log.e("REST_API", "GET method failed: " + e.getMessage());
-                e.printStackTrace();
-            }
-            return result; //null;
-        }
-    }
+//    public static class RestAPITask extends AsyncTask<Integer, Void, String> {
+//        // Variable to store url
+//        protected String mURL;
+//
+//        // Constructor
+//        public RestAPITask(String url) {
+//            mURL = url;
+//        }
+//
+//        // Background work
+//        protected String doInBackground(Integer... params) {
+//            String result = null;
+//
+//            try {
+//                // Open the connection
+//                URL url = new URL(mURL);
+//                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//                conn.setRequestMethod("GET");
+//
+//                InputStream is = conn.getInputStream();
+//
+//                // Get the stream
+//                StringBuilder builder = new StringBuilder();
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    builder.append(line);
+//                }
+//
+//                // Set the result
+//                result = builder.toString();
+//                Log.v("성공doin: ",result);
+//            }
+//            catch (Exception e) {
+//                // Error calling the rest api
+//                Log.e("REST_API", "GET method failed: " + e.getMessage());
+//                e.printStackTrace();
+//            }
+//            return result; //null;
+//        }
+//    }
 
     public void oxstagebackActivity(View view) {
         startActivity(new Intent(OXquizStageActivity.this, OXquizIntroActivity.class));
