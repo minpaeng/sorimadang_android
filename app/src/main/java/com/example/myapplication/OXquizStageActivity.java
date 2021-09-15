@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -29,6 +30,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import cz.msebera.android.httpclient.HttpResponse;
+import cz.msebera.android.httpclient.client.ClientProtocolException;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
+import cz.msebera.android.httpclient.util.EntityUtils;
 
 public class OXquizStageActivity extends AppCompatActivity {
 
@@ -141,12 +150,16 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXstep.setText("Quiz "+(userquizNum+1));
         OXquiz.setText(quiz[userquizNum]);
 
+        //postOXQuiz(userIdToken);
+
+
         oBT.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mTimerTask.cancel();
                 oBT.setEnabled(false);
                 xBT.setEnabled(false);
+
                 //o가 정답일 떄,
                 if(answer[userquizNum]==1){
                 true_animation = findViewById(R.id.lottie_true);
@@ -164,30 +177,30 @@ public class OXquizStageActivity extends AppCompatActivity {
                 else if(answer[userquizNum]==0) {
 
                     //오답노트
-                    new Thread(){
-                        @Override
-                        public void run() {
-                            try {
-                                Action action=Action.getInstance();
-                                JSONObject reqtoServer=new JSONObject();
-                                reqtoServer.put("idToken",userIdToken);
-                                reqtoServer.put("stage_num",stageNum);
-                                reqtoServer.put("quiz_num",userquizNum);
-                                String res= action.post(reqtoServer.toString(),"http://sorimadang.shop/api/ox-game/wrong-questions/save");
-
-                                if(res != null){
-                                    Log.v("o 오답 apiString", res);//.toString());
-                                }
-                                else
-                                    Log.v("o 오답 apiString", "null");
-
-                            } catch (JSONException e){
-                                //에러
-                                e.printStackTrace();
-                                Log.v("오답 apiString", "실패");
-                            }
-                        }
-                    }.start();
+//                    new Thread(){
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                Action action=Action.getInstance();
+//                                JSONObject reqtoServer=new JSONObject();
+//                                reqtoServer.put("idToken",userIdToken);
+//                                reqtoServer.put("stage_num",stageNum);
+//                                reqtoServer.put("quiz_num",userquizNum);
+//                                String res= action.post(reqtoServer.toString(),"http://sorimadang.shop/api/ox-game/wrong-questions/save");
+//
+//                                if(res != null){
+//                                    Log.v("o 오답 apiString", res);//.toString());
+//                                }
+//                                else
+//                                    Log.v("o 오답 apiString", "null");
+//
+//                            } catch (JSONException e){
+//                                //에러
+//                                e.printStackTrace();
+//                                Log.v("오답 apiString", "실패");
+//                            }
+//                        }
+//                    }.start();
                     ////
 
                     false_animation = findViewById(R.id.lottie_false);
@@ -212,6 +225,8 @@ public class OXquizStageActivity extends AppCompatActivity {
                 mTimerTask.cancel();
                 oBT.setEnabled(false);
                 xBT.setEnabled(false);
+
+
                 //x가 정답일 때,
                 if(answer[userquizNum]==0){
 
@@ -229,31 +244,32 @@ public class OXquizStageActivity extends AppCompatActivity {
                 //X가 오답일 때,
                 else if(answer[userquizNum]==1) {
 
+
                     //오답노트
-                    new Thread(){
-                        @Override
-                        public void run() {
-                            try {
-                                Action action=Action.getInstance();
-                                JSONObject reqtoServer=new JSONObject();
-                                reqtoServer.put("idToken",userIdToken);
-                                reqtoServer.put("stage_num",stageNum);
-                                reqtoServer.put("quiz_num",userquizNum);
-                                String res= action.post(reqtoServer.toString(),"http://sorimadang.shop/api/ox-game/wrong-questions/save");
-
-                                if(res != null){
-                                    Log.v("x 오답 apiString", res);//.toString());
-                                }
-                                else
-                                    Log.v("x 오답 apiString", "null");
-
-                            } catch (JSONException e){
-                                //에러
-                                e.printStackTrace();
-                                Log.v("오답 apiString", "실패");
-                            }
-                        }
-                    }.start();
+//                    new Thread(){
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                Action action=Action.getInstance();
+//                                JSONObject reqtoServer=new JSONObject();
+//                                reqtoServer.put("idToken",userIdToken);
+//                                reqtoServer.put("stage_num",stageNum);
+//                                reqtoServer.put("quiz_num",userquizNum);
+//                                String res= action.post(reqtoServer.toString(),"http://sorimadang.shop/api/ox-game/wrong-questions/save");
+//
+//                                if(res != null){
+//                                    Log.v("x 오답 apiString", res);//.toString());
+//                                }
+//                                else
+//                                    Log.v("x 오답 apiString", "null");
+//
+//                            } catch (JSONException e){
+//                                //에러
+//                                e.printStackTrace();
+//                                Log.v("오답 apiString", "실패");
+//                            }
+//                        }
+//                    }.start();
                     ////
 
                     false_animation = findViewById(R.id.lottie_false);
@@ -370,5 +386,39 @@ public class OXquizStageActivity extends AppCompatActivity {
         startActivity(new Intent(OXquizStageActivity.this, OXquizIntroActivity.class));
     }
 
+    private void postOXQuiz(String idToken) {
+        new Thread() {
+            public void run() {
+                HttpClient httpClient = HttpClientBuilder.create().build();
+                HttpPost httpPost = new HttpPost("http://sorimadang.shop/api/ox-game/wrong-questions/save");
+                httpPost.addHeader("Accept", "application/json");
+                httpPost.addHeader("Content-Type", "application/json");
+
+                try {
+                    String body = new StringBuilder()
+                            .append("{")
+                            .append("\"idToken\":\"" + idToken + "\",")
+                            .append("\"stage_num\":3,")
+                            .append("\"quiz_num\":1")
+                            .append("}")
+                            .toString();
+
+                    httpPost.setEntity(new StringEntity(body));
+
+                    HttpResponse response = httpClient.execute(httpPost);
+
+                    int statusCode = response.getStatusLine().getStatusCode();
+                    //System.out.println(idToken);
+                    Log.v("유저 토큰", idToken);
+                    final String responseBody = EntityUtils.toString(response.getEntity());
+                    Log.v("Signed in as: " , responseBody);
+                } catch (ClientProtocolException e) {
+                    Log.v("Error sending ID", "err");
+                } catch (IOException e) {
+                    Log.v("Error sending ID", "err");
+                }
+            }
+        }.start();
+    }
 
 }
