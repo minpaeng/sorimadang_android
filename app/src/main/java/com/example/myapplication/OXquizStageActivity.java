@@ -163,6 +163,33 @@ public class OXquizStageActivity extends AppCompatActivity {
                 //o가 오답일 때,
                 else if(answer[userquizNum]==0) {
 
+                    //오답노트
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            try {
+                                Action action=Action.getInstance();
+                                JSONObject reqtoServer=new JSONObject();
+                                reqtoServer.put("idToken",userIdToken);
+                                reqtoServer.put("stage_num",stageNum);
+                                reqtoServer.put("quiz_num",userquizNum);
+                                String res= action.post(reqtoServer.toString(),"http://sorimadang.shop/api/ox-game/wrong-questions/save");
+
+                                if(res != null){
+                                    Log.v("o 오답 apiString", res);//.toString());
+                                }
+                                else
+                                    Log.v("o 오답 apiString", "null");
+
+                            } catch (JSONException e){
+                                //에러
+                                e.printStackTrace();
+                                Log.v("오답 apiString", "실패");
+                            }
+                        }
+                    }.start();
+                    ////
+
                     false_animation = findViewById(R.id.lottie_false);
                     false_animation.setAnimation("signforerrorflatstyle.json");
                     false_animation.setVisibility(View.VISIBLE);
@@ -201,6 +228,33 @@ public class OXquizStageActivity extends AppCompatActivity {
 
                 //X가 오답일 때,
                 else if(answer[userquizNum]==1) {
+
+                    //오답노트
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            try {
+                                Action action=Action.getInstance();
+                                JSONObject reqtoServer=new JSONObject();
+                                reqtoServer.put("idToken",userIdToken);
+                                reqtoServer.put("stage_num",stageNum);
+                                reqtoServer.put("quiz_num",userquizNum);
+                                String res= action.post(reqtoServer.toString(),"http://sorimadang.shop/api/ox-game/wrong-questions/save");
+
+                                if(res != null){
+                                    Log.v("x 오답 apiString", res);//.toString());
+                                }
+                                else
+                                    Log.v("x 오답 apiString", "null");
+
+                            } catch (JSONException e){
+                                //에러
+                                e.printStackTrace();
+                                Log.v("오답 apiString", "실패");
+                            }
+                        }
+                    }.start();
+                    ////
 
                     false_animation = findViewById(R.id.lottie_false);
                     false_animation.setAnimation("signforerrorflatstyle.json");

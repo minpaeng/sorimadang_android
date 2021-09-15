@@ -91,7 +91,7 @@ public class Action {
 
             StringBuilder sb = new StringBuilder();
             Log.v("server: cgrc  ",Integer.toString(con.getResponseCode()));
-            Log.v("server: ok ",Integer.toString(con.getResponseCode()));
+            Log.v("server: ok ", String.valueOf(HttpURLConnection.HTTP_OK));
             if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(
                         new InputStreamReader(con.getInputStream(), "utf-8"));
