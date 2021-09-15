@@ -278,7 +278,8 @@ public class MypageFragment extends Fragment {
                         Action action=Action.getInstance();
                         JSONObject reqtoServer=new JSONObject();
                         reqtoServer.put("idToken",idToken);
-                        JSONObject res=action.post(reqtoServer.toString(),"http://sorimadang.shop/api/user");//post");
+                        String res= action.post(reqtoServer.toString(),"http://sorimadang.shop/api/user");
+                        //JSONObject res=action.post(reqtoServer.toString(),"http://sorimadang.shop/api/user");//post");
 
                         //api명세서 바뀜!!!
                         //사용자 이메일 string만 출력함!!!
@@ -288,7 +289,7 @@ public class MypageFragment extends Fragment {
                         //String res = action.post(reqtoServer.toString(),"http://sorimadang.shop/api/user");
                         //System.out.println(res);
                         if(res != null){
-                            Log.v("성공 마이페이지 apiString", res.toString());
+                            Log.v("성공 마이페이지 apiString", res);//.toString());
                         }
                         else
                             Log.v("성공 마이페이지 apiString", "null");

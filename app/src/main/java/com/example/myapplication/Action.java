@@ -12,7 +12,7 @@ public class Action {
     private static final String TAG = "restApi";
 
     //이 곳에 요청을 할 HOST URL을 적어주면 됩니다.
-    String HOST_URL="http://sorimadang.shop/api/user";
+    String HOST_URL; //="http://sorimadang.shop/api/user";
 
     //싱글톤을 위한 코드
     private Action(){}
@@ -25,8 +25,9 @@ public class Action {
 
     public JSONObject get(String jsonMessage,String action) {
         try {
-            //get 요청할 url을 적어주시면 됩니다. 형태를 위해 저는 그냥 아무거나 적은 겁니다.
-            URL url = new URL(HOST_URL+action);
+
+            //get 요청할 url
+            URL url = new URL(HOST_URL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setConnectTimeout(5000); //서버에 연결되는 Timeout 시간 설정
             con.setReadTimeout(5000); // InputStream 읽어 오는 Timeout 시간 설정
@@ -63,8 +64,11 @@ public class Action {
         return null;
     }
 
-    public JSONObject post(String jsonMessage,String action){
+    public String post(String jsonMessage,String apiurl){ //JSONObject post(String jsonMessage,String apiurl){
         try {
+
+            HOST_URL = apiurl;
+
             //post 요청할 url을 적어주시면 됩니다. 형태를 위해 저는 그냥 아무거나 적은 겁니다.
             URL url = new URL(HOST_URL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -99,11 +103,12 @@ public class Action {
                 }
                 br.close();
 
-                JSONObject responseData=new JSONObject(sb.toString());
-                Log.d(TAG, "StringBuilder:post 1 "+responseData);
-                Log.d(TAG, "StringBuilder:post 2 "+sb.toString());
+                String response = sb.toString();
+//                JSONObject responseData=new JSONObject(sb.toString());
+//                Log.d(TAG, "StringBuilder:post 1 "+responseData);
+//                Log.d(TAG, "StringBuilder:post 2 "+sb.toString());
                 //System.out.println("" + sb.toString());
-                return responseData;
+                return response; //return responseData;
             } else {
                 Log.d(TAG, "StringBuilder:post 3 "+con.getResponseMessage());
                 //System.out.println(con.getResponseMessage());
