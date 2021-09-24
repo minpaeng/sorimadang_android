@@ -8,6 +8,7 @@ import java.net.*;
 import java.io.*;
 
 public class Action {
+    //국악기 api와 같이 다른 부분에 적용해놓기!
 
     private static final String TAG = "restApi";
 
