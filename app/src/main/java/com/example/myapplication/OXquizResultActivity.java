@@ -17,7 +17,8 @@ public class OXquizResultActivity extends AppCompatActivity {
     TextView correctNum;
     TextView wrongNum;
 
-    Button next_level_BT, wrong_answer_BT;
+    Button next_level_BT;
+    Button wrong_answer_BT;
 
     TextView OXresultstage;
     ImageView OXresultback;

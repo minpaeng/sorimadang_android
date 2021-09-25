@@ -389,6 +389,7 @@ public class OXquizStageActivity extends AppCompatActivity {
     private void postOXQuiz(String idToken) {
         new Thread() {
             public void run() {
+
                 HttpClient httpClient = HttpClientBuilder.create().build();
                 HttpPost httpPost = new HttpPost("http://sorimadang.shop/api/ox-game/wrong-questions/save");
                 httpPost.addHeader("Accept", "application/json");
