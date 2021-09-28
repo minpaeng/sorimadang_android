@@ -87,7 +87,7 @@ public class InstrumentQuizStageActivity extends AppCompatActivity {
 
         @Override
          public void onError(int error) {
-             Toast.makeText(getApplicationContext(), "에러가 발생하였습니다. " ,Toast.LENGTH_SHORT).show();
+             Toast.makeText(getApplicationContext(), "버튼을 눌러 다시 말해주세요. " ,Toast.LENGTH_SHORT).show();
 
          }
 

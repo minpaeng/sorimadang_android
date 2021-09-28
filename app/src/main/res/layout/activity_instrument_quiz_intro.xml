@@ -23,11 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="55dp"
+        android:fontFamily="@font/imhyeminbold"
         android:text="너 이름이 뭐니?"
         android:textSize="22sp"
-        android:fontFamily="@font/imhyeminbold"
-        app:layout_constraintBottom_toTopOf="@+id/instTextView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +46,7 @@
         android:id="@+id/imageView11"
         android:layout_width="205dp"
         android:layout_height="225dp"
-        android:layout_marginTop="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/instQstage0BT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instTextView"
@@ -58,56 +56,56 @@
         android:id="@+id/instQstage0BT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:onClick="instStage0Activity"
         android:text="게임방법          >"
         android:textSize="8pt"
-        android:onClick="instStage0Activity"
-        android:fontFamily="@font/imhyeminbold"
         app:backgroundTint="#FFD89C"
+        app:layout_constraintBottom_toTopOf="@+id/instQstage1BT"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/instQstage1BT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:onClick="instStage1Activity"
         android:text="쉬움                >"
         android:textSize="8pt"
-        android:onClick="instStage1Activity"
-        android:fontFamily="@font/imhyeminbold"
         app:backgroundTint="#FFD89C"
+        app:layout_constraintBottom_toTopOf="@+id/instQstage2BT"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instQstage0BT" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/instQstage2BT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:onClick="instStage2Activity"
         android:text="보통                >"
         android:textSize="8pt"
-        android:onClick="instStage2Activity"
-        android:fontFamily="@font/imhyeminbold"
         app:backgroundTint="#FFD89C"
+        app:layout_constraintBottom_toTopOf="@+id/instQstage3BT"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instQstage1BT" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/instQstage3BT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:onClick="instStage3Activity"
         android:text="어려움             >"
         android:textSize="8pt"
-        android:onClick="instStage3Activity"
-        android:fontFamily="@font/imhyeminbold"
         app:backgroundTint="#FFD89C"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instQstage2BT" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
