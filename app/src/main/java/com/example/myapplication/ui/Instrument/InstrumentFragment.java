@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.GwanInstStudyIntro;
 import com.example.myapplication.InstrumentQuizIntroActivity;
 import com.example.myapplication.OXquizIntroActivity;
 import com.example.myapplication.R;
@@ -49,7 +50,8 @@ public class InstrumentFragment extends Fragment {
                 //각 아이템을 분간 할 수 있는 position과 뷰
                 switch (position) {
                     case 0:
-                        Toast.makeText(getActivity(),"toast 0",Toast.LENGTH_SHORT).show();
+                        Intent intent0 = new Intent(getActivity(), GwanInstStudyIntro.class);
+                        startActivity(intent0);
                         break;
                     case 1:
                         Toast.makeText(getActivity(),"toast 1",Toast.LENGTH_SHORT).show();
