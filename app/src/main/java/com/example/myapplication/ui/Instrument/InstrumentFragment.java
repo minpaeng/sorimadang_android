@@ -14,9 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.GwanInstStudyIntro;
+import com.example.myapplication.HyunInstStudyIntro;
 import com.example.myapplication.InstrumentQuizIntroActivity;
 import com.example.myapplication.OXquizIntroActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.TaInstStudyIntro;
 import com.example.myapplication.ui.home.CustomAdapter;
 import com.example.myapplication.ui.home.ListviewComponent;
 import com.example.myapplication.ui.mypage.InstAdapter;
@@ -54,13 +56,12 @@ public class InstrumentFragment extends Fragment {
                         startActivity(intent0);
                         break;
                     case 1:
-                        Toast.makeText(getActivity(),"toast 1",Toast.LENGTH_SHORT).show();
+                        Intent intent1 = new Intent(getActivity(), HyunInstStudyIntro.class);
+                        startActivity(intent1);
                         break;
                     case 2:
-                        Toast.makeText(getActivity(),"toast 2",Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        Toast.makeText(getActivity(),"toast 3",Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(getActivity(), TaInstStudyIntro.class);
+                        startActivity(intent2);
                         break;
                 }
             }
