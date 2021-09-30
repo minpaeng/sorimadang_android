@@ -34,7 +34,7 @@
         android:id="@+id/bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/imhyeminbold"
         android:text="당피리"
         android:textColor="@color/black"
@@ -48,7 +48,7 @@
         android:id="@+id/bt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/imhyeminbold"
         android:text="단소"
         android:textColor="@color/black"
@@ -61,7 +61,7 @@
         android:id="@+id/bt3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/imhyeminbold"
         android:text="향피리"
         android:textColor="@color/black"
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
-        android:text="당피리"
+        android:text="정악대금"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
-        android:text="단소"
+        android:text="지"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
-        android:text="향피리"
+        android:text="나발"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,14 +112,112 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt3" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
+    <Button
+        android:id="@+id/bt7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:text="나각"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt4" />
+
+    <Button
+        android:id="@+id/bt8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:text="생황"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/bt5" />
 
+    <Button
+        android:id="@+id/bt9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:text="산조대금"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt6" />
+
+    <Button
+        android:id="@+id/bt10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:text="세피리"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt7" />
+
+    <Button
+        android:id="@+id/bt11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:text="소"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt8" />
+
+    <Button
+        android:id="@+id/bt12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:text="소금"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt9" />
+
+    <Button
+        android:id="@+id/bt13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:text="태평소"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt10" />
+
+    <Button
+        android:id="@+id/bt14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:text="퉁소"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt11" />
 </androidx.constraintlayout.widget.ConstraintLayout>
