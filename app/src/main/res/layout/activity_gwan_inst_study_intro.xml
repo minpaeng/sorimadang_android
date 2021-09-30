@@ -8,18 +8,18 @@
     tools:context=".GwanInstStudyIntro">
 
     <ImageView
-        android:id="@+id/instBackimageView2"
+        android:id="@+id/G_instBackimageView2"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/instTextView3"
+        app:layout_constraintBottom_toBottomOf="@+id/G_instTextView3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/instTextView3"
+        app:layout_constraintTop_toTopOf="@+id/G_instTextView3"
         app:srcCompat="@drawable/backward_arrow" />
 
     <TextView
-        android:id="@+id/instTextView3"
+        android:id="@+id/G_instTextView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -31,193 +31,221 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bt"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="당피리"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instTextView3" />
+        app:layout_constraintTop_toBottomOf="@+id/G_instTextView3" />
 
     <Button
-        android:id="@+id/bt2"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt2"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="단소"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instTextView3" />
+        app:layout_constraintTop_toBottomOf="@+id/G_instTextView3" />
 
     <Button
-        android:id="@+id/bt3"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt3"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="향피리"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instTextView3" />
+        app:layout_constraintTop_toBottomOf="@+id/G_instTextView3" />
 
     <Button
-        android:id="@+id/bt4"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt4"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="정악대금"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt" />
 
     <Button
-        android:id="@+id/bt5"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt5"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="지"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt2" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt2" />
 
     <Button
-        android:id="@+id/bt6"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt6"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="나발"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt3" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt3" />
 
     <Button
-        android:id="@+id/bt7"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt7"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="나각"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt4" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt4" />
 
     <Button
-        android:id="@+id/bt8"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt8"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="생황"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt5" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt5" />
 
     <Button
-        android:id="@+id/bt9"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt9"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="산조대금"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt6" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt6" />
 
     <Button
-        android:id="@+id/bt10"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt10"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="세피리"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt7" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt7" />
 
     <Button
-        android:id="@+id/bt11"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt11"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="소"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt8" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt8" />
 
     <Button
-        android:id="@+id/bt12"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt12"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="소금"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt9" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt9" />
 
     <Button
-        android:id="@+id/bt13"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt13"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="태평소"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt10" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt10" />
 
     <Button
-        android:id="@+id/bt14"
-        android:layout_width="wrap_content"
+        android:id="@+id/G_bt14"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="퉁소"
         android:textColor="@color/black"
         app:backgroundTint="#C4DFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt11" />
+        app:layout_constraintTop_toBottomOf="@+id/G_bt11" />
 </androidx.constraintlayout.widget.ConstraintLayout>
