@@ -8,11 +8,6 @@ import java.net.*;
 import java.io.*;
 
 public class Action {
-    //국악기 api와 같이 다른 부분에 적용해놓기!
-    //국악기 학습부분 만들기
-    //오답노트 마무리
-    //금요일 회의전까지
-
     private static final String TAG = "restApi";
 
     //이 곳에 요청을 할 HOST URL을 적어주면 됩니다.
