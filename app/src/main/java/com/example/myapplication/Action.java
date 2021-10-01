@@ -8,7 +8,6 @@ import java.net.*;
 import java.io.*;
 
 public class Action {
-
     private static final String TAG = "restApi";
 
     //이 곳에 요청을 할 HOST URL을 적어주면 됩니다.

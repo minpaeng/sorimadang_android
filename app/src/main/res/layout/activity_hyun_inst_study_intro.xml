@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F8FF"
+    tools:context=".HyunInstStudyIntro">
+
+    <ImageView
+        android:id="@+id/H_instBackimageView2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/H_instTextView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/H_instTextView3"
+        app:srcCompat="@drawable/backward_arrow" />
+
+    <TextView
+        android:id="@+id/H_instTextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:text="현악기"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/H_bt"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="25현가야금"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/H_instTextView3" />
+
+    <Button
+        android:id="@+id/H_bt2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="금"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/H_instTextView3" />
+
+    <Button
+        android:id="@+id/H_bt3"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="해금"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/H_instTextView3" />
+
+    <Button
+        android:id="@+id/H_bt4"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="정악가야금"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/H_bt" />
+
+    <Button
+        android:id="@+id/H_bt5"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="산조아쟁"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/H_bt2" />
+
+    <Button
+        android:id="@+id/H_bt6"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="산조가야금"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/H_bt3" />
+
+    <Button
+        android:id="@+id/H_bt7"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="슬"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/H_bt4" />
+
+    <Button
+        android:id="@+id/H_bt8"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="양금"
+        android:textColor="@color/black"
+        app:backgroundTint="#C4DFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/H_bt5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

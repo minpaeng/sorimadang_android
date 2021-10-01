@@ -95,54 +95,46 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXscore.setText("score "+oxscore);
 
         //2.퀴즈 넘버링 + 3.퀴즈 내용 가져오기.
-        try {
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    Action action=Action.getInstance();
+                    String apiString= action.get(null,"http://sorimadang.shop/api/ox-game/questions");
 
-            new Thread(){
-                @Override
-                public void run() {
-                    try {
-                        Action action=Action.getInstance();
-                        String apiString= action.get(null,"http://sorimadang.shop/api/ox-game/questions");
+                    //String apiString = new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute().get();
+                    Log.v("f 성공 apiString", apiString);
+                    JSONArray jarray=  new JSONArray(apiString);
 
-                        //String apiString = new RestAPITask("http://sorimadang.shop/api/ox-game/questions").execute().get();
-                        Log.v("f 성공 apiString", apiString);
-                        JSONArray jarray=  new JSONArray(apiString);
-
-                        int j=0;
-                        for(int i=0;i<jarray.length();i++){
-                            //Log.v("반복문 확인", String.valueOf(i));
-                            JSONObject jObject = jarray.getJSONObject(i);
-                            stage = jObject.getInt("stage_num");
-                            if(stage==stageNum){
-                                quizNum[j] = jObject.getInt("quiz_num");
-                                quiz[j] = jObject.getString("quiz");
-                                answer[j] = jObject.getInt("answer");
-                                Log.v("성공 apiString jjj",String.valueOf(j));
-                                Log.v("성공 apiString/ stageNum:",String.valueOf(stageNum));
-                                Log.v("성공 apiString/ stage 퀴즈:", quizNum[j] + " " + quiz[j] + answer[j]);
-                                Log.v("성공 stage 퀴즈2:", String.valueOf(j));
-                                j++;
-                            }
+                    int j=0;
+                    for(int i=0;i<jarray.length();i++){
+                        //Log.v("반복문 확인", String.valueOf(i));
+                        JSONObject jObject = jarray.getJSONObject(i);
+                        stage = jObject.getInt("stage_num");
+                        if(stage==stageNum){
+                            quizNum[j] = jObject.getInt("quiz_num");
+                            quiz[j] = jObject.getString("quiz");
+                            answer[j] = jObject.getInt("answer");
+                            Log.v("성공 apiString jjj",String.valueOf(j));
+                            Log.v("성공 apiString/ stageNum:",String.valueOf(stageNum));
+                            Log.v("성공 apiString/ stage 퀴즈:", quizNum[j] + " " + quiz[j] + answer[j]);
+                            Log.v("성공 stage 퀴즈2:", String.valueOf(j));
+                            j++;
                         }
-
-                        if(apiString != null){
-                            Log.v("성공 퀴즈 apiString", apiString);//.toString());
-                        }
-                        else
-                            Log.v("성공 퀴즈 apiString", "null");
-
-                    } catch (JSONException e){
-                        //에러
-                        e.printStackTrace();
-                        Log.v("실패 퀴즈 apiString", "실패");
                     }
-                }
-            }.start();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.v("실패 퀴즈 apiString 2", "실패2");
-        }
+                    if(apiString != null){
+                        Log.v("성공 퀴즈 apiString", apiString);//.toString());
+                    }
+                    else
+                        Log.v("성공 퀴즈 apiString", "null");
+                } catch (JSONException e){
+                    //에러
+                    e.printStackTrace();
+                    Log.v("실패 퀴즈 apiString", "실패");
+                }
+            }
+        }.start();
 
         mTimerTask = createTimerTask();
         mTimer.schedule(mTimerTask,0, 1000);
