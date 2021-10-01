@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFCF2"
+    android:background="#FFFDF8"
     tools:context=".InstrumentQuizIntroActivity">
 
     <ImageView
@@ -36,16 +36,17 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:text="맞춰봐!\n내 이름이 뭐게?"
         android:fontFamily="@font/imhyeminregular"
+        android:text="맞춰봐!\n내 이름이 뭐게?"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="205dp"
-        android:layout_height="225dp"
+        android:layout_width="180dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@+id/instQstage0BT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +57,6 @@
         android:id="@+id/instQstage0BT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/imhyeminbold"
         android:onClick="instStage0Activity"
         android:text="게임방법          >"
@@ -70,7 +70,6 @@
         android:id="@+id/instQstage1BT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/imhyeminbold"
         android:onClick="instStage1Activity"
         android:text="쉬움                >"
@@ -84,7 +83,6 @@
         android:id="@+id/instQstage2BT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/imhyeminbold"
         android:onClick="instStage2Activity"
         android:text="보통                >"

@@ -25,9 +25,14 @@
         <entry key="app/src/main/res/drawable/circle_view.xml" value="0.12638888888888888" />
         <entry key="app/src/main/res/drawable/rectangle_border.xml" value="0.12638888888888888" />
         <entry key="app/src/main/res/layout/activity_instrument_quiz_intro.xml" value="0.13322368421052633" />
-        <entry key="app/src/main/res/layout/activity_instrument_quiz_stage.xml" value="0.13322368421052633" />
+        <entry key="app/src/main/res/layout/activity_instrument_quiz_result.xml" value="0.11282894736842106" />
+        <entry key="app/src/main/res/layout/activity_instrument_quiz_stage.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_intro.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_intro_last.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_oxquiz_result.xml" value="0.12171052631578948" />
         <entry key="app/src/main/res/layout/activity_oxquiz_stage.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.11282894736842106" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.11282894736842106" />
       </map>
     </option>
   </component>

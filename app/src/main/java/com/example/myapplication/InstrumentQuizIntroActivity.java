@@ -17,16 +17,21 @@ public class InstrumentQuizIntroActivity extends AppCompatActivity {
     }
 
     public void instStage0Activity(View view) {
-        startActivity(new Intent(InstrumentQuizIntroActivity.this, InstrumentQuizStageActivity.class));
+        Intent intent = new Intent(InstrumentQuizIntroActivity.this, InstrumentQuizStageActivity.class);
+        intent.putExtra("stage",1);
+        startActivity(intent);
     }
     public void instStage1Activity(View view) {
-        startActivity(new Intent(InstrumentQuizIntroActivity.this, InstrumentQuizStageActivity.class));
-    }
+        Intent intent = new Intent(InstrumentQuizIntroActivity.this, InstrumentQuizStageActivity.class);
+        intent.putExtra("stage",1);
+        startActivity(intent);    }
     public void instStage2Activity(View view) {
-        startActivity(new Intent(InstrumentQuizIntroActivity.this, InstrumentQuizStageActivity.class));
-    }
+        Intent intent = new Intent(InstrumentQuizIntroActivity.this, InstrumentQuizStageActivity.class);
+        intent.putExtra("stage",2);
+        startActivity(intent);    }
     public void instStage3Activity(View view) {
-        startActivity(new Intent(InstrumentQuizIntroActivity.this, InstrumentQuizStageActivity.class));
-    }
+        Intent intent = new Intent(InstrumentQuizIntroActivity.this, InstrumentQuizStageActivity.class);
+        intent.putExtra("stage",3);
+        startActivity(intent);    }
 
 }

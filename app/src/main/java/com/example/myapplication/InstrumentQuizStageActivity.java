@@ -7,6 +7,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -63,7 +64,12 @@ public class InstrumentQuizStageActivity extends AppCompatActivity {
     Drawable drawable;
     int curValue;
     boolean isCorrect;
-
+    boolean isNext;
+    int prob_num = 1;
+    int stage;
+    TextView level_text;
+    Random random = new Random();
+    Button pass_bt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,22 +83,22 @@ public class InstrumentQuizStageActivity extends AppCompatActivity {
         stt_view = findViewById(R.id.stt_view);
         inst_image = findViewById(R.id.inst_img);
         blank = findViewById(R.id.blank_gray);
+        level_text = findViewById(R.id.textView13);
+        pass_bt = findViewById(R.id.pass_button);
 
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
+        Intent intent1 = getIntent();
+        stage = intent1.getIntExtra("stage",0);
+
+        if(stage == 1) level_text.setText("쉬움");
+        if(stage == 2) level_text.setText("보통");
+        if(stage == 3) level_text.setText("어려움");
+
         inst_image.setVisibility(View.INVISIBLE);
-
-
-
-        Random random = new Random();
-        int randomValue1 = random.nextInt(30);
-        int randomValue2 = random.nextInt(30);
-        int randomValue3 = random.nextInt(30);
-
-        curValue = randomValue1;
-
+        curValue = random.nextInt(30);
 
         try {
             Log.v(tag, "start");
@@ -135,44 +141,28 @@ public class InstrumentQuizStageActivity extends AppCompatActivity {
                             instName_arr[i] = inst_name;
                             instIMG_arr[i] = img_url;
                             instSound_arr[i] = sound_url;
-                            //blank.setText(instName_arr[0]);
-
                         }
-
-                        if(apiString != null){
-                            Log.v(tag, "apiString is not null");//.toString());
-                        }
-                        else
-                            Log.v(tag, "apiString is null");
 
                     } catch (JSONException e){
                         //에러
                         e.printStackTrace();
                         Log.v(tag, "실패");
                     }
-                    Log.v(tag,"result = " + instName_arr[curValue]);
-                    img_url = instIMG_arr[curValue]; //url of the image
-                    InputStream is = null;
-                    try {
-                        is = (InputStream) new URL(img_url).getContent();
-                        Log.v(tag,"inst url is " + "success");
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    while(true) {
+                        //Log.v(tag, "result = " + instName_arr[curValue]);
+                        img_url = instIMG_arr[curValue]; //url of the image
+                        InputStream is = null;
+                        try {
+                            is = (InputStream) new URL(img_url).getContent();
+                            //Log.d(tag, img_url);
+                            //Log.v(tag, "inst url is " + "success");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        drawable = Drawable.createFromStream(is, "srcName");
+                        Message message = handler.obtainMessage();
+                        handler.sendMessage(message);
                     }
-                    drawable = Drawable.createFromStream(is,"srcName");
-                    Message message = handler.obtainMessage() ;
-                    handler.sendMessage(message) ;
-                    /*try {
-                        URL url = new URL(img_url);
-                        bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                        inst_image.setImageBitmap(bmp);
-                        inst_image.setVisibility(View.VISIBLE);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }*/
-
-
-                    //blank.setText(instName_arr[0]);
                 }
             }.start();
 
@@ -180,20 +170,59 @@ public class InstrumentQuizStageActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.v(tag, "실패2");
         }
-        //Glide.with(this).load(img_url).into(inst_image);
 
 
 
     }
 
-
+    public void PassButton(View view){
+        prob_num++;
+        if(stage == 1 && prob_num == 4){
+            startActivity(new Intent(InstrumentQuizStageActivity.this, InstrumentQuizResultActivity.class));
+        }
+        else if(stage == 2 && prob_num == 5){
+            startActivity(new Intent(InstrumentQuizStageActivity.this, InstrumentQuizResultActivity.class));
+        }
+        else if(stage == 3 && prob_num == 6){
+            startActivity(new Intent(InstrumentQuizStageActivity.this, InstrumentQuizResultActivity.class));
+        }
+        else{
+            curValue = random.nextInt(30);
+            stt_view.setText("  ");
+            speech_button.setText("정답말하기");
+            isNext = false;
+        }
+    }
 
     public void STTButton(View view) {
+        if(isNext == true){
+            prob_num++;
+            speech_button.setBackgroundColor(Color.parseColor("#FFCB69"));
+            if(stage == 1 && prob_num == 4){
+                startActivity(new Intent(InstrumentQuizStageActivity.this, InstrumentQuizResultActivity.class));
+            }
+            else if(stage == 2 && prob_num == 5){
+                startActivity(new Intent(InstrumentQuizStageActivity.this, InstrumentQuizResultActivity.class));
+            }
+            else if(stage == 3 && prob_num == 6){
+                startActivity(new Intent(InstrumentQuizStageActivity.this, InstrumentQuizResultActivity.class));
+            }
+            else{
+                curValue = random.nextInt(30);
+                stt_view.setText("  ");
+                speech_button.setText("정답말하기");
+                isNext = false;
+            }
+
+        }
+        else{
             mRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
             mRecognizer.setRecognitionListener(listener);
             mRecognizer.startListening(intent);
-
         }
+
+
+    }
 
     private RecognitionListener listener = new RecognitionListener() {
 
@@ -234,10 +263,15 @@ public class InstrumentQuizStageActivity extends AppCompatActivity {
              ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
              for(int i = 0; i < matches.size() ; i++){
                  stt_view.setText(matches.get(i));
-                 if(matches.get(i)==instName_arr[curValue]) {
+                 Log.d(tag,matches.get(i)+" and "+instName_arr[curValue]);
+                 if(matches.get(i).equals(instName_arr[curValue])) {
                      isCorrect =true;
+                     speech_button.setText("다음문제");
+                     speech_button.setBackgroundColor(Color.parseColor("#7ADB6A"));
                      //true lottie
                      //다음문제 버튼 생성
+                     isNext = true;
+
                  }
                  else {
                      isCorrect = false;
@@ -341,9 +375,6 @@ class Task extends AsyncTask<String, Void, String> {
     }
 
 }
-
-
-
 
 
 

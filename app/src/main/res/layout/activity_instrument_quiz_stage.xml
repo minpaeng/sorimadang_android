@@ -69,16 +69,33 @@
         android:id="@+id/speech_button"
         android:layout_width="121dp"
         android:layout_height="48dp"
-        android:text="정답 말하기"
         android:fontFamily="@font/imhyeminbold"
-        android:textColor="#000000"
         android:onClick="STTButton"
+        android:text="정답 말하기"
+        android:textColor="#000000"
         app:backgroundTint="#FFCB69"
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView12"
         app:layout_constraintEnd_toEndOf="@+id/what_name_text"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="@+id/what_name_text"
         app:layout_constraintTop_toBottomOf="@+id/what_name_text" />
+
+    <Button
+        android:id="@+id/pass_button"
+        android:layout_width="121dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/imhyeminbold"
+        android:onClick="PassButton"
+        android:text="넘어가기"
+        android:textColor="#000000"
+        app:backgroundTint="#FFCB69"
+        app:cornerRadius="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/what_name_text"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/what_name_text"
+        app:layout_constraintTop_toBottomOf="@+id/speech_button" />
 
     <TextView
         android:id="@+id/stt_view"
