@@ -32,6 +32,7 @@ public class InstrumentQuizIntroActivity extends AppCompatActivity {
     public void instStage3Activity(View view) {
         Intent intent = new Intent(InstrumentQuizIntroActivity.this, InstrumentQuizStageActivity.class);
         intent.putExtra("stage",3);
-        startActivity(intent);    }
+        startActivity(intent);
+    }
 
 }
