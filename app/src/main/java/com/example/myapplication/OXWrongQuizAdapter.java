@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +11,19 @@ import android.view.ViewGroup;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class OXWrongQuizAdapter extends RecyclerView.Adapter<OXWrongQuizViewHolder> {
     private ArrayList<OXWrongQuiz> oxWrongQuizs = null;
+    private String userIdToken;
 
-    OXWrongQuizAdapter(ArrayList<OXWrongQuiz> oxWrongQuizs) {
+    OXWrongQuizAdapter(ArrayList<OXWrongQuiz> oxWrongQuizs, String userIdToken) {
         this.oxWrongQuizs = oxWrongQuizs;
+        this.userIdToken = userIdToken;
     }
 
     @Override
@@ -30,7 +38,7 @@ public class OXWrongQuizAdapter extends RecyclerView.Adapter<OXWrongQuizViewHold
     }
 
     @Override
-    public void onBindViewHolder(OXWrongQuizViewHolder viewHolder, int position)
+    public void onBindViewHolder(OXWrongQuizViewHolder viewHolder, @SuppressLint("RecyclerView") int position)
     {
         String stageQuizNum = oxWrongQuizs.get(position).getStageNum() + "-" + oxWrongQuizs.get(position).getQuizNum();
 
@@ -44,6 +52,12 @@ public class OXWrongQuizAdapter extends RecyclerView.Adapter<OXWrongQuizViewHold
         else {
             viewHolder.quizText.setBackgroundResource(R.drawable.rectangle_border_bold_red);
         }
+        viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteCard(position);
+            }
+        });
     }
 
     @Override
@@ -52,5 +66,46 @@ public class OXWrongQuizAdapter extends RecyclerView.Adapter<OXWrongQuizViewHold
         //Adapter가 관리하는 전체 데이터 개수 반환
         int size = oxWrongQuizs.size();
         return oxWrongQuizs.size();
+    }
+
+    private void deleteCard(int position) {
+        //카드뷰 문항정보
+        int stageNum = oxWrongQuizs.get(position).getStageNum();
+        int quizNum = oxWrongQuizs.get(position).getQuizNum();
+
+        //카드뷰 삭제
+        oxWrongQuizs.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, oxWrongQuizs.size());
+
+        //서버 오답 삭제
+        new Thread() {
+            @Override
+            public void run() {
+                deleteNote(stageNum, quizNum);
+            }
+        }.start();
+
+    }
+
+    private void deleteNote(int stageNum, int quizNum) {
+        try {
+            Action action=Action.getInstance();
+            JSONObject reqtoServer=new JSONObject();
+            reqtoServer.put("idToken",userIdToken);
+            reqtoServer.put("stage_num", stageNum);
+            reqtoServer.put("quiz_num", quizNum);
+            String res= action.post(reqtoServer.toString(),"http://sorimadang.shop/api/ox-game/wrong-questions/remove");
+            Log.v("result", res);
+            if(res != null){
+                Log.v("delete 성공", res);//.toString());
+            }
+            else Log.v("delete null", "null");
+
+        } catch (JSONException e){
+            //에러
+            e.printStackTrace();
+            Log.v("오답 apiString", "실패");
+        }
     }
 }

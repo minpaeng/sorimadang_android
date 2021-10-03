@@ -79,7 +79,7 @@ public class OXwrongAnswerActivity extends AppCompatActivity {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
             recyclerView.setLayoutManager(manager); // LayoutManager 등록
-            recyclerView.setAdapter(new OXWrongQuizAdapter(oxWrongQuizs));  // Adapter 등록
+            recyclerView.setAdapter(new OXWrongQuizAdapter(oxWrongQuizs, userIdToken));  // Adapter 등록
         } catch (JSONException e) {
             e.printStackTrace();
         }
