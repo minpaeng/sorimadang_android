@@ -1,7 +1,10 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Movie;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,14 +25,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class OXwrongAnswerActivity extends AppCompatActivity {
-
-    static String userIdToken=null;
-    TextView wrongAnswer;
-    String oxapiString=null;
+    private ArrayList<OXWrongQuiz> oxWrongQuizs;
+    static String userIdToken = null;
+    private JSONArray jArray = null;
+    private int length;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,21 +44,80 @@ public class OXwrongAnswerActivity extends AppCompatActivity {
         userIdToken = ( (UserIdApplication) getApplication() ).getId();
         Log.v("유저의 idtoken_result",userIdToken);
 
-        wrongAnswer=findViewById(R.id.textView);
-
+/*
+        //idtoken 가져오기 실패 시 로그인하라는 경고 띄우기
         try {
 
         } catch (Exception e) {
             e.printStackTrace();
             Log.v("실패 apiString", "실패");
         }
-
-
+*/
 
         //idtoken보내고 응답받아서 textview에 넘겨주기
-        //wrongAnswer.setText(#응답#);
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    Action action=Action.getInstance();
+                    JSONObject reqtoServer=new JSONObject();
+                    reqtoServer.put("idToken",userIdToken);
+                    String res= action.post(reqtoServer.toString(),"http://sorimadang.shop/api/ox-game/wrong-questions/search");
+                    Log.v("result", res);
+
+                    // 가장 큰 JSONObject를 가져옵니다.
+                    JSONObject jObject = new JSONObject(res);
+                    // 배열을 가져옵니다.
+                    jArray = jObject.getJSONArray("wrongQuizs");
+
+                    Log.v("오답 읽기 성공", jArray.getJSONObject(0).getJSONObject("gameOXQuiz").getString("quiz"));
+                    Log.v("오답 읽기 성공", jArray.getJSONObject(1).getJSONObject("gameOXQuiz").getString("quiz"));
+                    Log.v("오답 읽기 성공", jArray.getJSONObject(2).getJSONObject("gameOXQuiz").getString("quiz"));
+                    Log.v("array 길이", Integer.toString(jArray.length()));
+                    //System.out.println(resJson.getJSONObject(0).getString("quiz")+"\n\n\n");
+
+                    if(res != null){
+                        Log.v("o 오답 apiString", res);//.toString());
+                    }
+                    else Log.v("o 오답 apiString", "null");
+
+                } catch (JSONException e){
+                    //에러
+                    e.printStackTrace();
+                    Log.v("오답 apiString", "실패");
+                }
+            }
+        }.start();
+
+        try {
+            initializeData(jArray, length);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //Log.v("oxWrongQuiz 내용", oxWrongQuizs.toString());
+        /*RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(manager); // LayoutManager 등록
+        recyclerView.setAdapter(new OXWrongQuizAdapter(oxWrongQuizs));  // Adapter 등록*/
     }
 
+    public void initializeData(JSONArray jArray, int length) throws JSONException {
+        oxWrongQuizs = new ArrayList<>();
 
+        Log.v("오답 array 길이", Integer.toString(jArray.length()));
+        for(int i=0;i< length;i++){
+            //Log.v("반복문 확인", String.valueOf(i));
+            JSONObject jObject = jArray.getJSONObject(i).getJSONObject("gameOXQuiz");
+            int stageNum = jObject.getInt("stage_num");
+            Log.v("성공 stageNum", Integer.toString(stageNum));
+            int quizNum = jObject.getInt("quiz_num");
+            Log.v("성공 quiz_num", Integer.toString(quizNum));
+            String quiz = jObject.getString("quiz");
+            Log.v("성공 quiz", quiz);
+            int answer = jObject.getInt("answer");
+            Log.v("성공 answer", Integer.toString(answer));
+            oxWrongQuizs.add(new OXWrongQuiz(stageNum, quizNum, quiz, answer));
+        }
+    }
 
 }

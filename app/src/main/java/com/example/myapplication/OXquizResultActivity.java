@@ -88,6 +88,7 @@ public class OXquizResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //오답노트 화면
+
                 Intent stageIntent = new Intent(OXquizResultActivity.this, OXwrongAnswerActivity.class);
                 startActivity(stageIntent);
            }
