@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/a_hm/project/probono_ICT_2021(1)/MyApplication/app/src/main/res/drawable/rectangle_border.xml" value="0.22083333333333333" />
+        <entry key="..\:/a_hm/project/probono_ICT_2021(1)/MyApplication/app/src/main/res/drawable/rectangle_border_bold.xml" value="0.22083333333333333" />
+        <entry key="..\:/a_hm/project/probono_ICT_2021(1)/MyApplication/app/src/main/res/drawable/rounded_view.xml" value="0.22083333333333333" />
         <entry key="..\:/a_hm/project/probono_ICT_2021(1)/MyApplication/app/src/main/res/font/custom_font_family.xml" value="0.1015625" />
         <entry key="..\:/a_hm/project/probono_ICT_2021(1)/MyApplication/app/src/main/res/layout/activity_gwan_inst_study_intro.xml" value="0.264" />
         <entry key="..\:/a_hm/project/probono_ICT_2021(1)/MyApplication/app/src/main/res/layout/activity_hyun_inst_study_intro.xml" value="0.264" />
