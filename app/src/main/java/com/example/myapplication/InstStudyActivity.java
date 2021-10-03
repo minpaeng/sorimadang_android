@@ -30,8 +30,16 @@ public class InstStudyActivity extends AppCompatActivity {
         akgi.setText(akgiName);
         
         //악기종류랑 악기이름 잘 넘겨주는지 확인
+
         //클래스에서 악기 찾아서 그림 표시, 소리표시
-        
+        if(whatAkgi==1){
+            //관악기
+
+        }else if(whatAkgi==2){
+            //현악기
+        }else if(whatAkgi==3){
+            //타악기
+        }
     }
 
     public void InstbackActivity(View view) {
