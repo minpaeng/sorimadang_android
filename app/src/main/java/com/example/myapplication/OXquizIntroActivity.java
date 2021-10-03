@@ -41,4 +41,9 @@ public class OXquizIntroActivity extends AppCompatActivity {
     public void oxintrobackActivity(View view){
         startActivity(new Intent(OXquizIntroActivity.this, MainActivity.class));
     }
+
+    public static class oxQuizApi{
+        //ox퀴즈 내용 서버에서 가져온 후 클래스에 저장
+
+    }
 }

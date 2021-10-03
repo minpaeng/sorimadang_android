@@ -332,11 +332,6 @@ public class OXquizStageActivity extends AppCompatActivity {
         handler.post(runnable);
     }
 
-        //rightOimg.setVisibility(View.VISIBLE); //화면에서 보이게 하는거->정답일때 보이게 할 수 있음
-
-
-
-
     void timeOver(){
         nextBT.setVisibility(View.VISIBLE);
         mTimerTask.cancel();
@@ -351,18 +346,6 @@ public class OXquizStageActivity extends AppCompatActivity {
     }
 
     private TimerTask createTimerTask() {
-        /*if(userquizNum>6){
-            startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
-        }*/
-
-        /*OXstep.setText("Quiz "+(userquizNum+1));
-        OXquiz.setText(quiz[userquizNum]);
-        Log.v("퀴즈넘 0",String.valueOf(userquizNum));
-        Log.v("타이머 0 퀴즈넘",String.valueOf(userquizNum));
-        Log.v("타이머 0 퀴즈0",quiz[0]);
-        Log.v("타이머 0 퀴즈[퀴즈넘]",quiz[userquizNum]);*/
-
-        //userquizNum++;
         num = 10;
         TimerTask timerTask = new TimerTask() {
             @Override

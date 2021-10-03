@@ -92,6 +92,11 @@ public class MypageFragment extends Fragment {
         }
 
         checkName = v.findViewById(R.id.textView4);
+        if( userName == null){
+            checkName.setText("");
+        }else{
+            checkName.setText(userName);
+        }
 
         //서버 클라이언트 아이디
         String serverClientId = getString(R.string.server_client_id);
