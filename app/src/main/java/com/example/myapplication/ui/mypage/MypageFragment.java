@@ -66,6 +66,7 @@ public class MypageFragment extends Fragment {
 
     private ImageView halfpeng_img;
     Button signInButton;
+    Button signOutButton;
     Button faultNoteButton;
     TextView checkName;
     private GoogleSignInClient mGoogleSignInClient;
@@ -137,6 +138,15 @@ public class MypageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 signIn();
+            }
+        });
+
+        signOutButton = v.findViewById(R.id.signoutButton);
+
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
             }
         });
 
@@ -227,7 +237,7 @@ public class MypageFragment extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        //updateUI(null);
+                        updateUI(null);
                     }
                 });
     }
@@ -248,7 +258,6 @@ public class MypageFragment extends Fragment {
     //계정 상태에 맞는 UI로 업데이트
     private void updateUI(@Nullable GoogleSignInAccount account) {
         if (account != null) {
-
             //계정 정보 가져오기
             String personName = account.getDisplayName();
             String personGivenName = account.getGivenName();
@@ -270,6 +279,9 @@ public class MypageFragment extends Fragment {
 
             checkName.setText(personName); //다른 프래그먼트로 이동 시 메세지가 사라짐 //(에러)
             userName = personName;
+
+            signInButton.setVisibility(View.GONE);
+            signOutButton.setVisibility(View.VISIBLE);
 
             //전체 전역변수로 idtoken을 넘겨줌
             ((UserIdApplication) getActivity().getApplication()).setId(idToken);
@@ -297,7 +309,10 @@ public class MypageFragment extends Fragment {
                 }
             }.start();
         } else {
-            Log.v("구글로그인 에러", "1");
+            checkName.setText(null);
+            signInButton.setVisibility(View.VISIBLE);
+            signOutButton.setVisibility(View.GONE);
+            Log.v("로그아웃 상태", "1");
         }
     }
 

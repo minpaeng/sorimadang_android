@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -36,13 +37,13 @@ public class OXWrongQuizAdapter extends RecyclerView.Adapter<OXWrongQuizViewHold
         //ViewHolder가 관리하는 View에 position에 해당하는 데이터 바인딩
         viewHolder.stageQuizNum.setText(stageQuizNum);
         viewHolder.quizText.setText(oxWrongQuizs.get(position).getQuiz());
-        /*//정답에 따라 백그라운드컬러 변경
+        //정답에 따라 백그라운드컬러 변경
         if (oxWrongQuizs.get(position).getAnswer() == 1) {
-            viewHolder.quizText.setBackground(Drawable.createFromPath("../res/drawable/rectangle_border_bold_green"));
+            viewHolder.quizText.setBackgroundResource(R.drawable.rectangle_border_bold_green);
         }
         else {
-            viewHolder.quizText.setBackground(Drawable.createFromPath("../res/drawable/rectangle_border_bold_red"));
-        }*/
+            viewHolder.quizText.setBackgroundResource(R.drawable.rectangle_border_bold_red);
+        }
     }
 
     @Override
