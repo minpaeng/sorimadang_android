@@ -372,40 +372,4 @@ public class OXquizStageActivity extends AppCompatActivity {
         startActivity(new Intent(OXquizStageActivity.this, OXquizIntroActivity.class));
     }
 
-    private void postOXQuiz(String idToken) {
-        new Thread() {
-            public void run() {
-
-                HttpClient httpClient = HttpClientBuilder.create().build();
-                HttpPost httpPost = new HttpPost("http://sorimadang.shop/api/ox-game/wrong-questions/save");
-                httpPost.addHeader("Accept", "application/json");
-                httpPost.addHeader("Content-Type", "application/json");
-
-                try {
-                    String body = new StringBuilder()
-                            .append("{")
-                            .append("\"idToken\":\"" + idToken + "\",")
-                            .append("\"stage_num\":3,")
-                            .append("\"quiz_num\":1")
-                            .append("}")
-                            .toString();
-
-                    httpPost.setEntity(new StringEntity(body));
-
-                    HttpResponse response = httpClient.execute(httpPost);
-
-                    int statusCode = response.getStatusLine().getStatusCode();
-                    //System.out.println(idToken);
-                    Log.v("유저 토큰", idToken);
-                    final String responseBody = EntityUtils.toString(response.getEntity());
-                    Log.v("Signed in as: " , responseBody);
-                } catch (ClientProtocolException e) {
-                    Log.v("Error sending ID", "err");
-                } catch (IOException e) {
-                    Log.v("Error sending ID", "err");
-                }
-            }
-        }.start();
-    }
-
 }

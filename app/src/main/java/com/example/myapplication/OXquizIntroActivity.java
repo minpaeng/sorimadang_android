@@ -124,7 +124,5 @@ public class OXquizIntroActivity extends AppCompatActivity {
             }
 
         }
-        //2.퀴즈 내용 출력하는 함수
-
     }
 }

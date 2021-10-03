@@ -13,6 +13,7 @@
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:onClick="H_instBackActivity"
         app:layout_constraintBottom_toBottomOf="@+id/H_instTextView3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/H_instTextView3"
