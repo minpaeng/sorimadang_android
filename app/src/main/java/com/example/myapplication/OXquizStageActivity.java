@@ -95,6 +95,15 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXscore.setText("score "+oxscore);
 
         //2.퀴즈 넘버링 + 3.퀴즈 내용 가져오기.
+        for(int i=0;i<5;i++){
+            Log.v("반복문 확인", String.valueOf(i));
+            quizNum[i] = OXquizIntroActivity.oxQuizApi.oxQuizNum[stageNum-1][i];
+            quiz[i] = OXquizIntroActivity.oxQuizApi.oxQuiz[stageNum-1][i];
+            answer[i] = OXquizIntroActivity.oxQuizApi.oxQuizAnswer[stageNum-1][i];
+            Log.v("성공 apiString/ stage 퀴즈:", quizNum[i] + " " + quiz[i] + answer[i]);
+        }
+
+        /*
         new Thread(){
             @Override
             public void run() {
@@ -135,6 +144,8 @@ public class OXquizStageActivity extends AppCompatActivity {
                 }
             }
         }.start();
+        */
+
 
         mTimerTask = createTimerTask();
         mTimer.schedule(mTimerTask,0, 1000);
@@ -332,11 +343,6 @@ public class OXquizStageActivity extends AppCompatActivity {
         handler.post(runnable);
     }
 
-        //rightOimg.setVisibility(View.VISIBLE); //화면에서 보이게 하는거->정답일때 보이게 할 수 있음
-
-
-
-
     void timeOver(){
         nextBT.setVisibility(View.VISIBLE);
         mTimerTask.cancel();
@@ -351,18 +357,6 @@ public class OXquizStageActivity extends AppCompatActivity {
     }
 
     private TimerTask createTimerTask() {
-        /*if(userquizNum>6){
-            startActivity(new Intent(OXquizStageActivity.this, OXquizResultActivity.class));
-        }*/
-
-        /*OXstep.setText("Quiz "+(userquizNum+1));
-        OXquiz.setText(quiz[userquizNum]);
-        Log.v("퀴즈넘 0",String.valueOf(userquizNum));
-        Log.v("타이머 0 퀴즈넘",String.valueOf(userquizNum));
-        Log.v("타이머 0 퀴즈0",quiz[0]);
-        Log.v("타이머 0 퀴즈[퀴즈넘]",quiz[userquizNum]);*/
-
-        //userquizNum++;
         num = 10;
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -376,42 +370,6 @@ public class OXquizStageActivity extends AppCompatActivity {
 
     public void oxstagebackActivity(View view) {
         startActivity(new Intent(OXquizStageActivity.this, OXquizIntroActivity.class));
-    }
-
-    private void postOXQuiz(String idToken) {
-        new Thread() {
-            public void run() {
-
-                HttpClient httpClient = HttpClientBuilder.create().build();
-                HttpPost httpPost = new HttpPost("http://sorimadang.shop/api/ox-game/wrong-questions/save");
-                httpPost.addHeader("Accept", "application/json");
-                httpPost.addHeader("Content-Type", "application/json");
-
-                try {
-                    String body = new StringBuilder()
-                            .append("{")
-                            .append("\"idToken\":\"" + idToken + "\",")
-                            .append("\"stage_num\":3,")
-                            .append("\"quiz_num\":1")
-                            .append("}")
-                            .toString();
-
-                    httpPost.setEntity(new StringEntity(body));
-
-                    HttpResponse response = httpClient.execute(httpPost);
-
-                    int statusCode = response.getStatusLine().getStatusCode();
-                    //System.out.println(idToken);
-                    Log.v("유저 토큰", idToken);
-                    final String responseBody = EntityUtils.toString(response.getEntity());
-                    Log.v("Signed in as: " , responseBody);
-                } catch (ClientProtocolException e) {
-                    Log.v("Error sending ID", "err");
-                } catch (IOException e) {
-                    Log.v("Error sending ID", "err");
-                }
-            }
-        }.start();
     }
 
 }
