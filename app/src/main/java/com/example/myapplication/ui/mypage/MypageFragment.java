@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.mypage;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -30,6 +31,8 @@ import android.widget.TextView;
 
 import com.example.myapplication.Action;
 import com.example.myapplication.LoginActivity;
+import com.example.myapplication.OXquizResultActivity;
+import com.example.myapplication.OXwrongAnswerActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.SignUpActivity;
 import com.example.myapplication.UserIdApplication;
@@ -63,6 +66,7 @@ public class MypageFragment extends Fragment {
 
     private ImageView halfpeng_img;
     Button signInButton;
+    Button faultNoteButton;
     TextView checkName;
     private GoogleSignInClient mGoogleSignInClient;
     public static final int RC_SIGN_IN=9001;
@@ -136,6 +140,16 @@ public class MypageFragment extends Fragment {
             }
         });
 
+        faultNoteButton = v.findViewById(R.id.faultNoteButton);
+        faultNoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //오답노트 화면
+                Intent stageIntent = new Intent(getActivity(), OXwrongAnswerActivity.class);
+                startActivity(stageIntent);
+            }
+        });
+
         //2.When your app starts, check if the user has already signed in to your app using Google,
         // on this device or another device, by calling silentSignIn:
         /*
@@ -159,7 +173,7 @@ public class MypageFragment extends Fragment {
         //앱에 로그인 되어 있지 않은 상태라면 null 반환
         //앱에 이미 로그인 되어 있는 상태라면 null을 반환하지 않음
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
-        //updateUI(account);
+        updateUI(account);
     }
 
     // 구글 계정 선택 후 결과 처리

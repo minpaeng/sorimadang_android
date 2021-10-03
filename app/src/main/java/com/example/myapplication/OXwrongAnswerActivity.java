@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +36,6 @@ public class OXwrongAnswerActivity extends AppCompatActivity {
     private ArrayList<OXWrongQuiz> oxWrongQuizs;
     static String userIdToken = null;
     private JSONArray jArray = null;
-    private int length;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,7 @@ public class OXwrongAnswerActivity extends AppCompatActivity {
             Log.v("실패 apiString", "실패");
         }
 */
-
-        //idtoken보내고 응답받아서 textview에 넘겨주기
+        //앱 시작하자마자 http통신: 오답노트 가져오기
         new Thread(){
             @Override
             public void run() {
@@ -74,7 +75,6 @@ public class OXwrongAnswerActivity extends AppCompatActivity {
                     Log.v("오답 읽기 성공", jArray.getJSONObject(1).getJSONObject("gameOXQuiz").getString("quiz"));
                     Log.v("오답 읽기 성공", jArray.getJSONObject(2).getJSONObject("gameOXQuiz").getString("quiz"));
                     Log.v("array 길이", Integer.toString(jArray.length()));
-                    //System.out.println(resJson.getJSONObject(0).getString("quiz")+"\n\n\n");
 
                     if(res != null){
                         Log.v("o 오답 apiString", res);//.toString());
@@ -88,24 +88,36 @@ public class OXwrongAnswerActivity extends AppCompatActivity {
                 }
             }
         }.start();
+        int a = 1;
+        int b = 2;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //http통신 완료 후 json 파싱 작업 실행
         try {
-            initializeData(jArray, length);
+            Thread.sleep(800);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        int c = 3;
+        try {
+            initializeData(jArray);
+            RecyclerView recyclerView = findViewById(R.id.recyclerview);
+            LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
+            recyclerView.setLayoutManager(manager); // LayoutManager 등록
+            recyclerView.setAdapter(new OXWrongQuizAdapter(oxWrongQuizs));  // Adapter 등록
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //Log.v("oxWrongQuiz 내용", oxWrongQuizs.toString());
-        /*RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
-        recyclerView.setLayoutManager(manager); // LayoutManager 등록
-        recyclerView.setAdapter(new OXWrongQuizAdapter(oxWrongQuizs));  // Adapter 등록*/
     }
 
-    public void initializeData(JSONArray jArray, int length) throws JSONException {
+    public void initializeData(JSONArray jArray) throws JSONException {
         oxWrongQuizs = new ArrayList<>();
 
-        Log.v("오답 array 길이", Integer.toString(jArray.length()));
-        for(int i=0;i< length;i++){
+        int len = jArray.length();
+        for(int i=0;i< len;i++){
             //Log.v("반복문 확인", String.valueOf(i));
             JSONObject jObject = jArray.getJSONObject(i).getJSONObject("gameOXQuiz");
             int stageNum = jObject.getInt("stage_num");
@@ -117,6 +129,7 @@ public class OXwrongAnswerActivity extends AppCompatActivity {
             int answer = jObject.getInt("answer");
             Log.v("성공 answer", Integer.toString(answer));
             oxWrongQuizs.add(new OXWrongQuiz(stageNum, quizNum, quiz, answer));
+            System.out.println(oxWrongQuizs);
         }
     }
 
