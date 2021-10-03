@@ -62,12 +62,13 @@ import java.net.URL;
 public class MypageFragment extends Fragment {
 
     private ImageView halfpeng_img;
-    Button usSignUp, usLogin, signInButton;
-    TextView checkMessage;
+    Button signInButton;
+    TextView checkName;
     private GoogleSignInClient mGoogleSignInClient;
     public static final int RC_SIGN_IN=9001;
     private static final String TAG = "requestIdToken";
     private static String idToken = new String();
+    private static String userName = new String();
 
     public static MypageFragment newInstance() {
         return new MypageFragment();
@@ -90,27 +91,8 @@ public class MypageFragment extends Fragment {
             halfpeng_img.setClipToOutline(true);
         }
 
+        checkName = v.findViewById(R.id.textView4);
 
-        usSignUp = v.findViewById(R.id.usSignUpBT);
-        usLogin = v.findViewById(R.id.usLoginBT);
-
-        usSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        usLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        checkMessage = v.findViewById(R.id.textView4);
         //서버 클라이언트 아이디
         String serverClientId = getString(R.string.server_client_id);
 
@@ -267,7 +249,9 @@ public class MypageFragment extends Fragment {
             //Log.d(TAG, "handleSignInResult:serverAuthCode "+serverAuthCode);
             Log.d(TAG, "handleSignInResult:idToken "+idToken);
 
-            checkMessage.setText(personName+" 님이 로그인 되었습니다."); //다른 프래그먼트로 이동 시 메세지가 사라짐 //(에러)
+            checkName.setText(personName); //다른 프래그먼트로 이동 시 메세지가 사라짐 //(에러)
+            userName = personName;
+
             //전체 전역변수로 idtoken을 넘겨줌
             ((UserIdApplication) getActivity().getApplication()).setId(idToken);
 
@@ -309,14 +293,6 @@ public class MypageFragment extends Fragment {
                     }
                 });
     }
-
-
-
-
-
-
-
-
 }
 
 
