@@ -95,6 +95,15 @@ public class OXquizStageActivity extends AppCompatActivity {
         OXscore.setText("score "+oxscore);
 
         //2.퀴즈 넘버링 + 3.퀴즈 내용 가져오기.
+        for(int i=0;i<5;i++){
+            Log.v("반복문 확인", String.valueOf(i));
+            quizNum[i] = OXquizIntroActivity.oxQuizApi.oxQuizNum[stageNum-1][i];
+            quiz[i] = OXquizIntroActivity.oxQuizApi.oxQuiz[stageNum-1][i];
+            answer[i] = OXquizIntroActivity.oxQuizApi.oxQuizAnswer[stageNum-1][i];
+            Log.v("성공 apiString/ stage 퀴즈:", quizNum[i] + " " + quiz[i] + answer[i]);
+        }
+
+        /*
         new Thread(){
             @Override
             public void run() {
@@ -135,6 +144,8 @@ public class OXquizStageActivity extends AppCompatActivity {
                 }
             }
         }.start();
+        */
+
 
         mTimerTask = createTimerTask();
         mTimer.schedule(mTimerTask,0, 1000);
